@@ -244,4 +244,19 @@
 			$('.image-popup').magnificPopup({type:'image'});
 		}
 	});
+
+	// Prevent empty search submissions
+	document.addEventListener('DOMContentLoaded', function() {
+		const searchForms = document.querySelectorAll('.woocommerce-product-search');
+		
+		searchForms.forEach(form => {
+			form.addEventListener('submit', function(e) {
+				const searchInput = this.querySelector('.search-field');
+				if (!searchInput.value.trim()) {
+					e.preventDefault();
+					searchInput.focus();
+				}
+			});
+		});
+	});
 })(jQuery);

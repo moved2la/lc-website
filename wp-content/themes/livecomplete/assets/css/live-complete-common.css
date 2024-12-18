@@ -561,7 +561,7 @@ input[type="reset"],
 input[type="submit"] {
 	 -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    border-radius: 3px;
+    border-radius: 0;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
@@ -574,6 +574,12 @@ input[type="submit"] {
 	border:1px solid var( --secondary-color );
 }
 
+button {
+    background: var( --button-bg-color );
+    color: var( --button-text-color );
+    border: none;
+}
+
 button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
@@ -582,8 +588,7 @@ button:focus,
 input[type="button"]:focus,
 input[type="reset"]:focus,
 input[type="submit"]:focus{
-	color: var( --secondary-color );
-	background:none;
+
 }
 
 button:active, button:focus,
