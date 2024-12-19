@@ -87,6 +87,7 @@ $form_result = handle_newsletter_signup();
         justify-content: flex-start;
         flex: 1;
         position: relative;
+        min-width: 0;
     }
 
     .text {
@@ -109,7 +110,6 @@ $form_result = handle_newsletter_signup();
         align-items: flex-start;
         justify-content: flex-start;
         flex-shrink: 0;
-        width: 513px;
         position: relative;
     }
 
@@ -247,10 +247,14 @@ $form_result = handle_newsletter_signup();
         color: #721c24;
         border: 1px solid #f5c6cb;
     }
+
+    .signup-container button {
+        min-width: 103px;
+    }
 </style>
 
 <div class="signup">
-    <div class="signup-container container">
+    <div class="signup-container ">
         <div class="column">
             <div class="heading">
                 Fuel your journey:
