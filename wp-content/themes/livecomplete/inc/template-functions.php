@@ -299,3 +299,29 @@ if( !function_exists('live_complete_elementor_editor_simplify') ){
 	add_action( 'elementor/editor/init', 'live_complete_elementor_editor_simplify');
 
 }
+
+/**
+ * Add custom HTML block at the bottom of pages
+ */
+function live_complete_page_bottom_html() {
+    // Only show on pages, not posts or other content types
+    // if (!is_page()) {
+    //     return;
+    // }
+
+    // Don't show on WooCommerce pages
+    // if (function_exists('is_woocommerce') && (is_woocommerce() || is_cart() || is_checkout() || is_account_page())) {
+    //     return;
+    // }
+
+    get_template_part('template-parts/blocks/page', 'bottom');
+}
+
+// Remove existing action if it exists
+remove_action('live_complete_container_wrap_end', 'live_complete_page_bottom_html', 5);
+
+// Add the function to run after container wrap end
+function live_complete_add_bottom_block() {
+    live_complete_page_bottom_html();
+}
+add_action('live_complete_container_wrap_end', 'live_complete_add_bottom_block', 999);

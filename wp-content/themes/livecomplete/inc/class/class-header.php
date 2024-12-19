@@ -281,7 +281,15 @@ class live_complete_Header_Layout
                 if (is_front_page() && is_active_sidebar('slider')) :
                     dynamic_sidebar('slider');
                 else:
-                    $header_image = get_header_image();
+                    // Get featured image if on a single post/page and it has one
+                    $banner_image = '';
+                    if (is_singular() && has_post_thumbnail()) {
+                        $banner_image = get_the_post_thumbnail_url(null, 'full');
+                    }
+                    // Fall back to header image if no featured image
+                    if (empty($banner_image)) {
+                        $banner_image = get_header_image();
+                    }
                 ?>
 
                     <div id="static_header_banner" class="header-style-1">
@@ -292,10 +300,9 @@ class live_complete_Header_Layout
                             </div>
                         <?php endif; ?>
 
-                        <?php if (!empty($header_image)) : ?>
+                        <?php if (!empty($banner_image)) : ?>
                             <div class="site-header-bg-wrap">
-
-                                <div class="site-header-bg background-effect" style=" background-image: url(<?php echo esc_url($header_image); ?>); background-attachment: scroll; "></div>
+                                <div class="site-header-bg background-effect" style="background-image: url(<?php echo esc_url($banner_image); ?>); background-attachment: scroll;"></div>
                             </div>
                         <?php endif; ?>
 

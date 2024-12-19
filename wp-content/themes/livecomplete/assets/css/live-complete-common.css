@@ -620,15 +620,12 @@ input[type="color"],
 textarea {
 	color: #666;
 	border: 1px solid #ccc;
-	border-radius: 3px;
 	padding: 3px;
 	width: 100%;
 	min-height: 48px;
 	padding: 5px 15px;
 	font-size: 15px;
 	margin-bottom: 25px;
-	
-
 }
 
 input[type="text"]:focus,
@@ -661,7 +658,6 @@ textarea {
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="number"]:focus, input[type="tel"]:focus, input[type="range"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="time"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="color"]:focus, textarea:focus {
 	border-color:var( --secondary-color );
-	  box-shadow: 0px 0px 15px #F5F5F5;
 }
 /*--------------------------------------------------------------
 # Accessibility

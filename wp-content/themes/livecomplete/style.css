@@ -1141,7 +1141,7 @@ ul.popular_category_list li:last-child {
   border: none;
 }
 #content.site-content {
-  padding: 50px 0px;
+  /* padding: 50px 0px; */
 }
 
 /*--------------------------------------------------------------
@@ -1866,6 +1866,106 @@ ul.product_list_widget span {
     .mega-sub-menu:before,
     .mega-sub-menu:after {
         display: none;
+    }
+}
+
+/* Full Width Template Styles */
+.site-content.full-width {
+    padding: 0;
+    max-width: 100%;
+    width: 100%;
+}
+
+.site-content.full-width .container-fluid {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+.site-content.full-width .live-complete-blogwrap {
+    margin-bottom: 0;
+}
+
+.site-content.full-width .live-complete-blogwrap .post.page-content {
+    padding: 0;
+    border: none;
+}
+
+.site-content.full-width .entry-content {
+    margin: 0;
+}
+
+/* Ensure full width images work properly */
+.site-content.full-width .wp-block-image {
+    margin: 0;
+}
+
+.site-content.full-width .wp-block-image img {
+    width: 100%;
+    height: auto;
+}
+
+/* Remove default content padding when using full width */
+.site-content.full-width #primary {
+    padding: 0;
+    margin: 0;
+}
+
+/* Adjust for responsive */
+@media only screen and (max-width: 800px) {
+    .site-content.full-width {
+        overflow: hidden;
+    }
+}
+
+/* Default page full width styles */
+.page:not(.woocommerce) .site-content.full-width {
+    padding: 0;
+    max-width: 100%;
+    width: 100%;
+}
+
+.page:not(.woocommerce) .site-content.full-width .container-fluid {
+    margin: 0;
+    padding: 0 15px; /* Add some padding on the sides */
+    max-width: 1360px; /* Match your theme's container width */
+    margin: 0 auto;
+}
+
+.page:not(.woocommerce) .site-content.full-width .live-complete-blogwrap {
+    margin-bottom: 0;
+}
+
+.page:not(.woocommerce) .site-content.full-width .post.page-content {
+    padding: 40px 0;
+    border: none;
+}
+
+.page:not(.woocommerce) .site-content.full-width .entry-content {
+    margin: 0;
+}
+
+/* Ensure proper spacing for content */
+.page:not(.woocommerce) .site-content.full-width #primary {
+    padding: 0;
+    margin: 0;
+}
+
+/* Comments section in full width pages */
+.page:not(.woocommerce) .site-content.full-width .comments-area {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 800px) {
+    .page:not(.woocommerce) .site-content.full-width .container-fluid {
+        padding: 0 10px;
+    }
+    
+    .page:not(.woocommerce) .site-content.full-width .post.page-content {
+        padding: 20px 0;
     }
 }
 

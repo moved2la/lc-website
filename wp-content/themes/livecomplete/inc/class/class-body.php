@@ -60,7 +60,7 @@ class live_complete_Body_Layout{
 				$layout = 'col-md-12 bcf-main-content';
 				break;	
 			default:
-				$layout = 'col-xl-8 col-md-8 col-12 order-1';
+				$layout = 'col-xl-12 col-md-12 col-12 order-1';
 		} 
 	
 	   $html 	 = '<div class="'.esc_attr( $layout ).'">
@@ -108,7 +108,8 @@ class live_complete_Body_Layout{
             return false;
             break;	
         default:
-            $layout = 'col-xl-4 col-md-4 col-12 order-2 live-complete-sidebar';
+            return false;
+            $layout = 'col-xl-12 col-md-12 col-12 order-2';
             break;
         } 	
         ?>
