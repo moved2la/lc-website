@@ -276,7 +276,11 @@ class live_complete_Header_Layout
              */
             public function site_hero_sections()
             {
-                if (is_404() || 'templates/without-hero.php' == get_page_template_slug()) return;
+                // Return early if 404, template without hero, or WooCommerce page
+                if (is_404() || 
+                    'templates/without-hero.php' == get_page_template_slug() || 
+                    (function_exists('is_woocommerce') && is_woocommerce())
+                ) return;
 
                 if (is_front_page() && is_active_sidebar('slider')) :
                     dynamic_sidebar('slider');
