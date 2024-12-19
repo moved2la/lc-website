@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The header for our theme
  *
@@ -12,27 +13,28 @@
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
+
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
-	
-	<?php wp_head(); ?>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+
+    <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?> >
- <?php wp_body_open(); ?>
-<div id="page" class="site">
+<body <?php body_class(); ?>>
+    <?php wp_body_open(); ?>
+    <div id="page" class="site">
 
-    <?php
-	/**
-	* Hook - live_complete_site_header
-	*
-	* @hooked site_header_layout
-	*/
-	do_action( 'live_complete_site_header');
-	
-	?>
+        <?php
+        /**
+         * Hook - live_complete_site_header
+         *
+         * @hooked site_header_layout
+         */
+        do_action('live_complete_site_header');
+
+        ?>
 
 
-	<div id="content" class="site-content"  >
+        <div id="content" class="site-content">

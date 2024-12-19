@@ -250,7 +250,7 @@ $form_result = handle_newsletter_signup();
 </style>
 
 <div class="signup">
-    <div class="signup-container">
+    <div class="signup-container container">
         <div class="column">
             <div class="heading">
                 Fuel your journey:

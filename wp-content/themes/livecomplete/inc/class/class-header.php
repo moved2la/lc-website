@@ -254,7 +254,7 @@ class live_complete_Header_Layout
             public function get_site_breadcrumb()
             {
                 if (is_404() || 'templates/without-hero.php' == get_page_template_slug()) return;
-                if (function_exists('bcn_display') && (!is_home() || !is_front_page())): ?>
+                if (function_exists('bcn_display') && (!is_home() && !is_front_page())): ?>
                     <div class="live-complete-breadcrumbs-wrap">
                         <div class="container">
                             <div class="row">
