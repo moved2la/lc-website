@@ -286,9 +286,11 @@ class live_complete_Header_Layout
 
                     <div id="static_header_banner" class="header-style-1">
 
-                        <div class="site-header-text-wrap">
-                            <?php echo wp_kses($this->hero_block_heading(), $this->allowed_tags()); ?>
-                        </div>
+                        <?php if (!is_front_page()) : ?>
+                            <div class="site-header-text-wrap">
+                                <?php echo wp_kses($this->hero_block_heading(), $this->allowed_tags()); ?>
+                            </div>
+                        <?php endif; ?>
 
                         <?php if (!empty($header_image)) : ?>
                             <div class="site-header-bg-wrap">

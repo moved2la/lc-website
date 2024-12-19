@@ -53,8 +53,8 @@ Tags:  one-column, two-columns, right-sidebar, left-sidebar, custom-header, cust
   --nav-sub-color-h: #fff;
   --nav-sub-bg-h: #000;
 
-  --button-text-color: #FFF;
-  --button-bg-color: #0E4C73;
+  --button-text-color: #fff;
+  --button-bg-color: #0e4c73;
 }
 
 a {
@@ -1302,12 +1302,20 @@ body.error404 #content.site-content {
   display: none;
 }
 @media only screen and (max-width: 800px) {
+  .site-header .container {
+    max-width: 100%;
+    padding: 0;
+  }
+  .header-search {
+    display: none !important;
+  }
   .header-table .table-cell.last-item.without-woocommmerce {
     display: block;
   }
   .live-complete-rd-navbar-toggle {
     display: block;
-    float: right;
+    top: 0;
+    float: left;
   }
   body.admin-bar {
     margin-top: -46px;
@@ -1341,6 +1349,7 @@ body.error404 #content.site-content {
   #masthead ul.header-icon {
     float: left;
     padding-top: 15px;
+    display: none;
   }
   #navbar.active {
     left: 0;
@@ -1813,3 +1822,50 @@ ul.product_list_widget span {
 .header-icon .account-icon:hover {
   opacity: 0.8;
 }
+
+.mega-sub-menu {
+    position: relative;
+}
+
+.mega-sub-menu:before,
+.mega-sub-menu:after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+}
+
+/* Outer triangle (border) */
+.mega-sub-menu:before {
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ddd;
+    margin-bottom: 0;
+}
+
+/* Inner triangle (fill) */
+.mega-sub-menu:after {
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #fff;
+    margin-bottom: -1px;
+}
+
+/* Adjust caret position for specific menu items */
+.mega-menu > li > .mega-sub-menu:before,
+.mega-menu > li > .mega-sub-menu:after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Mobile adjustments */
+@media only screen and (max-width: 800px) {
+    .mega-sub-menu:before,
+    .mega-sub-menu:after {
+        display: none;
+    }
+}
+
