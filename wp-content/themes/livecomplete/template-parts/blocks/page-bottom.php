@@ -55,9 +55,10 @@ $form_result = handle_newsletter_signup();
         align-self: stretch;
         flex-shrink: 0;
         position: relative;
+        padding-left: 20px;
     }
 
-    .column {
+    .signup .column {
         display: flex;
         flex-direction: column;
         gap: 24px;
@@ -79,7 +80,7 @@ $form_result = handle_newsletter_signup();
         align-self: stretch;
     }
 
-    .column2 {
+    .signup .column2 {
         display: flex;
         flex-direction: column;
         gap: 32px;

@@ -29,11 +29,16 @@ class live_complete_Body_Layout{
 	/**
 	* Container before
 	*
-	* @return $html
+	* @return $html 
 	*/
 	function container_wrap_start(){
 		
-		$html  = '<div id="primary" class="content-area container">
+        if (is_front_page()) {  
+            $container_class = '';
+        } else {
+            $container_class = 'container';
+        }
+		$html  = '<div id="primary" class="content-area '.$container_class.'">
         				<div class="row">';
 						
    		$html  = apply_filters( 'live_complete_container_wrap_start_filter', $html );	

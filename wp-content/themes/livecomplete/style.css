@@ -323,6 +323,7 @@ ul.flat-support li:first-child:after {
 }
 #static_header_banner.header-style-1 {
   height: 663px;
+  margin-bottom: -10px; /* TODO: Fix gap between header and content */
 }
 
 #static_header_banner h1 {
