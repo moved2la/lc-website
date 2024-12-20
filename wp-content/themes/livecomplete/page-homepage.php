@@ -188,10 +188,11 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
 
     .shop-by-category .content2 {
         display: flex;
+        flex: 1;
         flex-direction: column;
         gap: 24px;
-        align-items: flex-start;
-        justify-content: flex-start;
+        align-items: center;
+        justify-content: center;
         align-self: stretch;
         flex-shrink: 0;
         position: relative;
@@ -264,6 +265,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         height: 610px;
         position: relative;
         object-fit: cover;
+        height: auto;
     }
 
     .shop-by-category-wrapper {
