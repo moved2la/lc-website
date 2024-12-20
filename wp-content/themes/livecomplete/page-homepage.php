@@ -173,6 +173,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         justify-content: flex-start;
         flex-shrink: 0;
         position: relative;
+        flex-wrap: wrap;
     }
 
     .shop-by-category .content {
@@ -184,6 +185,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         flex-shrink: 0;
         width: 644px;
         position: relative;
+        max-width: 100%;
     }
 
     .shop-by-category .content2 {
@@ -196,6 +198,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         align-self: stretch;
         flex-shrink: 0;
         position: relative;
+        min-width: 300px;
     }
 
     .shop-by-category .heading {
