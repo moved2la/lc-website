@@ -56,6 +56,7 @@ $form_result = handle_newsletter_signup();
         flex-shrink: 0;
         position: relative;
         padding-left: 20px;
+        flex-wrap: wrap;
     }
 
     .signup .column {
@@ -65,7 +66,7 @@ $form_result = handle_newsletter_signup();
         align-items: flex-start;
         justify-content: flex-start;
         flex-shrink: 0;
-        width: 458px;
+        max-width: 458px;
         position: relative;
     }
 
@@ -88,7 +89,7 @@ $form_result = handle_newsletter_signup();
         justify-content: flex-start;
         flex: 1;
         position: relative;
-        min-width: 0;
+        /* min-width: 0; */
     }
 
     .text {

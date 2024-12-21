@@ -31,6 +31,7 @@ if (!defined('ABSPATH')) {
         flex-shrink: 0;
         position: relative;
         overflow: hidden;
+        flex-wrap: wrap;
     }
 
     .column {
