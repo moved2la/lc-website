@@ -96,9 +96,9 @@ class live_complete_Header_Layout
                             <?php do_action('live_complete_header_layout_1_branding'); ?>
                         </div>
                     </div>
-                    <div class="table-cell">
+                    <!-- <div class="table-cell"> -->
                         <?php do_action('live_complete_header_layout_1_navigation'); ?>
-                    </div>
+                    <!-- </div> -->
 
                     <div class="header-search">
                         <form role="search" method="get" class="woocommerce-product-search" action="<?php echo esc_url(home_url('/')); ?>">

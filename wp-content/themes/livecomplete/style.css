@@ -301,13 +301,14 @@ ul.flat-support li:first-child:after {
   top: 0;
   left: 0;
   overflow: hidden;
-  overflow: hidden;
   width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
   background-position: center center;
   background-size: cover;
+  background-attachment: fixed;
+  height: 100%;
+  object-fit: cover;
   background-repeat: no-repeat;
 }
 #static_header_banner .site-header-text-wrap {
@@ -1969,3 +1970,27 @@ ul.product_list_widget span {
         padding: 20px 0;
     }
 }
+
+
+/* Mega Menu - override arrow and replace with custom caret */
+/* #mega-menu-wrap-menu-1 #mega-menu-menu-1 li.mega-menu-item-has-children > a.mega-menu-link > span.mega-indicator {
+    display: block !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin: -11px auto 0 !important;
+    background-image: url('wp-content/themes/livecomplete/assets/image/menu-caret.svg') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+#mega-menu-wrap-menu-1 #mega-menu-menu-1 li.mega-menu-item-has-children > a.mega-menu-link > span.mega-indicator {
+    z-index: 9991;
+}
+#mega-menu-menu-1 > li > a > .mega-indicator:after {
+  content: '' !important;
+}
+#mega-menu-wrap-menu-1 #mega-menu-menu-1 li.mega-menu-item-has-children > a.mega-menu-link > span.mega-indicator:after {
+  display: block;
+} */
+/* Mega Menu */
+

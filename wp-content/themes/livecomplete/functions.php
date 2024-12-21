@@ -103,6 +103,7 @@ class Featured_Product_Widget extends WP_Widget
                         align-items: center;
                         gap: 20px;
                         max-height: 171px;
+                        max-width: 416px;
                         overflow: hidden;
                     }
 
@@ -124,7 +125,7 @@ class Featured_Product_Widget extends WP_Widget
                     }
 
                     .featured-product-widget .product-content {
-                        flex: 1;
+                        flex: 1;1
                         text-align: left;
                         overflow: hidden;
                     }
