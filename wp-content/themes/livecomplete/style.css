@@ -1973,24 +1973,23 @@ ul.product_list_widget span {
 
 
 /* Mega Menu - override arrow and replace with custom caret */
-/* #mega-menu-wrap-menu-1 #mega-menu-menu-1 li.mega-menu-item-has-children > a.mega-menu-link > span.mega-indicator {
-    display: block !important;
+#mega-menu-wrap-menu-1 #mega-menu-menu-1 li.mega-menu-item-has-children > a.mega-menu-link > span.mega-indicator {
+    display: none;
     width: 16px !important;
     height: 16px !important;
     margin: -11px auto 0 !important;
-    background-image: url('wp-content/themes/livecomplete/assets/image/menu-caret.svg') !important;
+    background-image: url('assets/image/menu-caret.svg') !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
-}
-#mega-menu-wrap-menu-1 #mega-menu-menu-1 li.mega-menu-item-has-children > a.mega-menu-link > span.mega-indicator {
     z-index: 9991;
 }
 #mega-menu-menu-1 > li > a > .mega-indicator:after {
   content: '' !important;
 }
-#mega-menu-wrap-menu-1 #mega-menu-menu-1 li.mega-menu-item-has-children > a.mega-menu-link > span.mega-indicator:after {
-  display: block;
-} */
+#mega-menu-menu-1 > li.mega-toggle-on > a > .mega-indicator {
+  display: block !important;
+}
+
 /* Mega Menu */
 
