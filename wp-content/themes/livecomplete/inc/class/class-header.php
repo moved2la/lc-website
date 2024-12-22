@@ -219,7 +219,7 @@ class live_complete_Header_Layout
                 </ul>
             <?php else: ?>
                 <div class="table-cell text-right last-item without-woocommmerce">
-                <?php endif; ?>
+            <?php endif; ?>
                 <button class="live-complete-rd-navbar-toggle" tabindex="0" autofocus="true"><i class="icofont-navigation-menu"></i></button>
 
                 <div class="clearfix"></div>
@@ -366,8 +366,8 @@ class live_complete_Header_Layout
             private function allowed_tags()
             {
 
-                if (function_exists('live_complete_alowed_tags')) {
-                    return live_complete_alowed_tags();
+                if (function_exists('live_complete_allowed_tags')) {
+                    return live_complete_allowed_tags();
                 } else {
                     return array();
                 }

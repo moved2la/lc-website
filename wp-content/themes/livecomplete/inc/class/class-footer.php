@@ -10,6 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+
 class live_complete_Footer_Layout{
 	/**
 	 * Function that is run after instantiation.
@@ -24,19 +25,19 @@ class live_complete_Footer_Layout{
 		add_action('live_complete_site_footer', array( $this, 'site_footer_container_after' ), 998);
 		
 	}
-	
-	/**
-	* diet_shop foter conteinr before
-	*
-	* @return $html
-	*/
+
+    /**
+     * Footer container after
+     *
+     * @return $html
+     */
 	public function site_footer_container_before (){
 		
 		$html = ' <footer id="colophon" class="site-footer">';
 						
 		$html = apply_filters( 'live_complete_footer_container_before_filter',$html);		
 				
-		echo wp_kses( $html, $this->alowed_tags() );
+		echo wp_kses( $html, $this->allowed_tags() );
 		
 						
 	}
@@ -60,7 +61,7 @@ class live_complete_Footer_Layout{
 	
 	
 	/**
-	* diet_shop foter conteinr after
+	* Footer container after
 	*
 	* @return $html
 	*/
@@ -77,10 +78,7 @@ class live_complete_Footer_Layout{
 				$text .= esc_html(  get_theme_mod('copyright_text') );
 			}else
 			{
-				/* translators: 1: Current Year, 2: Blog Name  */
 				$text .= sprintf( esc_html__( 'Copyright &copy; %1$s %2$s. All Right Reserved.', 'live-complete' ), date_i18n( _x( 'Y', 'copyright date format', 'live-complete' ) ), esc_html( get_bloginfo( 'name' ) ) );
-
-			
 				
 			}
 
@@ -88,35 +86,21 @@ class live_complete_Footer_Layout{
 			$html  .= apply_filters( 'live_complete_footer_copywrite_filter', $text );
 				
 			$html .= '</div>';
-			
-			
 
-
-		$html .= '<div class="col-12 col-md-12">';
+		    $html .= '<div class="col-12 col-md-12">';
 			
 			$html .='<ul class="social-list ">';
 			
-			if( live_complete_get_option('__fb_pro_link') != "" ): 
-			$html .='<li class="social-item-facebook"><a href="'.esc_url( live_complete_get_option('__fb_pro_link') ).'" target="_blank" rel="nofollow"><i class="icofont-facebook"></i></a></li>';				
-			endif;
-			
-			 if( live_complete_get_option('__tw_pro_link') != "" ): 
-			$html .='<li class="social-item-twitter"><a href="'.esc_url( live_complete_get_option('__tw_pro_link') ).'" target="_blank" rel="nofollow"><i class="icofont-twitter"></i></a></li>';
-			endif;
-			if( live_complete_get_option('__you_pro_link') != "" ): 
-			$html .='<li class="social-item-youtube"><a href="'.esc_url( live_complete_get_option('__you_pro_link') ).'" target="_blank" rel="nofollow"><i class="icofont-youtube"></i></a></li>';
-			 endif;
-					
-				$html .='	</ul>';
+		    $html .='	</ul>';
 			
 			$html .= '</div>';	
 			
-		$html .= '	</div>
+		    $html .= '	</div>
 		  		</div>';
 		
 		
 				
-		echo wp_kses( $html, $this->alowed_tags() );
+		echo wp_kses( $html, $this->allowed_tags() );
 	
 	}
 	
@@ -131,15 +115,15 @@ class live_complete_Footer_Layout{
 						
 		$html = apply_filters( 'live_complete_footer_container_after_filter',$html);		
 				
-		echo wp_kses( $html, $this->alowed_tags() );
+		echo wp_kses( $html, $this->allowed_tags() );
 	
 	}
 	
 	
-	private function alowed_tags(){
+	private function allowed_tags(){
 		
-		if( function_exists('live_complete_alowed_tags') ){ 
-			return live_complete_alowed_tags(); 
+		if( function_exists('live_complete_allowed_tags') ){ 
+			return live_complete_allowed_tags(); 
 		}else{
 			return array();	
 		}

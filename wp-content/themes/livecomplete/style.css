@@ -336,6 +336,28 @@ ul.flat-support li:first-child:after {
   text-shadow: 5px 5px 35px rgba(43, 49, 54, 0.4);
 }
 /*----------------------navbar----------------------------------*/
+
+/* Mega Menu - override arrow and replace with custom caret */
+#mega-menu-wrap-menu-1 #mega-menu-menu-1 li.mega-menu-item-has-children > a.mega-menu-link > span.mega-indicator {
+  display: none;
+  width: 16px !important;
+  height: 16px !important;
+  margin: -11px auto 0 !important;
+  background-image: url("assets/image/menu-caret.svg") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  z-index: 9991;
+}
+#mega-menu-menu-1 > li > a > .mega-indicator:after {
+  content: "" !important;
+}
+#mega-menu-menu-1 > li.mega-toggle-on > a > .mega-indicator {
+  display: block !important;
+}
+
+/* Mega Menu */
+
 .live-complete-navbar-close {
   display: none;
 }
@@ -1303,7 +1325,58 @@ body.error404 #content.site-content {
 .header-table .table-cell.last-item.without-woocommmerce {
   display: none;
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1024px) {
+  #mega-menu-wrap-menu-1 #mega-menu-menu-1 > li.mega-menu-item > a.mega-menu-link > span.mega-indicator {
+    display: none !important;
+  }
+
+  .mega-menu-link::before {
+    display: none !important;
+  }
+
+  #mega-menu-wrap-menu-1 #mega-menu-menu-1 > li.mega-menu-item {
+    height: 27px;
+    cursor: pointer;
+  }
+  #mega-menu-wrap-menu-1 #mega-menu-menu-1 > li.mega-menu-item > a.mega-menu-link {
+    height: 27px;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 700;
+    /* width: fit-content; */
+  }
+  #mega-menu-wrap-menu-1 #mega-menu-menu-1 > li.mega-menu-megamenu > ul.mega-sub-menu {
+    padding: 0 !important;
+  }
+ #mega-menu-item-144 > a:nth-child(1)
+  #mega-menu-wrap-menu-1 #mega-menu-menu-1 > li.mega-menu-megamenu > ul.mega-sub-menu a {
+    font-size: 16px !important;
+  }
+  #mega-menu-wrap-menu-1 #mega-menu-menu-1 li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-row .mega-menu-column > ul.mega-sub-menu > li.mega-menu-item {
+    padding-left: 10px !important;
+  }
+  #mega-menu-item-142 {
+    padding-top: 0 !important;
+  }
+  #mega-menu-wrap-menu-1 #mega-menu-menu-1 > li.mega-menu-item::after {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    background-image: url("assets/image/menu-arrow.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+  #mega-menu-wrap-menu-1 #mega-menu-menu-1 > li.mega-menu-item.mega-toggle-on::after {
+    transform: translateY(-50%) rotate(0deg);
+  }
+
   .site-header .container {
     max-width: 100%;
     padding: 0;
@@ -1347,6 +1420,8 @@ body.error404 #content.site-content {
     border: none;
     display: block;
     padding: 15px 0px;
+    position: absolute;
+    top: 60px;
   }
   #masthead ul.header-icon {
     float: left;
@@ -1826,170 +1901,147 @@ ul.product_list_widget span {
 }
 
 .mega-sub-menu {
-    position: relative;
+  position: relative;
 }
 
 .mega-sub-menu:before,
 .mega-sub-menu:after {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
 }
 
 /* Outer triangle (border) */
 .mega-sub-menu:before {
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #ddd;
-    margin-bottom: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #ddd;
+  margin-bottom: 0;
 }
 
 /* Inner triangle (fill) */
 .mega-sub-menu:after {
-    border-left: 9px solid transparent;
-    border-right: 9px solid transparent;
-    border-bottom: 9px solid #fff;
-    margin-bottom: -1px;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-bottom: 9px solid #fff;
+  margin-bottom: -1px;
 }
 
 /* Adjust caret position for specific menu items */
 .mega-menu > li > .mega-sub-menu:before,
 .mega-menu > li > .mega-sub-menu:after {
-    left: 50%;
-    transform: translateX(-50%);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Mobile adjustments */
 @media only screen and (max-width: 800px) {
-    .mega-sub-menu:before,
-    .mega-sub-menu:after {
-        display: none;
-    }
+  .mega-sub-menu:before,
+  .mega-sub-menu:after {
+    display: none;
+  }
 }
 
 /* Full Width Template Styles */
 .site-content.full-width {
-    padding: 0;
-    max-width: 100%;
-    width: 100%;
+  padding: 0;
+  max-width: 100%;
+  width: 100%;
 }
 
 .site-content.full-width .container-fluid {
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
 }
 
 .site-content.full-width .live-complete-blogwrap {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .site-content.full-width .live-complete-blogwrap .post.page-content {
-    padding: 0;
-    border: none;
+  padding: 0;
+  border: none;
 }
 
 .site-content.full-width .entry-content {
-    margin: 0;
+  margin: 0;
 }
 
 /* Ensure full width images work properly */
 .site-content.full-width .wp-block-image {
-    margin: 0;
+  margin: 0;
 }
 
 .site-content.full-width .wp-block-image img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 /* Remove default content padding when using full width */
 .site-content.full-width #primary {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 /* Adjust for responsive */
 @media only screen and (max-width: 800px) {
-    .site-content.full-width {
-        overflow: hidden;
-    }
+  .site-content.full-width {
+    overflow: hidden;
+  }
 }
 
 /* Default page full width styles */
 .page:not(.woocommerce) .site-content.full-width {
-    padding: 0;
-    max-width: 100%;
-    width: 100%;
+  padding: 0;
+  max-width: 100%;
+  width: 100%;
 }
 
 .page:not(.woocommerce) .site-content.full-width .container-fluid {
-    margin: 0;
-    padding: 0 15px; /* Add some padding on the sides */
-    max-width: 1360px; /* Match your theme's container width */
-    margin: 0 auto;
+  margin: 0;
+  padding: 0 15px; /* Add some padding on the sides */
+  max-width: 1360px; /* Match your theme's container width */
+  margin: 0 auto;
 }
 
 .page:not(.woocommerce) .site-content.full-width .live-complete-blogwrap {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .page:not(.woocommerce) .site-content.full-width .post.page-content {
-    padding: 40px 0;
-    border: none;
+  padding: 40px 0;
+  border: none;
 }
 
 .page:not(.woocommerce) .site-content.full-width .entry-content {
-    margin: 0;
+  margin: 0;
 }
 
 /* Ensure proper spacing for content */
 .page:not(.woocommerce) .site-content.full-width #primary {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 /* Comments section in full width pages */
 .page:not(.woocommerce) .site-content.full-width .comments-area {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 15px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 15px;
 }
 
 /* Responsive adjustments */
 @media only screen and (max-width: 800px) {
-    .page:not(.woocommerce) .site-content.full-width .container-fluid {
-        padding: 0 10px;
-    }
-    
-    .page:not(.woocommerce) .site-content.full-width .post.page-content {
-        padding: 20px 0;
-    }
-}
+  .page:not(.woocommerce) .site-content.full-width .container-fluid {
+    padding: 0 10px;
+  }
 
-
-/* Mega Menu - override arrow and replace with custom caret */
-#mega-menu-wrap-menu-1 #mega-menu-menu-1 li.mega-menu-item-has-children > a.mega-menu-link > span.mega-indicator {
-    display: none;
-    width: 16px !important;
-    height: 16px !important;
-    margin: -11px auto 0 !important;
-    background-image: url('assets/image/menu-caret.svg') !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    z-index: 9991;
+  .page:not(.woocommerce) .site-content.full-width .post.page-content {
+    padding: 20px 0;
+  }
 }
-#mega-menu-menu-1 > li > a > .mega-indicator:after {
-  content: '' !important;
-}
-#mega-menu-menu-1 > li.mega-toggle-on > a > .mega-indicator {
-  display: block !important;
-}
-
-/* Mega Menu */
-

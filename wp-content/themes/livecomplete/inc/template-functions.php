@@ -36,11 +36,11 @@ function live_complete_pingback_header() {
 }
 add_action( 'wp_head', 'live_complete_pingback_header' );
 
-if ( ! function_exists( 'live_complete_alowed_tags' ) ) :
+if ( ! function_exists( 'live_complete_allowed_tags' ) ) :
 	/**
 	 * @see diet_shop_alowed_tags().
 	 */
-function live_complete_alowed_tags() {
+function live_complete_allowed_tags() {
 	
 	
 	$wp_post_allow_tag = wp_kses_allowed_html( 'post' );
@@ -197,7 +197,7 @@ function live_complete_alowed_tags() {
 	
 	$tags = array_merge( $wp_post_allow_tag, $allowed_tags );
 
-	return apply_filters( 'live_complete_alowed_tags', $tags );
+	return apply_filters( 'live_complete_allowed_tags', $tags );
 	
 }
 endif;

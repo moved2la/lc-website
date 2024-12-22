@@ -75,7 +75,7 @@ class live_complete_Post_Meta {
 		
 		$markup .= '</div>';
 
-		echo wp_kses( $markup, live_complete_alowed_tags() );
+		echo wp_kses( $markup, live_complete_allowed_tags() );
 	}
 	
 	

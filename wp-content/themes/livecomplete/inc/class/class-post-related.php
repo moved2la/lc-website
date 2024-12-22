@@ -418,8 +418,8 @@ class live_complete_Post_Related {
 	
 	private function alowed_tags(){
 		
-		if( function_exists('live_complete_alowed_tags') ){ 
-			return live_complete_alowed_tags(); 
+		if( function_exists('live_complete_allowed_tags') ){ 
+			return live_complete_allowed_tags(); 
 		}else{
 			return array();	
 		}
