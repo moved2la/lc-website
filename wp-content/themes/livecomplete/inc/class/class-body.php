@@ -10,7 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-class live_complete_Body_Layout{
+class Live_Complete_Body_Layout{
 	/**
 	 * Function that is run after instantiation.
 	 *
@@ -43,7 +43,7 @@ class live_complete_Body_Layout{
 						
    		$html  = apply_filters( 'live_complete_container_wrap_start_filter', $html );	
 		
-		echo wp_kses( $html, $this->alowed_tags() );
+		echo wp_kses( $html, $this->allowed_tags() );
     	
 	}
 	
@@ -73,7 +73,7 @@ class live_complete_Body_Layout{
 	   
 	   $html  	 = apply_filters( 'live_complete_container_wrap_column_start_filter', $html );	
 		
-		echo wp_kses( $html, $this->alowed_tags() );
+		echo wp_kses( $html, $this->allowed_tags() );
 		
    	
 	}
@@ -90,7 +90,7 @@ class live_complete_Body_Layout{
 	   
 	   $html  	 = apply_filters( 'live_complete_container_wrap_column_end_filter', $html );	
 		
-		echo wp_kses( $html, $this->alowed_tags() );
+		echo wp_kses( $html, $this->allowed_tags() );
 		
    	
 	}
@@ -136,12 +136,12 @@ class live_complete_Body_Layout{
 						
    		$html  = apply_filters( 'live_complete_container_wrap_end_filter', $html );	
 		
-		echo wp_kses( $html, $this->alowed_tags() );
+		echo wp_kses( $html, $this->allowed_tags() );
     	
 	}
 	
 	
-	private function alowed_tags(){
+	private function allowed_tags(){
 		
 		if( function_exists('live_complete_allowed_tags') ){ 
 			return live_complete_allowed_tags(); 
@@ -152,4 +152,4 @@ class live_complete_Body_Layout{
 	}
 }
 
-$live_complete_body_layout = new live_complete_Body_Layout();
+$live_complete_body_layout = new Live_Complete_Body_Layout();

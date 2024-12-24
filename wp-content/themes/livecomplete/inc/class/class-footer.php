@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Site Theme Header Class 
  *
@@ -7,8 +8,8 @@
  * @package live-complete
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
 }
 
 class live_complete_Footer_Layout{
@@ -21,7 +22,7 @@ class live_complete_Footer_Layout{
 		
 		add_action('live_complete_site_footer', array( $this, 'site_footer_container_before' ), 5);
 		add_action('live_complete_site_footer', array( $this, 'site_footer_widgets' ), 10);
-		add_action('live_complete_site_footer', array( $this, 'site_footer_info' ), 80);
+		// add_action('live_complete_site_footer', array( $this, 'site_footer_info' ), 80);
 		add_action('live_complete_site_footer', array( $this, 'site_footer_container_after' ), 998);
 		
 	}

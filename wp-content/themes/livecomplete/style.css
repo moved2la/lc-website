@@ -1212,9 +1212,7 @@ body.error404 #content.site-content {
 /*-----------------------------------------------
 	Footer 
 ------------------------------------------------*/
-#colophon.site-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
+
 .site_info {
   display: block;
   padding-top: 58px;
@@ -1289,7 +1287,7 @@ body.error404 #content.site-content {
   color: #fff;
   background: #ff0000;
 }
-#colophon.site-footer .back-to-top {
+.footer-wrapper .back-to-top {
   background: #fff;
   box-shadow: 0 20px 30px 0 rgba(17, 31, 98, 0.08);
   border-radius: 100%;
@@ -1309,7 +1307,7 @@ body.error404 #content.site-content {
   font-size: 30px;
   overflow: hidden;
 }
-#colophon.site-footer .back-to-top:hover {
+.footer-wrapper .back-to-top:hover {
   color: var(--quaternary-color);
   background: var(--secondary-color);
 }
