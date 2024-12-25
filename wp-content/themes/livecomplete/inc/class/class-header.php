@@ -97,7 +97,7 @@ class live_complete_Header_Layout
                         </div>
                     </div>
                     <!-- <div class="table-cell"> -->
-                        <?php do_action('live_complete_header_layout_1_navigation'); ?>
+                    <?php do_action('live_complete_header_layout_1_navigation'); ?>
                     <!-- </div> -->
 
                     <div class="header-search">
@@ -219,7 +219,7 @@ class live_complete_Header_Layout
                 </ul>
             <?php else: ?>
                 <div class="table-cell text-right last-item without-woocommmerce">
-            <?php endif; ?>
+                <?php endif; ?>
                 <button class="live-complete-rd-navbar-toggle" tabindex="0" autofocus="true"><i class="icofont-navigation-menu"></i></button>
 
                 <div class="clearfix"></div>
@@ -277,8 +277,9 @@ class live_complete_Header_Layout
             public function site_hero_sections()
             {
                 // Return early if 404, template without hero, or WooCommerce page
-                if (is_404() || 
-                    'templates/without-hero.php' == get_page_template_slug() || 
+                if (
+                    is_404() ||
+                    'templates/without-hero.php' == get_page_template_slug() ||
                     (function_exists('is_woocommerce') && is_woocommerce())
                 ) return;
 
@@ -294,7 +295,11 @@ class live_complete_Header_Layout
                     if (empty($banner_image)) {
                         $banner_image = get_header_image();
                     }
-                ?>
+
+                    // Only show banner if using default template
+                    $template = get_page_template_slug();
+                    if (!empty($template)) return;
+                    ?>
 
                     <div id="static_header_banner" class="header-style-1">
 

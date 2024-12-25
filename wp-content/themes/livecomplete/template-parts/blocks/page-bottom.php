@@ -70,7 +70,7 @@ $form_result = handle_newsletter_signup();
         position: relative;
     }
 
-    .heading {
+    .signup .heading {
         color: var(--border-alternate, #ffffff);
         text-align: left;
         font-family: var(--heading-desktop-h2-font-family, "Roboto-Bold", sans-serif);
@@ -92,7 +92,7 @@ $form_result = handle_newsletter_signup();
         /* min-width: 0; */
     }
 
-    .text {
+    .signup .text {
         color: var(--border-alternate, #ffffff);
         text-align: left;
         font-family: var(--text-medium-normal-font-family,
@@ -105,7 +105,7 @@ $form_result = handle_newsletter_signup();
         align-self: stretch;
     }
 
-    .actions {
+    .signup.actions {
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -115,7 +115,7 @@ $form_result = handle_newsletter_signup();
         position: relative;
     }
 
-    .form {
+    .signup .form {
         display: flex;
         flex-direction: row;
         gap: 16px;
@@ -127,7 +127,7 @@ $form_result = handle_newsletter_signup();
         background: transparent;
     }
 
-    .type-default-alternate-false {
+    .signup .type-default-alternate-false {
         padding: 12px;
         display: flex;
         flex-direction: row;
@@ -138,7 +138,7 @@ $form_result = handle_newsletter_signup();
         position: relative;
     }
 
-    .placeholder {
+    .signup .placeholder {
         color: var(--color-neutral-neutral, #666666);
         text-align: left;
         font-family: "Roboto-Regular", sans-serif;
@@ -149,7 +149,7 @@ $form_result = handle_newsletter_signup();
         flex: 1;
     }
 
-    .style-primary-small-false-alternate-false-icon-position-no-icon {
+    .signup .style-primary-small-false-alternate-false-icon-position-no-icon {
         background: var(--link-alternate, #ffffff);
         border-style: solid;
         border-color: var(--link-alternate, #ffffff);
@@ -165,7 +165,7 @@ $form_result = handle_newsletter_signup();
         position: relative;
     }
 
-    .signup-button {
+    .signup .signup-button {
         color: #0e4c73;
         background: #ffffff;
         text-align: center;
@@ -176,7 +176,7 @@ $form_result = handle_newsletter_signup();
         height: 48px;
     }
 
-    .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions {
+    .signup .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions {
         color: var(--border-alternate, #ffffff);
         text-align: left;
         font-family: var(--text-tiny-normal-font-family, "-", sans-serif);
@@ -187,7 +187,7 @@ $form_result = handle_newsletter_signup();
         align-self: stretch;
     }
 
-    .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions-span {
+    .signup .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions-span {
         color: var(--border-alternate, #ffffff);
         font-family: var(--text-tiny-normal-font-family,
                 "Roboto-Regular",
@@ -197,7 +197,7 @@ $form_result = handle_newsletter_signup();
         font-weight: var(--text-tiny-normal-font-weight, 400);
     }
 
-    .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions-span2 {
+    .signup .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions-span2 {
         color: var(--border-alternate, #ffffff);
         font-family: var(--text-tiny-normal-font-family,
                 "Roboto-Regular",
@@ -208,7 +208,7 @@ $form_result = handle_newsletter_signup();
         text-decoration: underline;
     }
 
-    .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions-span3 {
+    .signup .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions-span3 {
         color: var(--border-alternate, #ffffff);
         font-family: var(--text-tiny-normal-font-family,
                 "Roboto-Regular",
@@ -219,7 +219,7 @@ $form_result = handle_newsletter_signup();
     }
 
     /* Add styles for form input */
-    .email-input {
+    .signup .email-input {
         background: #ffffff;
         max-width: 394px;
         max-height: 48px;
@@ -232,19 +232,19 @@ $form_result = handle_newsletter_signup();
         line-height: 150%;
     }
 
-    .form-message {
+    .signup .form-message {
         padding: 10px;
         margin-bottom: 10px;
         border-radius: 4px;
     }
 
-    .form-message.success {
+    .signup .form-message.success {
         background: #d4edda;
         color: #155724;
         border: 1px solid #c3e6cb;
     }
 
-    .form-message.error {
+    .signup .form-message.error {
         background: #f8d7da;
         color: #721c24;
         border: 1px solid #f5c6cb;

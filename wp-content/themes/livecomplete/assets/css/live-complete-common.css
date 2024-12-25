@@ -128,6 +128,10 @@ a {
 	background-color: transparent;
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
 /**
  * 1. Remove the bottom border in Chrome 57-
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
@@ -588,7 +592,7 @@ button:focus,
 input[type="button"]:focus,
 input[type="reset"]:focus,
 input[type="submit"]:focus{
-
+    color: #000;
 }
 
 button:active, button:focus,
