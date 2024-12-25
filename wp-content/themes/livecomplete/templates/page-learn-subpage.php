@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Learn Sub Page
  * The template for displaying the learn sub page
@@ -6,9 +7,16 @@
  * @package live-complete
  */
 
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 get_header();
 
 $layout = live_complete_get_option('page_layout');
+
+$layout = 'full-container';
 
 /**
  * Hook - live_complete_container_wrap_start 	
@@ -16,11 +24,11 @@ $layout = live_complete_get_option('page_layout');
  * @hooked live_complete_container_wrap_start	- 5
  */
 do_action('live_complete_container_wrap_start', esc_attr($layout));
-?>
 
-<?php get_template_part('template-parts/learn/learn-section-header'); ?>
+get_template_part('template-parts/learn/learn-section-header');
+get_template_part('template-parts/learn/learn-section-1');
+get_template_part('template-parts/learn/learn-section-2');
 
-<?php
 /**
  * Hook - live_complete_container_wrap_end	
  *
@@ -28,3 +36,5 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
  */
 do_action('live_complete_container_wrap_end', esc_attr($layout));
 get_footer(); 
+
+?>
