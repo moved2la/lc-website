@@ -168,7 +168,10 @@ class live_complete_Header_Layout
 
     ?>
         <nav id="navbar">
-            <button class="live-complete-navbar-close"><i class="icofont-ui-close"></i></button>
+            <button class="live-complete-navbar-close">
+                <img src="<?php echo get_template_directory_uri() . '/assets/image/icon-close.svg'; ?>" alt="Close">
+                <!-- <i class="icofont-ui-close"></i> -->
+            </button>
 
             <?php
             wp_nav_menu(array(

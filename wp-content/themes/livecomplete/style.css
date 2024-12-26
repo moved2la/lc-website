@@ -1450,7 +1450,7 @@ body.error404 #content.site-content {
     opacity: 1;
   }
   #navbar {
-    position: fixed;
+    position: absolute;
     width: 300px;
     left: 0;
     top: 0;

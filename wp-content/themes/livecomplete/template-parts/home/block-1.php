@@ -13,11 +13,9 @@ if (!defined('ABSPATH')) {
 ?>
 
 <style>
-    .home-block-1,
-    .home-block-1 * {
-        box-sizing: border-box;
+    .home-block-1-wrapper {
+        background: #f1f1f1;
     }
-
     .home-block-1 {
         background: #f1f1f1;
         padding-top: 64px;
@@ -34,7 +32,7 @@ if (!defined('ABSPATH')) {
         flex-wrap: wrap;
     }
 
-    .column {
+    .home-block-1 .column {
         display: flex;
         flex-direction: column;
         gap: 0px;
@@ -45,7 +43,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .medium-length-hero-headline-goes-here {
+    .home-block-1 .medium-length-hero-headline-goes-here {
         color: var(--text-primary, #000000);
         text-align: left;
         font-family: var(--heading-desktop-h1-font-family, "Roboto-Bold", sans-serif);
@@ -56,7 +54,7 @@ if (!defined('ABSPATH')) {
         align-self: stretch;
     }
 
-    .column2 {
+    .home-block-1 .column2 {
         display: flex;
         flex-direction: column;
         gap: 32px;
@@ -66,7 +64,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique-duis-cursus-mi-quis-viverra-ornare-eros-dolor-interdum-nulla-ut-commodo-diam-libero-vitae-erat {
+    .home-block-1 .lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique-duis-cursus-mi-quis-viverra-ornare-eros-dolor-interdum-nulla-ut-commodo-diam-libero-vitae-erat {
         color: var(--text-primary, #000000);
         text-align: left;
         font-family: var(--text-medium-normal-font-family,
@@ -79,7 +77,7 @@ if (!defined('ABSPATH')) {
         align-self: stretch;
     }
 
-    .actions {
+    .home-block-1 .actions {
         display: flex;
         flex-direction: row;
         gap: 16px;
@@ -89,7 +87,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .button-primary {
+    .home-block-1 .button-primary {
         display: flex;
         flex-direction: row;
         gap: 16px;
@@ -99,35 +97,36 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .button-primary button {
+    .home-block-1 .button-primary button {
         height: 48px;
     }
 
-    .site-content {
+    .home-block-1 .site-content {
         background: #f1f1f1;
     }
 </style>
 
-
-<div class="home-block-1 container">
-    <div class="column">
-        <div class="medium-length-hero-headline-goes-here">
-            The plant-based lifestyle without compromise
+<div class="home-block-1-wrapper">
+    <div class="home-block-1 container">
+        <div class="column">
+            <div class="medium-length-hero-headline-goes-here">
+                The plant-based lifestyle without compromise
+            </div>
         </div>
-    </div>
-    <div class="column2">
-        <div
-            class="lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique-duis-cursus-mi-quis-viverra-ornare-eros-dolor-interdum-nulla-ut-commodo-diam-libero-vitae-erat">
-            Live Complete delivers plant-based nutrition that’s nutritionally
-            identical to animal products —without the downsides. No compromises on
-            taste, texture, or health. Join us in creating a sustainable, complete
-            lifestyle for you and the planet.
-        </div>
-        <div class="actions">
-            <div class="button-primary">
-                <a href="shop">
-                    <button>Shop now</button>
-                </a>
+        <div class="column2">
+            <div
+                class="lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique-duis-cursus-mi-quis-viverra-ornare-eros-dolor-interdum-nulla-ut-commodo-diam-libero-vitae-erat">
+                Live Complete delivers plant-based nutrition that’s nutritionally
+                identical to animal products —without the downsides. No compromises on
+                taste, texture, or health. Join us in creating a sustainable, complete
+                lifestyle for you and the planet.
+            </div>
+            <div class="actions">
+                <div class="button-primary">
+                    <a href="shop">
+                        <button>Shop now</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
