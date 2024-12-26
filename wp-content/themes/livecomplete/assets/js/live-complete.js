@@ -258,5 +258,28 @@
 				}
 			});
 		});
-	});
+    });
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchIcon = document.querySelector('.search-icon');
+        const searchDropdown = document.getElementById('mobile-search-dropdown');
+
+        if (searchIcon && searchDropdown) {
+            searchIcon.addEventListener('click', function () {
+                searchDropdown.classList.toggle('active');
+
+                // Focus the search input when dropdown is opened
+                if (searchDropdown.classList.contains('active')) {
+                    searchDropdown.querySelector('input[type="search"]').focus();
+                }
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!searchIcon.contains(e.target) && !searchDropdown.contains(e.target)) {
+                    searchDropdown.classList.remove('active');
+                }
+            });
+        }
+    });
 })(jQuery);

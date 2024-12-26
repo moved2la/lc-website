@@ -217,6 +217,28 @@ class live_complete_Header_Layout
 
 
                 </ul>
+                <ul id="header-icon-mobile" class="header-icon">
+                    <li class="search-icon">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/image/search.svg'; ?>" alt="Search">
+                    </li>
+                    <li class="cart-icon">
+                        <a href="<?php echo esc_url(wc_get_cart_url()); ?>">
+                            <img src="<?php echo get_template_directory_uri() . '/assets/image/cart.svg'; ?>" alt="Cart">
+                            <span class="quantity"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+                        </a>
+                    </li>
+                </ul>
+                <div id="mobile-search-dropdown" class="search-dropdown">
+                    <div class="search-container">
+                        <form role="search" method="get" class="woocommerce-product-search" action="<?php echo esc_url(home_url('/')); ?>">
+                            <input type="search" class="search-field"
+                                placeholder="<?php echo esc_attr_x('Search products...', 'placeholder', 'live-complete'); ?>"
+                                value="<?php echo get_search_query(); ?>"
+                                name="s" />
+                            <input type="hidden" name="post_type" value="product" />
+                        </form>
+                    </div>
+                </div>
             <?php else: ?>
                 <div class="table-cell text-right last-item without-woocommmerce">
                 <?php endif; ?>
@@ -299,7 +321,7 @@ class live_complete_Header_Layout
                     // Only show banner if using default template
                     $template = get_page_template_slug();
                     if (!empty($template)) return;
-                    ?>
+                ?>
 
                     <div id="static_header_banner" class="header-style-1">
 
