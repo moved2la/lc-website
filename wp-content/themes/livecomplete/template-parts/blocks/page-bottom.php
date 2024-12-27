@@ -105,7 +105,7 @@ $form_result = handle_newsletter_signup();
         align-self: stretch;
     }
 
-    .signup.actions {
+    .signup .actions {
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -251,7 +251,7 @@ $form_result = handle_newsletter_signup();
     }
 
     .signup-container button {
-        min-width: 103px;
+        min-width: 123px;
     }
 </style>
 
