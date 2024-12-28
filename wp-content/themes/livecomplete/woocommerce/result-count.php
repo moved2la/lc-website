@@ -2,7 +2,7 @@
 /**
  * Number of products on shop page
  *
- * @package Fastest Shop WordPress theme
+ * @package Live Complete WordPress theme
  */
 
 // Exit if accessed directly

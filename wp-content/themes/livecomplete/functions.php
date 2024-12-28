@@ -187,3 +187,16 @@ function register_featured_product_widget()
     register_widget('Featured_Product_Widget');
 }
 add_action('widgets_init', 'register_featured_product_widget');
+
+// Add custom content to WooCommerce category header
+function add_category_header_content() {
+    if (is_product_category()) {
+        $category = get_queried_object();
+        get_template_part('template-parts/woocommerce/category', 'header', array(
+            'category' => $category
+        ));
+    }
+}
+// Change the hook to woocommerce_before_main_content
+remove_action('woocommerce_archive_description', 'add_category_header_content', 10);
+add_action('woocommerce_before_main_content', 'add_category_header_content', 5);
