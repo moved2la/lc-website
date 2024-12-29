@@ -286,7 +286,7 @@ $category = $args['category'];
     .glide__bullets {
         display: flex;
         justify-content: center;
-        margin-top: 20px;
+        margin-top: 60px;
         width: 100%;
         position: relative;
     }
@@ -312,7 +312,17 @@ $category = $args['category'];
 
     <div class="container">
         <div class="content">
-            <h1 class="short-heading-here">Protein powder for every you</h1>
+            <h1 class="short-heading-here">
+                <?php
+                $heading_text = get_term_meta($category->term_id, 'category_heading_text', true);
+                if (!$heading_text) {
+                    // Fallback to category name if no custom heading is set
+                    echo esc_html($category->name);
+                } else {
+                    echo esc_html($heading_text);
+                }
+                ?>
+            </h1>
             <?php if ($category->description) : ?>
                 <div
                     class="lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique">
@@ -369,7 +379,23 @@ $category = $args['category'];
                                                     <div
                                                         class="style-link-small-false-alternate-false-icon-position-trailing">
                                                         <a href="<?php echo esc_url(get_term_link($subcategory)); ?>">
-                                                            <div class="button">Shop protein powder for everyone</div>
+                                                            <div class="button">
+                                                                <?php
+                                                                $link_text = get_term_meta($subcategory->term_id, 'category_link_text', true);
+                                                                if (!$link_text) {
+                                                                    // Get parent category name
+                                                                    $parent_cat = get_term($category->term_id, 'product_cat');
+                                                                    $fallback_text = sprintf(
+                                                                        'Shop %s %s',
+                                                                        esc_html($parent_cat->name),
+                                                                        esc_html($subcategory->name)
+                                                                    );
+                                                                    echo esc_html($fallback_text);
+                                                                } else {
+                                                                    echo esc_html($link_text);
+                                                                }
+                                                                ?>
+                                                            </div>
                                                         </a>
                                                         <img class="icon-chevron-right" src="<?php echo get_template_directory_uri() . '/assets/image/icon-chevron.svg'; ?>" />
                                                     </div>
@@ -381,8 +407,6 @@ $category = $args['category'];
                             </div>
                         </div>
 
-
-                        <!-- Move bullets outside of .glide div -->
                         <div class="glide__bullets" data-glide-el="controls[nav]">
                             <?php foreach ($subcategories as $index => $subcategory) : ?>
                                 <button class="glide__bullet" data-glide-dir="=<?php echo $index; ?>"></button>

@@ -36,7 +36,7 @@ $form_result = handle_newsletter_signup();
     .signup {
         background: linear-gradient(to left, #0e4c73, #0e4c73),
             linear-gradient(to left, #ffffff, #ffffff);
-        padding: 60px 64px 60px 64px;
+        padding: 60px 0 60px 0;
         display: flex;
         flex-direction: column;
         gap: 80px;

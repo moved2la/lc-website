@@ -200,3 +200,72 @@ function add_category_header_content() {
 // Change the hook to woocommerce_before_main_content
 remove_action('woocommerce_archive_description', 'add_category_header_content', 10);
 add_action('woocommerce_before_main_content', 'add_category_header_content', 5);
+
+// Add custom field to category form
+function add_category_link_text_field() {
+    ?>
+    <div class="form-field">
+        <label for="category_link_text"><?php _e('Category Link Text', 'live-complete'); ?></label>
+        <input type="text" name="category_link_text" id="category_link_text">
+        <p class="description"><?php _e('Enter the text to display for the category link', 'live-complete'); ?></p>
+    </div>
+    <?php
+}
+add_action('product_cat_add_form_fields', 'add_category_link_text_field');
+
+// Add custom field to category edit form
+function edit_category_link_text_field($term) {
+    $link_text = get_term_meta($term->term_id, 'category_link_text', true);
+    ?>
+    <tr class="form-field">
+        <th scope="row"><label for="category_link_text"><?php _e('Header Category Link Text', 'live-complete'); ?></label></th>
+        <td>
+            <input type="text" name="category_link_text" id="category_link_text" value="<?php echo esc_attr($link_text); ?>">
+            <p class="description"><?php _e('Enter the text to display for the category link. Used for header section on category pages. (Custom field for LiveComplete)', 'live-complete'); ?></p>
+        </td>
+    </tr>
+    <?php
+}
+add_action('product_cat_edit_form_fields', 'edit_category_link_text_field');
+
+// Add heading text field to category add form
+function add_category_heading_text_field() {
+    ?>
+    <div class="form-field">
+        <label for="category_heading_text"><?php _e('Category Heading Text', 'live-complete'); ?></label>
+        <input type="text" name="category_heading_text" id="category_heading_text">
+        <p class="description"><?php _e('Enter the heading text to display on the category page', 'live-complete'); ?></p>
+    </div>
+    <?php
+}
+add_action('product_cat_add_form_fields', 'add_category_heading_text_field');
+
+// Add heading text field to category edit form
+function edit_category_heading_text_field($term) {
+    $heading_text = get_term_meta($term->term_id, 'category_heading_text', true);
+    ?>
+    <tr class="form-field">
+        <th scope="row"><label for="category_heading_text"><?php _e('Header Category Heading Text', 'live-complete'); ?></label></th>
+        <td>
+            <input type="text" name="category_heading_text" id="category_heading_text" value="<?php echo esc_attr($heading_text); ?>">
+            <p class="description"><?php _e('Enter the heading text to display on the category page. Used for header section. (Custom field for LiveComplete)', 'live-complete'); ?></p>
+        </td>
+    </tr>
+    <?php
+}
+add_action('product_cat_edit_form_fields', 'edit_category_heading_text_field');
+
+// Update save function to handle both fields
+function save_category_custom_fields($term_id) {
+    if (isset($_POST['category_link_text'])) {
+        update_term_meta($term_id, 'category_link_text', sanitize_text_field($_POST['category_link_text']));
+    }
+    if (isset($_POST['category_heading_text'])) {
+        update_term_meta($term_id, 'category_heading_text', sanitize_text_field($_POST['category_heading_text']));
+    }
+}
+// Remove the old save function hook and add the new one
+remove_action('created_product_cat', 'save_category_link_text');
+remove_action('edited_product_cat', 'save_category_link_text');
+add_action('created_product_cat', 'save_category_custom_fields');
+add_action('edited_product_cat', 'save_category_custom_fields');
