@@ -317,11 +317,141 @@ function live_complete_page_bottom_html() {
     get_template_part('template-parts/blocks/page', 'bottom');
 }
 
+// Add custom content to WooCommerce category header
+function add_category_header_content()
+{
+    if (is_product_category() || is_shop()) {
+        $category = get_queried_object();
+        get_template_part('template-parts/woocommerce/category', 'header', array(
+            'category' => $category
+        ));
+    }
+}
+// Change the hook to woocommerce_before_main_content
+remove_action('woocommerce_archive_description', 'add_category_header_content', 10);
+add_action('woocommerce_before_main_content', 'add_category_header_content', 5);
+
+// Add custom fields to category add page
+function add_category_bottom_content_field() {
+    // Get list of template parts
+    $template_files = get_woocommerce_template_files();
+    ?>
+    <div class="form-field">
+        <label for="category_template_part"><?php _e('Template Part', 'live-complete'); ?></label>
+        <select id="category_template_part" name="category_template_part">
+            <option value=""><?php _e('None', 'live-complete'); ?></option>
+            <?php foreach ($template_files as $file) : ?>
+                <option value="<?php echo esc_attr($file); ?>"><?php echo esc_html($file); ?></option>
+            <?php endforeach; ?>
+        </select>
+        <p class="description"><?php _e('Select a template part from woocommerce folder to display', 'live-complete'); ?></p>
+    </div>
+
+    <div class="form-field">
+        <label for="category_bottom_content"><?php _e('Custom Bottom Content', 'live-complete'); ?></label>
+        <textarea id="category_bottom_content" name="category_bottom_content" rows="5"></textarea>
+        <p class="description"><?php _e('Or enter custom content to appear at the bottom of the category page', 'live-complete'); ?></p>
+    </div>
+    <?php
+}
+
+// Add custom fields to category edit page
+function edit_category_bottom_content_field($term) {
+    $template_part = get_term_meta($term->term_id, 'category_template_part', true);
+    $bottom_content = get_term_meta($term->term_id, 'category_bottom_content', true);
+    $template_files = get_woocommerce_template_files();
+    ?>
+    <tr class="form-field">
+        <th scope="row"><label for="category_template_part"><?php _e('Template Part', 'live-complete'); ?></label></th>
+        <td>
+            <select id="category_template_part" name="category_template_part">
+                <option value=""><?php _e('None', 'live-complete'); ?></option>
+                <?php foreach ($template_files as $file) : ?>
+                    <option value="<?php echo esc_attr($file); ?>" <?php selected($template_part, $file); ?>><?php echo esc_html($file); ?></option>
+                <?php endforeach; ?>
+            </select>
+            <p class="description"><?php _e('Select a template part from woocommerce folder to display', 'live-complete'); ?></p>
+        </td>
+    </tr>
+
+    <tr class="form-field">
+        <th scope="row"><label for="category_bottom_content"><?php _e('Custom Bottom Content', 'live-complete'); ?></label></th>
+        <td>
+            <textarea id="category_bottom_content" name="category_bottom_content" rows="5"><?php echo esc_textarea($bottom_content); ?></textarea>
+            <p class="description"><?php _e('Or enter custom content to appear at the bottom of the category page', 'live-complete'); ?></p>
+        </td>
+    </tr>
+    <?php
+}
+
+// Helper function to get template files
+function get_woocommerce_template_files() {
+    $template_path = get_template_directory() . '/template-parts/woocommerce';
+    $files = [];
+    
+    if (is_dir($template_path)) {
+        $dir_contents = scandir($template_path);
+        foreach ($dir_contents as $file) {
+            if ($file !== '.' && $file !== '..' && pathinfo($file, PATHINFO_EXTENSION) === 'php') {
+                $files[] = pathinfo($file, PATHINFO_FILENAME);
+            }
+        }
+    }
+    
+    return $files;
+}
+
+// Save the custom fields
+function save_category_bottom_content($term_id) {
+    if (isset($_POST['category_template_part'])) {
+        update_term_meta(
+            $term_id,
+            'category_template_part',
+            sanitize_text_field($_POST['category_template_part'])
+        );
+    }
+
+    if (isset($_POST['category_bottom_content'])) {
+        update_term_meta(
+            $term_id,
+            'category_bottom_content',
+            wp_kses_post($_POST['category_bottom_content'])
+        );
+    }
+}
+
+// Modified display function to handle both template parts and custom content
+function add_protein_powder_bottom_content() {
+    if (is_product_category()) {
+        $category = get_queried_object();
+        $template_part = get_term_meta($category->term_id, 'category_template_part', true);
+        $bottom_content = get_term_meta($category->term_id, 'category_bottom_content', true);
+        
+        // First try to load template part if selected
+        if (!empty($template_part)) {
+            get_template_part('template-parts/woocommerce/' . $template_part);
+        }
+        // Then display custom content if any
+        elseif (!empty($bottom_content)) {
+            echo '<div class="category-bottom-content">';
+            echo wp_kses_post($bottom_content);
+            echo '</div>';
+        }
+    }
+}
+
+add_action('product_cat_add_form_fields', 'add_category_bottom_content_field');
+add_action('product_cat_edit_form_fields', 'edit_category_bottom_content_field');
+add_action('edited_product_cat', 'save_category_bottom_content');
+add_action('created_product_cat', 'save_category_bottom_content');
+add_action('woocommerce_after_main_content', 'add_protein_powder_bottom_content', 10);
+
 // Remove existing action if it exists
 remove_action('live_complete_container_wrap_end', 'live_complete_page_bottom_html', 5);
 
 // Add the function to run after container wrap end
-function live_complete_add_bottom_block() {
+function live_complete_add_bottom_block()
+{
     live_complete_page_bottom_html();
 }
 add_action('live_complete_container_wrap_end', 'live_complete_add_bottom_block', 999);
