@@ -190,7 +190,7 @@ add_action('widgets_init', 'register_featured_product_widget');
 
 // Add custom content to WooCommerce category header
 function add_category_header_content() {
-    if (is_product_category()) {
+    if (is_product_category() || is_shop()) {
         $category = get_queried_object();
         get_template_part('template-parts/woocommerce/category', 'header', array(
             'category' => $category
@@ -200,6 +200,8 @@ function add_category_header_content() {
 // Change the hook to woocommerce_before_main_content
 remove_action('woocommerce_archive_description', 'add_category_header_content', 10);
 add_action('woocommerce_before_main_content', 'add_category_header_content', 5);
+
+
 
 // Add custom field to category form
 function add_category_link_text_field() {
@@ -269,3 +271,17 @@ remove_action('created_product_cat', 'save_category_link_text');
 remove_action('edited_product_cat', 'save_category_link_text');
 add_action('created_product_cat', 'save_category_custom_fields');
 add_action('edited_product_cat', 'save_category_custom_fields');
+
+
+
+// Add custom rewrite rule to ensure category page urls don't results in 404s
+// NOTE: This is a temporary fix and should be removed once the category page urls are being generated correctly.
+add_filter('rewrite_rules_array', function ($rules) {
+    $new_rules = [
+        'shop/([^/]+)/?$' => 'index.php?product_cat=$matches[1]',
+    ];
+    return $new_rules + $rules;
+});
+add_action('init', function () {
+    flush_rewrite_rules();
+});
