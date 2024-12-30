@@ -264,23 +264,22 @@ $category = $args['category'];
 
     .glide__arrow {
         /* Style your arrows as needed */
-        background: transparent;
-        border: 1px solid #000;
+        background: var(--secondary-btn-bg-color);
         padding: 8px 16px;
         cursor: pointer;
         position: initial;
         border-radius: 0;
         text-shadow: none;
         box-shadow: none;
-        border: 2px solid #0E4C73;
-        color: #0E4C73;
-        background: transparent;
+        border: 2px solid var(--secondary-btn-color);
+        color: var(--secondary-btn-color);
         transform: none;
     }
 
     .glide__arrow:hover {
-        color: #0E4C73;
-        border: 2px solid #0E4C73;
+        background: var(--secondary-btn-bg-color);
+        color: var(--secondary-btn-color-h);
+        border: 2px solid var(--secondary-btn-color-h);
     }
 
     .glide__bullets {
@@ -292,7 +291,7 @@ $category = $args['category'];
     }
 
     .glide__bullet {
-        background-color: #ddd;
+        background-color: #fff;
         width: 10px;
         height: 10px;
         border-radius: 50%;
@@ -301,9 +300,13 @@ $category = $args['category'];
         padding: 0;
         cursor: pointer;
     }
+    .glide__bullet:hover {
+        border: none;
+        background: var(--secondary-btn-color-h);
+    }
 
     .glide__bullet--active {
-        background-color: #000;
+        background-color: var(--secondary-btn-color) ;
     }
 </style>
 

@@ -19,13 +19,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="https://gmpg.org/xfn/11">
 
-    <?php wp_head(); ?>
-
     <?php if (is_product_category() && !is_shop()) : ?>
         <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/vendors/glide/assets/glide.core.min.css'; ?>">
         <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/vendors/glide/assets/glide.theme.min.css'; ?>">
         <script src="<?php echo get_template_directory_uri() . '/vendors/glide/glide.min.js'; ?>"></script>
     <?php endif; ?>
+
+    <?php wp_head(); ?>
+
 </head>
 
 <body <?php body_class(); ?>>
