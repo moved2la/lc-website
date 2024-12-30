@@ -379,13 +379,13 @@ if (!defined('ABSPATH')) {
                 <div class="column-one">Company</div>
                 <div class="footer-links">
                     <div class="link">
-                        <div class="link-one">Our Story</div>
+                        <a href="<?php echo home_url('learn/our-story'); ?>" class="link-one">Our Story</a>
                     </div>
                     <div class="link">
-                        <div class="link-two">The Difference</div>
+                        <a href="<?php echo home_url('learn/the-difference'); ?>" class="link-two">The Difference</a>
                     </div>
                     <div class="link">
-                        <div class="link-three">Our Impact</div>
+                        <a href="<?php echo home_url('learn/our-impact'); ?>" class="link-three">Our Impact</a>
                     </div>
                 </div>
             </div>

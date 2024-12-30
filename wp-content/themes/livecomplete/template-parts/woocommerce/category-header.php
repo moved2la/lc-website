@@ -307,11 +307,18 @@ $category = $args['category'];
     }
 </style>
 
+<?php
+// Get subcategories of the current category
+$subcategories = get_terms(array(
+    'taxonomy' => 'product_cat',
+    'parent' => $category->term_id,
+    'hide_empty' => false
+));
+?>
 
 <div class="category-custom-header">
-
     <div class="container">
-        <div class="content <?php echo is_shop() ? 'no-carousel' : ''; ?>">
+        <div class="content <?php echo is_shop() || empty($subcategories) ? 'no-carousel' : ''; ?>">
             <div class="heading-text">
                 <h1 class="short-heading-here">
                     <?php
@@ -332,14 +339,8 @@ $category = $args['category'];
                 <?php endif; ?>
             </div>
 
-            <?php
-            // Get subcategories of the current category
-            $subcategories = get_terms(array(
-                'taxonomy' => 'product_cat',
-                'parent' => $category->term_id,
-                'hide_empty' => false
-            ));
 
+            <?php
             if (!empty($subcategories) && !is_wp_error($subcategories) && !is_shop()) : ?>
 
                 <div class="nav-highlights">
