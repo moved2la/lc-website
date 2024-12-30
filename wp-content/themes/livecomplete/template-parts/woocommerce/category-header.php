@@ -276,7 +276,9 @@ $category = $args['category'];
         transform: none;
     }
 
-    .glide__arrow:hover {
+    .glide__arrow:hover,
+    .glide__arrow:focus,
+    .glide__arrow:active {
         background: var(--secondary-btn-bg-color);
         color: var(--secondary-btn-color-h);
         border: 2px solid var(--secondary-btn-color-h);
