@@ -1638,6 +1638,8 @@ ul.live-complete-breadcrumbs {
     display: block;
     margin: 0px;
     padding: 0px;
+    margin-top: 51px;
+    margin-bottom: 40px;
 }
 ul.live-complete-breadcrumbs li {
     list-style: none;

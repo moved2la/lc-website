@@ -342,7 +342,7 @@ function add_category_bottom_content_field() {
             <option value=""><?php _e('None', 'live-complete'); ?></option>
             <?php foreach ($template_files as $file) : ?>
                 <option value="<?php echo esc_attr($file); ?>"><?php echo esc_html($file); ?></option>
-            <?php endforeach; ?>
+            <?php endforeach; ?>t
         </select>
         <p class="description"><?php _e('Select a template part from woocommerce folder to display', 'live-complete'); ?></p>
     </div>
