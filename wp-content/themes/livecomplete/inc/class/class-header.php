@@ -40,6 +40,12 @@ class live_complete_Header_Layout
         // Add new action for cart fragments to update the cart count dynamically
         // without requiring a page refresh.
         add_filter('woocommerce_add_to_cart_fragments', array($this, 'cart_count_fragments'), 10, 1);
+        add_action('woocommerce_remove_cart_item', array($this, 'update_cart_count_on_remove'), 10, 2);
+        add_action('woocommerce_cart_item_restored', array($this, 'update_cart_count_on_remove'), 10, 2);
+
+        // Add hooks for cart quantity updates
+        add_filter('woocommerce_add_to_cart_fragments', array($this, 'cart_count_fragments'), 10, 1);
+        add_action('wp_footer', array($this, 'add_cart_quantity_script'));
     }
 
     /**
@@ -307,7 +313,7 @@ class live_complete_Header_Layout
             {
                 // Return early if 404, template without hero, or WooCommerce page
                 if (
-                    is_404() ||
+                    is_404() || is_cart() || is_checkout() || is_account_page() ||
                     'templates/without-hero.php' == get_page_template_slug() ||
                     (function_exists('is_woocommerce') && is_woocommerce())
                 ) return;
@@ -408,10 +414,40 @@ class live_complete_Header_Layout
             }
             /**
              * Update cart count fragments
+             * Updates the cart count when products are added or removed
              */
             public function cart_count_fragments($fragments) {
-                $fragments['.quantity'] = '<span class="quantity">' . WC()->cart->get_cart_contents_count() . '</span>';
+                // Update both desktop and mobile cart quantity indicators
+                $cart_count = WC()->cart->get_cart_contents_count();
+                $fragments['.cart-icon .quantity'] = '<span class="quantity">' . $cart_count . '</span>';
                 return $fragments;
+            }
+            /**
+             * Update cart count when items are removed
+             * Updates the fragments in the existing AJAX response
+             */
+            public function update_cart_count_on_remove($cart_item_key, $cart) {
+                // Don't send JSON directly, just update the fragment
+                add_filter('woocommerce_add_to_cart_fragments', function($fragments) {
+                    $fragments['.cart-icon .quantity'] = '<span class="quantity">' . WC()->cart->get_cart_contents_count() . '</span>';
+                    return $fragments;
+                });
+            }
+            /**
+             * Add JavaScript to handle cart quantity updates
+             */
+            public function add_cart_quantity_script() {
+                ?>
+                <script>
+                    jQuery(document).ready(function($) {
+                        $(document.body).on('removed_from_cart', function(event, fragments, cart_hash) {
+                            if (fragments) {
+                                $('.cart-icon .quantity').text(fragments['.cart-icon .quantity'].replace(/<\/?span[^>]*>/g, ''));
+                            }
+                        });
+                    });
+                </script>
+                <?php
             }
         }
 
