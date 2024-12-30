@@ -15,10 +15,6 @@ if (!defined('ABSPATH')) {
 $category = $args['category'];
 ?>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-
 <style>
     .category-custom-header {
         background-color: #F5F5F5;
@@ -35,7 +31,11 @@ $category = $args['category'];
         position: relative;
     }
 
-    .category-custom-header .short-heading-here {
+    .category-custom-header  .no-carousel {
+        padding-bottom: 64px;
+    }
+
+    .category-custom-header .heading-text .short-heading-here {
         color: var(--text-primary, #000000);
         text-align: left;
         font-family: var(--heading-desktop-h1-font-family, "Roboto-Bold", sans-serif);
@@ -46,7 +46,7 @@ $category = $args['category'];
         align-self: stretch;
     }
 
-    .category-custom-header .lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique {
+    .category-custom-header .heading-text .lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique {
         color: var(--text-primary, #000000);
         text-align: left;
         font-family: var(--text-medium-normal-font-family,
@@ -74,7 +74,7 @@ $category = $args['category'];
     .category-custom-header .content {
         display: flex;
         flex-direction: column;
-        gap: 64px;
+        /* gap: 64px; */
         align-items: flex-start;
         justify-content: flex-start;
         align-self: stretch;
@@ -311,24 +311,26 @@ $category = $args['category'];
 <div class="category-custom-header">
 
     <div class="container">
-        <div class="content">
-            <h1 class="short-heading-here">
-                <?php
-                $heading_text = get_term_meta($category->term_id, 'category_heading_text', true);
-                if (!$heading_text) {
-                    // Fallback to category name if no custom heading is set
-                    echo esc_html($category->name);
-                } else {
-                    echo esc_html($heading_text);
-                }
-                ?>
-            </h1>
-            <?php if ($category->description) : ?>
-                <div
-                    class="lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique">
-                    <?php echo wp_kses_post($category->description); ?>
-                </div>
-            <?php endif; ?>
+        <div class="content <?php echo is_shop() ? 'no-carousel' : ''; ?>">
+            <div class="heading-text">
+                <h1 class="short-heading-here">
+                    <?php
+                    $heading_text = get_term_meta($category->term_id, 'category_heading_text', true);
+                    if (!$heading_text) {
+                        // Fallback to category name if no custom heading is set
+                        echo esc_html($category->name);
+                    } else {
+                        echo esc_html($heading_text);
+                    }
+                    ?>
+                </h1>
+                <?php if ($category->description) : ?>
+                    <div
+                        class="lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique">
+                        <?php echo wp_kses_post($category->description); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
 
             <?php
             // Get subcategories of the current category
@@ -338,93 +340,91 @@ $category = $args['category'];
                 'hide_empty' => false
             ));
 
-            if (!empty($subcategories) && !is_wp_error($subcategories)) : ?>
+            if (!empty($subcategories) && !is_wp_error($subcategories) && !is_shop()) : ?>
 
-                <div class="nav-highlights">
+                    <div class="nav-highlights">
 
-                    <div class="glide">
-                        <div class="glide__arrows" data-glide-el="controls">
-                            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="glide__track" data-glide-el="track">
-                            <div class="glide__slides">
-                                <?php foreach ($subcategories as $subcategory) :
-                                    $thumbnail_id = get_term_meta($subcategory->term_id, 'thumbnail_id', true);
-                                    $image = wp_get_attachment_url($thumbnail_id);
-                                ?>
-                                    <div class="glide__slide">
-                                        <div class="content">
-                                            <?php if ($image) : ?>
-                                                <img class="adobe-stock-678409791-preview" src="<?php echo esc_url($image); ?>" />
-                                            <?php endif; ?>
-                                            <div class="content2">
-                                                <div class="section-title">
-                                                    <div class="heading"><?php echo esc_html($subcategory->name); ?></div>
-                                                    <?php if ($subcategory->description) : ?>
-                                                        <div class="text">
-                                                            <?php echo wp_kses_post($subcategory->description); ?>
-                                                        </div>
-                                                    <?php endif; ?>
-                                                </div>
-                                                <div class="action">
-                                                    <div
-                                                        class="style-link-small-false-alternate-false-icon-position-trailing">
-                                                        <a href="<?php echo esc_url(get_term_link($subcategory)); ?>">
-                                                            <div class="button">
-                                                                <?php
-                                                                $link_text = get_term_meta($subcategory->term_id, 'category_link_text', true);
-                                                                if (!$link_text) {
-                                                                    // Get parent category name
-                                                                    $parent_cat = get_term($category->term_id, 'product_cat');
-                                                                    $fallback_text = sprintf(
-                                                                        'Shop %s %s',
-                                                                        esc_html($parent_cat->name),
-                                                                        esc_html($subcategory->name)
-                                                                    );
-                                                                    echo esc_html($fallback_text);
-                                                                } else {
-                                                                    echo esc_html($link_text);
-                                                                }
-                                                                ?>
+                        <div class="glide">
+                            <div class="glide__arrows" data-glide-el="controls">
+                                <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                                <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="glide__track" data-glide-el="track">
+                                <div class="glide__slides">
+                                    <?php foreach ($subcategories as $subcategory) :
+                                        $thumbnail_id = get_term_meta($subcategory->term_id, 'thumbnail_id', true);
+                                        $image = wp_get_attachment_url($thumbnail_id);
+                                    ?>
+                                        <div class="glide__slide">
+                                            <div class="content">
+                                                <?php if ($image) : ?>
+                                                    <img class="adobe-stock-678409791-preview" src="<?php echo esc_url($image); ?>" />
+                                                <?php endif; ?>
+                                                <div class="content2">
+                                                    <div class="section-title">
+                                                        <div class="heading"><?php echo esc_html($subcategory->name); ?></div>
+                                                        <?php if ($subcategory->description) : ?>
+                                                            <div class="text">
+                                                                <?php echo wp_kses_post($subcategory->description); ?>
                                                             </div>
-                                                        </a>
-                                                        <img class="icon-chevron-right" src="<?php echo get_template_directory_uri() . '/assets/image/icon-chevron.svg'; ?>" />
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="action">
+                                                        <div
+                                                            class="style-link-small-false-alternate-false-icon-position-trailing">
+                                                            <a href="<?php echo esc_url(get_term_link($subcategory)); ?>">
+                                                                <div class="button">
+                                                                    <?php
+                                                                    $link_text = get_term_meta($subcategory->term_id, 'category_link_text', true);
+                                                                    if (!$link_text) {
+                                                                        // Get parent category name
+                                                                        $parent_cat = get_term($category->term_id, 'product_cat');
+                                                                        $fallback_text = sprintf(
+                                                                            'Shop %s %s',
+                                                                            esc_html($parent_cat->name),
+                                                                            esc_html($subcategory->name)
+                                                                        );
+                                                                        echo esc_html($fallback_text);
+                                                                    } else {
+                                                                        echo esc_html($link_text);
+                                                                    }
+                                                                    ?>
+                                                                </div>
+                                                            </a>
+                                                            <img class="icon-chevron-right" src="<?php echo get_template_directory_uri() . '/assets/image/icon-chevron.svg'; ?>" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+
+                            <div class="glide__bullets" data-glide-el="controls[nav]">
+                                <?php foreach ($subcategories as $index => $subcategory) : ?>
+                                    <button class="glide__bullet" data-glide-dir="=<?php echo $index; ?>"></button>
                                 <?php endforeach; ?>
                             </div>
                         </div>
-
-                        <div class="glide__bullets" data-glide-el="controls[nav]">
-                            <?php foreach ($subcategories as $index => $subcategory) : ?>
-                                <button class="glide__bullet" data-glide-dir="=<?php echo $index; ?>"></button>
-                            <?php endforeach; ?>
-                        </div>
                     </div>
-
-                </div>
-
             <?php endif; ?>
         </div>
     </div>
 </div>
 
-
+<?php if (!is_shop()) : ?>  
 <script>
-    new Glide('.glide', {
-        type: 'carousel',
+        new Glide('.glide', {
+            type: 'carousel',
         perView: 4,
         gap: 32,
         breakpoints: {
@@ -440,3 +440,4 @@ $category = $args['category'];
         }
     }).mount();
 </script>
+<?php endif; ?>

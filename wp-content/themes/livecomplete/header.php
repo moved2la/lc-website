@@ -20,6 +20,12 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
 
     <?php wp_head(); ?>
+
+    <?php if (is_product_category() && !is_shop()) : ?>
+        <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/vendors/glide/assets/glide.core.min.css'; ?>">
+        <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/vendors/glide/assets/glide.theme.min.css'; ?>">
+        <script src="<?php echo get_template_directory_uri() . '/vendors/glide/glide.min.js'; ?>"></script>
+    <?php endif; ?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -35,6 +41,7 @@
         do_action('live_complete_site_header');
 
         ?>
+
 
 
         <div id="content" class="site-content">
