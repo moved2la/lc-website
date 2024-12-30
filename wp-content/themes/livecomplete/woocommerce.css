@@ -6,7 +6,7 @@ WooCommerce styles override
 .woocommerce ul.products li.product,
 .woocommerce-page ul.products li.product {
     background: #fff;
-    box-shadow: 0px 0px 131px 0px rgba(74, 74, 74, 0.1);
+    /* box-shadow: 0px 0px 131px 0px rgba(74, 74, 74, 0.1); */
     position: relative;
     padding-bottom: 30px;
     overflow: hidden;
@@ -1545,7 +1545,7 @@ table.woocommerce-checkout-review-order-table th {
 .woocommerce .live-complete-toolbar {
     display: block;
     padding: 10px 0;
-    border-top: 1px solid #eaeaea;
+    /* border-top: 1px solid #eaeaea; */
     border-bottom: 1px solid #eaeaea;
     margin-bottom: 40px;
     background: #fff;

@@ -166,14 +166,18 @@ $form_result = handle_newsletter_signup();
     }
 
     .signup .signup-button {
-        color: #0e4c73;
-        background: #ffffff;
+        color: var(--secondary-btn-color);
+        background: var(--secondary-btn-bg-color);
         text-align: center;
         line-height: 150%;
         font-weight: 600;
         position: relative;
         width: 123px;
         height: 48px;
+    }
+
+    .signup .signup-button:hover {
+        color: var(--secondary-btn-color-h);
     }
 
     .signup .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions {

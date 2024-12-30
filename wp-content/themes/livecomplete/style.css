@@ -36,7 +36,23 @@ Tags:  one-column, two-columns, right-sidebar, left-sidebar, custom-header, cust
 	## Galleries
 --------------------------------------------------------------*/
 :root {
-    --primary-color: #6c757d;
+    /* buttons */
+    --primary-btn-color: #ffffff;
+    --primary-btn-bg-color: #0E4C73;
+    --primary-btn-bg-color-h: #D9734D;
+    --primary-btn-bg-color-h-alt: #000000;
+
+    --secondary-btn-color: #0E4C73;
+    --secondary-btn-bg-color: #ffffff;
+    --secondary-btn-color-h: #D9734D;
+    --secondary-btn-bg-color-h: #000000;
+
+    /* text links */
+    --link-color: #0E4C73;
+    --link-h-decoration: none;
+    --link-h-decoration-alt: underline;
+
+    --primary-color: #ffffff;
     --secondary-color: #000;
     --tertiary-color: rgba(0, 0, 0, 0.3);
     --quaternary-color: #f9f9f9;

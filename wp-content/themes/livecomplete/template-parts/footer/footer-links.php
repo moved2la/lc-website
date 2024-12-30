@@ -131,10 +131,11 @@ if (!defined('ABSPATH')) {
         align-self: stretch;
         flex-shrink: 0;
         position: relative;
+        color: #ffffff;
     }
 
     .footer-wrapper .link a:hover {
-        color: var(--background-color-primary, #ffffff);
+        text-decoration: var(--link-h-decoration-alt);
     }
 
     .footer-wrapper .link-one {

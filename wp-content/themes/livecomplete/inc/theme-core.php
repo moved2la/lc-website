@@ -185,7 +185,7 @@ function live_complete_scripts() {
 	wp_enqueue_style( 'live-complete-style', get_stylesheet_uri(), array(), _FATEST_SHOP_VERSION );
 	wp_style_add_data( 'live-complete-style', 'rtl', 'replace' );
 	
-	$custom_css = ':root {--primary-color:'.esc_attr( get_theme_mod('__primary_color','#6c757d') ).'; --secondary-color: '.esc_attr( get_theme_mod('__secondary_color','#000') ).'; --nav-color:'.esc_attr( get_theme_mod('__menu_primary_color','#6c757d') ).'; --nav-color-h: '.esc_attr( get_theme_mod('__menu_secondary_color','#000') ).';  --nav-sub-color:'.esc_attr( get_theme_mod('__menu_primary_color','#6c757d') ).';--nav-sub-bg-h:'.esc_attr( get_theme_mod('__menu_secondary_color','#6c757d') ).';}';
+	$custom_css = ':root {--primary-color:'.esc_attr( get_theme_mod('__primary_color','#fff') ).'; --secondary-color: '.esc_attr( get_theme_mod('__secondary_color','#000') ).'; --nav-color:'.esc_attr( get_theme_mod('__menu_primary_color','#6c757d') ).'; --nav-color-h: '.esc_attr( get_theme_mod('__menu_secondary_color','#000') ).';  --nav-sub-color:'.esc_attr( get_theme_mod('__menu_primary_color','#6c757d') ).';--nav-sub-bg-h:'.esc_attr( get_theme_mod('__menu_secondary_color','#6c757d') ).';}';
 	
 	
 		
