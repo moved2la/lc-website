@@ -36,6 +36,10 @@ class live_complete_Header_Layout
         add_action('live_complete_site_header', array($this, 'site_hero_sections'), 999);
 
         add_action('live_complete_site_header', array($this, 'get_site_breadcrumb'), 9999);
+
+        // Add new action for cart fragments to update the cart count dynamically
+        // without requiring a page refresh.
+        add_filter('woocommerce_add_to_cart_fragments', array($this, 'cart_count_fragments'), 10, 1);
     }
 
     /**
@@ -401,6 +405,13 @@ class live_complete_Header_Layout
                 } else {
                     return array();
                 }
+            }
+            /**
+             * Update cart count fragments
+             */
+            public function cart_count_fragments($fragments) {
+                $fragments['.quantity'] = '<span class="quantity">' . WC()->cart->get_cart_contents_count() . '</span>';
+                return $fragments;
             }
         }
 

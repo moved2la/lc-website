@@ -425,13 +425,22 @@ if ( ! function_exists( 'live_complete_product_loop_actions' ) ) {
 		echo '<ul class="product_actions_btn_wrap">';
 		do_action('live_complete_add_to_cart_icon');
 		echo '<li><a href="'.esc_url( get_permalink( get_the_ID() ) ).'" title="'.get_the_title( get_the_ID() ).'"><i class="icofont-external-link"></i><span></span></a></li>';
-		echo '<li><a href="'.esc_url( get_permalink( get_the_ID() ) ).'" title="'.get_the_title( get_the_ID() ).'"><i class="icofont-ui-love-add"></i></a></li>';
+		// TODO: Add wishlist functionality
+        // echo '<li><a href="'.esc_url( get_permalink( get_the_ID() ) ).'" title="'.get_the_title( get_the_ID() ).'"><i class="icofont-ui-love-add"></i></a></li>';
 			
 	    echo '</ul>';
 	}
 	add_action( 'woocommerce_shop_loop_item_title', 'live_complete_product_loop_actions', 10 );
 }
 
+/**
+ * Remove "View Cart" message after adding product to cart
+ */
+function live_complete_remove_add_to_cart_message($message, $products)
+{
+    return '';
+}
+add_filter('wc_add_to_cart_message_html', 'live_complete_remove_add_to_cart_message', 10, 2);
 
 if ( ! function_exists( 'live_complete_loop_item_title' ) ) {
 
