@@ -19,6 +19,7 @@ WooCommerce styles override
 .woocommerce li.product .product_wrap {
     position: relative;
     padding: 20px 20px 00px 20px;
+    padding-left: 0;
     display: block;
 }
 .woocommerce div.product .woocommerce-tabs .panel,
@@ -1424,6 +1425,9 @@ table.woocommerce-checkout-review-order-table th {
     }
 }
 .product_wrap .woocommerce-loop-product__title {
+    font-weight: 600;
+}
+.product_wrap .price {
     font-weight: 600;
 }
 
