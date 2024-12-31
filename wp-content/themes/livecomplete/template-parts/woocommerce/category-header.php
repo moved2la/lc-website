@@ -35,19 +35,17 @@ $category = $args['category'];
         padding-bottom: 64px;
     }
 
-    .category-custom-header .heading-text .short-heading-here {
-        color: var(--text-primary, #000000);
+    .category-custom-header .heading-text .heading-title {
         text-align: left;
-        font-family: var(--heading-desktop-h1-font-family, "Roboto-Bold", sans-serif);
-        font-size: var(--heading-desktop-h1-font-size, 56px);
-        line-height: var(--heading-desktop-h1-line-height, 120%);
-        font-weight: var(--heading-desktop-h1-font-weight, 700);
+        font-family: "Roboto-Bold", sans-serif;
+        font-size: 56px;
+        line-height: 120%;
+        font-weight: 700;
         position: relative;
         align-self: stretch;
     }
 
-    .category-custom-header .heading-text .lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique {
-        color: var(--text-primary, #000000);
+    .category-custom-header .heading-text .header-desc {
         text-align: left;
         font-family: var(--text-medium-normal-font-family,
                 "Roboto-Regular",
@@ -71,10 +69,10 @@ $category = $args['category'];
         width: 100%;
     }
 
-    .category-custom-header .content {
+    .category-custom-header .subcat-content {
         display: flex;
         flex-direction: column;
-        /* gap: 64px; */
+        gap: 32px;
         align-items: flex-start;
         justify-content: flex-start;
         align-self: stretch;
@@ -104,7 +102,7 @@ $category = $args['category'];
         overflow: hidden;
     }
 
-    .category-custom-header .livecomplete-protien-powder-everyone-608-x-320 {
+    .category-custom-header .subcat-image {
         align-self: stretch;
         flex-shrink: 0;
         height: 160px;
@@ -112,7 +110,7 @@ $category = $args['category'];
         object-fit: cover;
     }
 
-    .category-custom-header .content2 {
+    .category-custom-header .text-content {
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -123,7 +121,7 @@ $category = $args['category'];
         position: relative;
     }
 
-    .category-custom-header .section-title {
+    .category-custom-header .subcat-title {
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -134,31 +132,27 @@ $category = $args['category'];
         position: relative;
     }
 
-    .category-custom-header .heading {
-        color: var(--text-primary, #000000);
+    .category-custom-header .subcat-heading {
         text-align: left;
-        font-family: var(--heading-desktop-h5-font-family, "Roboto-Bold", sans-serif);
-        font-size: var(--heading-desktop-h5-font-size, 24px);
-        line-height: var(--heading-desktop-h5-line-height, 140%);
-        font-weight: var(--heading-desktop-h5-font-weight, 700);
+        font-family: "Roboto-Bold", sans-serif;
+        font-size: 24px;
+        line-height: 140%;
+        font-weight: 700;
         position: relative;
         align-self: stretch;
     }
 
-    .category-custom-header .text {
-        color: var(--text-primary, #000000);
+    .category-custom-header .subcat-desc {
         text-align: left;
-        font-family: var(--text-regular-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-regular-normal-font-size, 16px);
-        line-height: var(--text-regular-normal-line-height, 150%);
-        font-weight: var(--text-regular-normal-font-weight, 400);
+        font-family: "Roboto-Bold", sans-serif;
+        font-size: 16px;
+        line-height: 150%;
+        font-weight: 400;
         position: relative;
         align-self: stretch;
     }
 
-    .category-custom-header .action {
+    .category-custom-header .subcat-action {
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -169,7 +163,7 @@ $category = $args['category'];
         position: relative;
     }
 
-    .category-custom-header .style-link-small-false-alternate-false-icon-position-trailing {
+    .category-custom-header .subcat-link {
         display: flex;
         flex-direction: row;
         gap: 8px;
@@ -198,61 +192,12 @@ $category = $args['category'];
         overflow: visible;
     }
 
-    .category-custom-header .amountainbikerdescendsanarrowtrailamidstsweepingmountainviewswiththesuncastingawarmglowoverthescene-generative-ai {
-        align-self: stretch;
-        flex-shrink: 0;
-        height: 160px;
-        position: relative;
-        object-fit: cover;
-    }
-
-    .category-custom-header .icon-chevron-right2 {
-        flex-shrink: 0;
-        width: 24px;
-        height: 24px;
-        position: relative;
-        overflow: visible;
-    }
-
-    .category-custom-header .adobe-stock-900708708-preview {
-        align-self: stretch;
-        flex-shrink: 0;
-        height: 160px;
-        position: relative;
-        object-fit: cover;
-    }
-
-    .category-custom-header .icon-chevron-right3 {
-        flex-shrink: 0;
-        width: 24px;
-        height: 24px;
-        position: relative;
-        overflow: visible;
-    }
-
-    .category-custom-header .screenshot-2024-12-10-at-7-27-55-pm {
-        align-self: stretch;
-        flex-shrink: 0;
-        height: 160px;
-        position: relative;
-        object-fit: cover;
-    }
-
-    .category-custom-header .icon-chevron-right4 {
-        flex-shrink: 0;
-        width: 24px;
-        height: 24px;
-        position: relative;
-        overflow: visible;
-    }
-
     .glide {
         position: relative;
     }
 
     .glide__arrows {
         position: relative;
-        /* Adjust this value as needed */
         display: flex;
         gap: 8px;
         z-index: 2;
@@ -263,7 +208,6 @@ $category = $args['category'];
     }
 
     .glide__arrow {
-        /* Style your arrows as needed */
         background: var(--secondary-btn-bg-color);
         padding: 8px 16px;
         cursor: pointer;
@@ -302,13 +246,14 @@ $category = $args['category'];
         padding: 0;
         cursor: pointer;
     }
+
     .glide__bullet:hover {
         border: none;
         background: var(--secondary-btn-color-h);
     }
 
     .glide__bullet--active {
-        background-color: var(--secondary-btn-color) ;
+        background-color: var(--secondary-btn-color);
     }
 </style>
 
@@ -325,7 +270,7 @@ $subcategories = get_terms(array(
     <div class="container">
         <div class="content <?php echo is_shop() || empty($subcategories) ? 'no-carousel' : ''; ?>">
             <div class="heading-text">
-                <h1 class="short-heading-here">
+                <h1 class="heading-title">
                     <?php
                     $heading_text = get_term_meta($category->term_id, 'category_heading_text', true);
                     if (!$heading_text) {
@@ -338,7 +283,7 @@ $subcategories = get_terms(array(
                 </h1>
                 <?php if ($category->description) : ?>
                     <div
-                        class="lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique">
+                        class="header-desc">
                         <?php echo wp_kses_post($category->description); ?>
                     </div>
                 <?php endif; ?>
@@ -370,22 +315,22 @@ $subcategories = get_terms(array(
                                     $image = wp_get_attachment_url($thumbnail_id);
                                 ?>
                                     <div class="glide__slide">
-                                        <div class="content">
+                                        <div class="subcat-content">
                                             <?php if ($image) : ?>
-                                                <img class="adobe-stock-678409791-preview" src="<?php echo esc_url($image); ?>" />
+                                                <img class="subcat-image" src="<?php echo esc_url($image); ?>" />
                                             <?php endif; ?>
-                                            <div class="content2">
-                                                <div class="section-title">
-                                                    <div class="heading"><?php echo esc_html($subcategory->name); ?></div>
+                                            <div class="text-content">
+                                                <div class="subcat-title">
+                                                    <div class="subcat-heading"><?php echo esc_html($subcategory->name); ?></div>
                                                     <?php if ($subcategory->description) : ?>
-                                                        <div class="text">
+                                                        <div class="subcat-desc">
                                                             <?php echo wp_kses_post($subcategory->description); ?>
                                                         </div>
                                                     <?php endif; ?>
                                                 </div>
-                                                <div class="action">
+                                                <div class="subcat-action">
                                                     <div
-                                                        class="style-link-small-false-alternate-false-icon-position-trailing">
+                                                        class="subcat-link">
                                                         <a href="<?php echo esc_url(get_term_link($subcategory)); ?>">
                                                             <div class="button">
                                                                 <?php

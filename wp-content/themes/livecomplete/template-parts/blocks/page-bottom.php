@@ -55,7 +55,7 @@ $form_result = handle_newsletter_signup();
         align-self: stretch;
         flex-shrink: 0;
         position: relative;
-        padding-left: 20px;
+        /* padding-left: 20px; */
         flex-wrap: wrap;
     }
 

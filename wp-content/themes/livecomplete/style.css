@@ -1343,6 +1343,10 @@ body.error404 #content.site-content {
     display: none;
     margin-top: -5px;
 }
+.live-complete-rd-navbar-toggle:focus,
+.live-complete-rd-navbar-toggle:hover {
+     background: #fff;
+}
 .header-icon-mobile {
     display: none;
 }

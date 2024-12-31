@@ -421,12 +421,12 @@ function save_category_bottom_content($term_id) {
 }
 
 // Modified display function to handle both template parts and custom content
-function add_protein_powder_bottom_content() {
+function add_category_bottom_content() {
     if (is_product_category()) {
         $category = get_queried_object();
         $template_part = get_term_meta($category->term_id, 'category_template_part', true);
         $bottom_content = get_term_meta($category->term_id, 'category_bottom_content', true);
-        
+
         // First try to load template part if selected
         if (!empty($template_part)) {
             get_template_part('template-parts/woocommerce/' . $template_part);
@@ -444,7 +444,8 @@ add_action('product_cat_add_form_fields', 'add_category_bottom_content_field');
 add_action('product_cat_edit_form_fields', 'edit_category_bottom_content_field');
 add_action('edited_product_cat', 'save_category_bottom_content');
 add_action('created_product_cat', 'save_category_bottom_content');
-add_action('woocommerce_after_main_content', 'add_protein_powder_bottom_content', 10);
+// Add to WooCommerce category pages, after the main page content but before signup section
+add_action('live_complete_container_wrap_end', 'add_category_bottom_content', 999);
 
 // Remove existing action if it exists
 remove_action('live_complete_container_wrap_end', 'live_complete_page_bottom_html', 5);
