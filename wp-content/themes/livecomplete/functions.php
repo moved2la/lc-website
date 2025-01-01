@@ -259,3 +259,111 @@ remove_action('edited_product_cat', 'save_category_link_text');
 add_action('created_product_cat', 'save_category_custom_fields');
 add_action('edited_product_cat', 'save_category_custom_fields');
 
+function live_complete_support_template_part($atts) {
+    $atts = shortcode_atts(array(
+        'name' => 'contact-form' // default template part
+    ), $atts);
+
+    ob_start();
+    get_template_part('template-parts/support/' . sanitize_text_field($atts['name']));
+    $content = ob_get_clean();
+    return $content;
+}
+add_shortcode('support_section', 'live_complete_support_template_part');
+
+// Add custom meta boxes for support page header
+function live_complete_support_page_meta_boxes() {
+    add_meta_box(
+        'support_page_header',
+        'Support Page Header',
+        'live_complete_support_page_header_callback',
+        'page',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'live_complete_support_page_meta_boxes');
+
+// Meta box callback function
+function live_complete_support_page_header_callback($post) {
+    // Add nonce for security
+    wp_nonce_field('support_page_header_nonce', 'support_page_header_nonce');
+
+    // Get existing values
+    $header_title = get_post_meta($post->ID, '_support_header_title', true);
+    $header_desc = get_post_meta($post->ID, '_support_header_desc', true);
+
+    // Default values if empty
+    if (empty($header_title)) {
+        $header_title = "We're here to help";
+    }
+    if (empty($header_desc)) {
+        $header_desc = "We're excited to hear from you! Whether you have questions, feedback, or just want to chat, our team is ready to assist you.";
+    }
+    ?>
+    <div class="support-page-fields" style="margin: 20px 0;">
+        <p>
+            <label for="support_header_title" style="display: block; margin-bottom: 5px;"><strong>Header Title</strong></label>
+            <input 
+                type="text" 
+                id="support_header_title" 
+                name="support_header_title" 
+                value="<?php echo esc_attr($header_title); ?>" 
+                style="width: 100%;"
+            >
+        </p>
+        <p>
+            <label for="support_header_desc" style="display: block; margin-bottom: 5px;"><strong>Header Description</strong></label>
+            <textarea 
+                id="support_header_desc" 
+                name="support_header_desc" 
+                rows="4" 
+                style="width: 100%;"
+            ><?php echo esc_textarea($header_desc); ?></textarea>
+        </p>
+    </div>
+    <?php
+}
+
+// Save meta box data
+function live_complete_save_support_page_meta($post_id) {
+    // Check if nonce is set
+    if (!isset($_POST['support_page_header_nonce'])) {
+        return;
+    }
+
+    // Verify nonce
+    if (!wp_verify_nonce($_POST['support_page_header_nonce'], 'support_page_header_nonce')) {
+        return;
+    }
+
+    // If this is autosave, don't do anything
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    // Check user permissions
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // Save header title
+    if (isset($_POST['support_header_title'])) {
+        update_post_meta(
+            $post_id,
+            '_support_header_title',
+            sanitize_text_field($_POST['support_header_title'])
+        );
+    }
+
+    // Save header description
+    if (isset($_POST['support_header_desc'])) {
+        update_post_meta(
+            $post_id,
+            '_support_header_desc',
+            sanitize_textarea_field($_POST['support_header_desc'])
+        );
+    }
+}
+add_action('save_post', 'live_complete_save_support_page_meta');
+
