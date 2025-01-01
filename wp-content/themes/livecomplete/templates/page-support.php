@@ -87,13 +87,14 @@ $layout = live_complete_get_option('page_layout');
     }
 </style>
 
-<div class="support-header-wrapper container">
-    <div class="header-content">
-        <div class="header-title">
-            <?php echo esc_html(get_post_meta(get_the_ID(), '_support_header_title', true)); ?>
-        </div>
-        <div class="header-desc">
-            <?php echo esc_html(get_post_meta(get_the_ID(), '_support_header_desc', true)); ?>
+<div class="support-header-wrapper">
+    <div class="container">
+        <div class="header-content">
+            <div class="header-title">We’re here to help</div>
+            <div class="header-desc">
+                We’re excited to hear from you! Whether you have questions, feedback, or
+                just want to chat, our team is ready to assist you.
+            </div>
         </div>
     </div>
 </div>

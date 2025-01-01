@@ -414,10 +414,10 @@ if (!defined('ABSPATH')) {
                 <div class="column-three">Support</div>
                 <div class="footer-links">
                     <div class="link">
-                        <div class="link-eleven">Contact Us</div>
+                        <a href="<?php echo home_url('contact-us'); ?>" class="link-eleven">Contact Us</a>
                     </div>
                     <div class="link">
-                        <div class="link-twelve">Shipping Information</div>
+                        <a href="<?php echo home_url('shipping-information'); ?>" class="link-twelve">Shipping Information</a>
                     </div>
                     <div class="link">
                         <div class="link-thirteen">Returns &amp; Exchanges</div>
