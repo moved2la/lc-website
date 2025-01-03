@@ -81,8 +81,8 @@ add_action('after_setup_theme', 'live_complete_woocommerce_setup');
 function live_complete_woocommerce_scripts()
 {
 
-    wp_enqueue_style('live-complete-woocommerce-core', get_template_directory_uri() . '/assets/css/woocommerce-core.css', array(), _FATEST_SHOP_VERSION);
-    wp_enqueue_style('live-complete-woocommerce-style', get_template_directory_uri() . '/woocommerce.css', array(), _FATEST_SHOP_VERSION);
+    wp_enqueue_style('live-complete-woocommerce-core', get_template_directory_uri() . '/assets/css/woocommerce-core.css', array(), _LIVECOMPLETE_VERSION);
+    wp_enqueue_style('live-complete-woocommerce-style', get_template_directory_uri() . '/woocommerce.css', array(), _LIVECOMPLETE_VERSION);
 
     $font_path   = esc_url(WC()->plugin_url() . '/assets/fonts/');
     $inline_font = '@font-face {

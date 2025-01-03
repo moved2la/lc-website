@@ -57,6 +57,9 @@ class Live_Complete_Body_Layout
     function container_wrap_column_start($layout = '')
     {
 
+        if (is_product()) {
+            $layout = 'full-container';
+        }
         switch ($layout) {
             case 'sidebar-content':
                 $layout = 'col-xl-8 col-md-8 col-12 order-2';
@@ -71,10 +74,10 @@ class Live_Complete_Body_Layout
                 $layout = 'col-xl-12 col-md-12 col-12 order-1';
         }
 
-        $html      = '<div class="' . esc_attr($layout) . '">
+        $html = '<div class="' . esc_attr($layout) . '">
 	   					<main id="main" class="site-main">';
 
-        $html       = apply_filters('live_complete_container_wrap_column_start_filter', $html);
+        $html = apply_filters('live_complete_container_wrap_column_start_filter', $html);
 
         echo wp_kses($html, $this->allowed_tags());
     }

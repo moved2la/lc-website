@@ -12,24 +12,16 @@
  */
 require get_template_directory() . '/inc/theme-core.php';
 
-/**
- * Implement the Custom Header feature.
- */
+
 require get_template_directory() . '/inc/class/class-header.php';
 
-/**
- * Implement the Custom Header feature.
- */
+
 require get_template_directory() . '/inc/class/class-body.php';
 
-/**
- * Implement the Custom Header feature.
- */
+
 require get_template_directory() . '/inc/class/class-footer.php';
 
-/**
- * Implement the Custom Header feature.
- */
+
 require get_template_directory() . '/inc/class/class-template-tags.php';
 require get_template_directory() . '/inc/class/class-post-related.php';
 
@@ -54,7 +46,7 @@ require get_template_directory() . '/inc/customizer/customizer.php';
 
 
 /**
- * Implement pro features.
+ * Implement admin features.
  */
 // require get_template_directory() . '/inc/admin/admin-page.php';
 

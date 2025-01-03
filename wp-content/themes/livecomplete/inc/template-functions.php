@@ -456,3 +456,121 @@ function live_complete_add_bottom_block()
     live_complete_page_bottom_html();
 }
 add_action('live_complete_container_wrap_end', 'live_complete_add_bottom_block', 999);
+
+
+/* ---------------- Product Page ---------------- */
+
+// Remove meta from its default position
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
+// Add meta before add to cart
+add_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 25);
+
+
+// Add custom attribute display
+function custom_product_attributes_display()
+{
+    global $product;
+
+    // Get attributes based on product type
+    if ($product->is_type('variable')) {
+        $attributes = $product->get_variation_attributes();
+        $all_attributes = $product->get_attributes();
+    } else {
+        $attributes = $product->get_attributes();
+        $all_attributes = $attributes;
+    }
+
+    if (!empty($all_attributes)) {
+        echo '<div class="custom-attributes-wrapper">';
+
+        foreach ($all_attributes as $attribute_name => $attribute_obj) {
+            // Get the attribute label
+            $attribute_label = wc_attribute_label($attribute_name);
+
+            // Get all possible terms for this attribute
+            $taxonomy = str_replace('pa_', '', $attribute_name);
+            $terms = get_terms([
+                'taxonomy' => 'pa_' . $taxonomy,
+                'hide_empty' => false
+            ]);
+
+            if (!empty($terms) && !is_wp_error($terms)) {
+                echo '<div class="attribute-group">';
+                echo '<h4>' . esc_html($attribute_label) . '</h4>';
+                echo '<div class="attribute-buttons">';
+
+                // Get the product's terms for this attribute
+                $product_terms = wc_get_product_terms($product->get_id(), 'pa_' . $taxonomy, array('fields' => 'slugs'));
+
+                foreach ($terms as $term) {
+                    // Check if this term is assigned to the product
+                    $is_active = in_array($term->slug, $product_terms);
+
+                    // Set classes based on status
+                    $button_classes = ['attribute-btn'];
+                    if (!$is_active) {
+                        $button_classes[] = 'disabled';
+                    }
+
+                    echo sprintf(
+                        '<button type="button" class="%s" data-attribute="%s" data-value="%s" %s>%s</button>',
+                        esc_attr(implode(' ', $button_classes)),
+                        esc_attr('pa_' . $taxonomy),
+                        esc_attr($term->slug),
+                        $is_active ? '' : 'disabled',
+                        esc_html($term->name)
+                    );
+                }
+
+                echo '</div></div>';
+            }
+        }
+
+        echo '</div>';
+    }
+}
+
+// Add the custom display before add to cart form
+add_action('woocommerce_before_add_to_cart_form', 'custom_product_attributes_display');
+
+// Add the custom display after add to cart button
+add_action('woocommerce_after_add_to_cart_form', 'live_complete_shipping_returns_info');
+function live_complete_shipping_returns_info() {
+    get_template_part('template-parts/blocks/pdp-ship-return');
+}
+
+
+
+function pdp_ship_return_customizer_settings($wp_customize)
+{
+    // Add new section
+    $wp_customize->add_section('pdp_ship_return_section', array(
+        'title' => 'Product Page',
+        'panel' => 'woocommerce', 
+    ));
+
+    // Shipping Content
+    $wp_customize->add_setting('pdp_shipping_content', array(
+        'default' => '',
+        'sanitize_callback' => 'wp_kses_post',
+    ));
+    $wp_customize->add_control('pdp_shipping_content', array(
+        'label' => 'Shipping Content',
+        'section' => 'pdp_ship_return_section',
+        'type' => 'textarea',
+    ));
+
+    // Returns Content
+    $wp_customize->add_setting('pdp_returns_content', array(
+        'default' => '',
+        'sanitize_callback' => 'wp_kses_post',
+    ));
+    $wp_customize->add_control('pdp_returns_content', array(
+        'label' => 'Returns Content',
+        'section' => 'pdp_ship_return_section',
+        'type' => 'textarea',
+    ));
+}
+add_action('customize_register', 'pdp_ship_return_customizer_settings');
+
+/* ---------------- Product Page ---------------- */

@@ -42,6 +42,11 @@ Tags:  one-column, two-columns, right-sidebar, left-sidebar, custom-header, cust
     --primary-btn-bg-color-h: #D9734D;
     --primary-btn-bg-color-h-alt: #000000;
 
+    --primary-btn-color-alt: #ffffff;
+    --primary-btn-bg-color-alt-h: #000000;
+    --primary-btn-bg-color-alt: #000000;
+    --primary-btn-bg-color-alt-h: #ffffff;
+
     --secondary-btn-color: #0E4C73;
     --secondary-btn-bg-color: #ffffff;
     --secondary-btn-color-h: #D9734D;
@@ -57,7 +62,7 @@ Tags:  one-column, two-columns, right-sidebar, left-sidebar, custom-header, cust
     --tertiary-color: rgba(0, 0, 0, 0.3);
     --quaternary-color: #f9f9f9;
     --opacity: 0, 0, 0;
-    --rating-color: #dd3333;
+    --rating-color: #D9734D;
     --heading-font: "Roboto", sans-serif;
     --nav-font: "Roboto", sans-serif;
     --nav-color: #000000;
@@ -1645,9 +1650,9 @@ body.error404 #content.site-content {
 	#breadcrumbs
 --------------------------------------*/
 .live-complete-breadcrumbs-wrap {
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+    /* -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08); */
     padding: 15px 0;
     text-align: left;
     padding-top: 5px;

@@ -1,14 +1,14 @@
 <?php
 /**
- * Fastest-shop functions and definitions
+ * liveComplete functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package live-complete
  */
-if ( ! defined( '_FATEST_SHOP_VERSION' ) ) {
+if ( ! defined( '_LIVECOMPLETE_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_FATEST_SHOP_VERSION', '1.0.0' );
+	define( '_LIVECOMPLETE_VERSION', '1.0.0' );
 }
 
 
@@ -182,7 +182,7 @@ function live_complete_scripts() {
 
 	wp_enqueue_style( 'live-complete-common', get_theme_file_uri( '/assets/css/live-complete-common.css' ), array(), '1.0.0' );
 	
-	wp_enqueue_style( 'live-complete-style', get_stylesheet_uri(), array(), _FATEST_SHOP_VERSION );
+	wp_enqueue_style( 'live-complete-style', get_stylesheet_uri(), array(), _LIVECOMPLETE_VERSION );
 	wp_style_add_data( 'live-complete-style', 'rtl', 'replace' );
 	
 	$custom_css = ':root {--primary-color:'.esc_attr( get_theme_mod('__primary_color','#fff') ).'; --secondary-color: '.esc_attr( get_theme_mod('__secondary_color','#000') ).'; --nav-color:'.esc_attr( get_theme_mod('__menu_primary_color','#6c757d') ).'; --nav-color-h: '.esc_attr( get_theme_mod('__menu_secondary_color','#000') ).';  --nav-sub-color:'.esc_attr( get_theme_mod('__menu_primary_color','#6c757d') ).';--nav-sub-bg-h:'.esc_attr( get_theme_mod('__menu_secondary_color','#6c757d') ).';}';
