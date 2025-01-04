@@ -154,4 +154,23 @@
         }
     });
 
+
+    $('.asp-ssws-pay-option').change(function () {
+        var $wrapper = $(this).closest('.asp-ssws-subscribe-wrapper');
+        var $regularPrice = $wrapper.find('.asp-ssws-pay-option-subscribe .price-label:not(.subscribe-price)');
+        var $subscribePrice = $wrapper.find('.asp-ssws-pay-option-subscribe .price-label.subscribe-price');
+
+        if ($(this).val() === 'subscribe') {
+            $regularPrice.hide();
+            $subscribePrice.show();
+        } else {
+            $regularPrice.show();
+            $subscribePrice.hide();
+        }
+    });
+
+    // Trigger change on page load for pre-selected options
+    $('.asp-ssws-pay-option:checked').trigger('change');
+
+
 })(jQuery);

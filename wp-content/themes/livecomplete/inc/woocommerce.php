@@ -324,7 +324,7 @@ if (! function_exists('live_complete_woocommerce_cart_link')) {
         get_template_part('woocommerce/result-count');
     }
     // add_action('woocommerce_before_shop_loop', 'live_complete_result_count', 30);
-    
+
 
 
     if (! function_exists('live_complete_header_toolbar_end')) {
@@ -520,37 +520,45 @@ if (! function_exists('live_complete_woocommerce_cart_link')) {
 
         if ($product->is_type('variable')) {
 
+            do_action('before_live_complete_product_loop_swatches', $product);
+
             $attributes = $product->get_variation_attributes();
             $variations_json = wp_json_encode($product->get_available_variations());
             $variations_attr = function_exists('wc_esc_json') ? wc_esc_json($variations_json) : _wp_specialchars($variations_json, ENT_QUOTES, 'UTF-8', true);
             ?>
-                <div class="live_complete_variations_wrap" data-product_variations="<?php echo esc_attr($variations_attr); // WPCS: XSS ok. 
-                                                                                    ?>">
-                    <?php
-
-                    if (!empty($attributes)):
-                        foreach ($attributes as $attribute_name => $options) :
-
-                            if ($attribute_name == 'pa_color') {
-                                wc_dropdown_variation_attribute_options(
-                                    array(
-                                        'options'   => $options,
-                                        'attribute' => $attribute_name,
-                                        'product'   => $product,
-                                    )
-                                );
-                            }
-                        endforeach;
-                    endif;
-                    ?>
-
-                </div>
-
-        <?php
+            <div class="live_complete_variations_wrap" data-product_variations="<?php echo esc_attr($variations_attr); ?>">
+                <?php
+                if (!empty($attributes)):
+                    foreach ($attributes as $attribute_name => $options) :
+                        if ($attribute_name == 'pa_color') {
+                            wc_dropdown_variation_attribute_options(
+                                array(
+                                    'options'   => $options,
+                                    'attribute' => $attribute_name,
+                                    'product'   => $product,
+                                )
+                            );
+                        }
+                    endforeach;
+                endif;
+                ?>
+            </div>
+            <?php
+            
+            // Add hook to allow adding content after swatches
+            do_action('after_live_complete_product_loop_swatches', $product);
         }
     }
-    add_action('woocommerce_after_shop_loop_item', 'live_complete_product_loop_swatches', 100);
+    add_action('woocommerce_before_add_to_cart_form', 'live_complete_product_loop_swatches', 100);
 
+    function live_complete_product_loop_quantity($product)
+    {
+        wc_get_template('single-product/quantity-input.php');
+    }
+    // Move to beginning of variations form
+    remove_action('woocommerce_before_add_to_cart_form', 'live_complete_product_loop_quantity', 5);
+    add_action('woocommerce_before_variations_form', 'live_complete_product_loop_quantity', 5);
+    
 
     function live_complete_wcspc_get_default_options($value)
     {
@@ -560,3 +568,5 @@ if (! function_exists('live_complete_woocommerce_cart_link')) {
         return $value;
     }
     add_filter('wcspc_get_default_options', 'live_complete_wcspc_get_default_options');
+
+   
