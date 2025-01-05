@@ -14,7 +14,8 @@
 defined('ABSPATH') || exit;
 
 $product = wc_get_product($subscribe_product_id);
-$regular_price = $product->get_regular_price(); 
+$regular_price = $product->get_regular_price();
+$reduced_price = $product->get_price();
 ?>
 <div class="asp-ssws-subscribe-wrapper" data-subscribe-level="<?php echo esc_attr($subscribe_level); ?>" data-product-id="<?php echo esc_attr($subscribe_product_id); ?>">
     <ul class="asp-ssws-subscribe-options">
@@ -29,18 +30,27 @@ $regular_price = $product->get_regular_price();
             <input type="radio" class="asp-ssws-pay-option" name="asp_ssws_pay_option[<?php echo esc_attr($subscribe_product_id); ?>]" value="subscribe" id="asp_ssws_pay_subscribe_<?php echo esc_attr($subscribe_product_id); ?>" <?php checked(('yes' === $is_subscribed || $subscribe_forced || (is_null($is_subscribed) && 'subscribe' === $default_subscribe_value)), true, true); ?> />
             <label for="asp_ssws_pay_subscribe_<?php echo esc_attr($subscribe_product_id); ?>"><?php echo esc_html($subscribe_option_label); ?></label>
             <?php if ($product != null) : ?>
-                <label class="price-label">
+                <!-- <label class="price-label">
                     <?php
                     $regular_price = floatval($product->get_regular_price());
                     $subscription_price = $regular_price * (1 - (floatval($subscribe_discount) / 100));
-                    echo wp_kses_post(wc_price($regular_price));
+                    echo wp_kses_post(wc_price($reduced_price));
                     ?>
-                </label>
-                <label class="price-label subscribe-price" style="display: none;">
-                    <?php
-                    echo wp_kses_post(wc_price($subscription_price) . ' <del>' . wc_price($regular_price) . '</del>');
-                    ?>
-                </label>
+                </label> -->
+                <?php if ($chosen_subscribe_plan > 0) : ?>
+                    <label class="price-label subscribe-price">
+                        <?php
+                        echo wp_kses_post(wc_price($subscription_price) . ' <del>' . wc_price($regular_price) . '</del>');
+                        ?>
+                    </label>
+
+                <?php else : ?>
+                    <label class="price-label">
+                        <?php
+                        echo wp_kses_post(wc_price($regular_price));
+                        ?>
+                    </label>
+                <?php endif; ?>
             <?php endif; ?>
         </li>
 
@@ -56,12 +66,16 @@ $regular_price = $product->get_regular_price();
                     <label for="asp_ssws_subscribe_plans"><?php echo esc_html($subscribe_plan_label); ?></label>
                     <select id="asp_ssws_subscribe_plans" name="asp_ssws_subscribe_plan">
                         <?php foreach ($subscribe_plans as $plan) { ?>
-                            <option value="<?php echo esc_attr($plan->get_id()); ?>" <?php selected($plan->get_id(), ($chosen_subscribe_plan > 0 ? $chosen_subscribe_plan : $default_subscribe_plan), true); ?>><?php echo wp_kses_post($plan->get_name() . ' (' . $subscribe_price_string . ')'); ?></option>
+                            <?php
+                            $regular_price = floatval($product->get_regular_price());
+                            $subscription_price = $regular_price * (1 - (floatval($plan->get_subscription_discount()) / 100));
+                            ?>
+                            <option value="<?php echo esc_attr($plan->get_id()); ?>" <?php selected($plan->get_id(), ($chosen_subscribe_plan > 0 ? $chosen_subscribe_plan : $default_subscribe_plan), true); ?>><?php echo wp_kses_post($plan->get_name() . ' (' . wc_price($subscription_price) . ')'); ?></option>
                         <?php } ?>
                     </select>
                 </li>
 
-                <?php if (! empty($subscribe_discount_label) && $subscribe_discount > 0) : ?>
+                <!-- <?php if (! empty($subscribe_discount_label) && $subscribe_discount > 0) : ?>
                     <li class="asp-ssws-subscribe-row-discount">
                         <label for="asp_ssws_subscribe_discount"></label>
                         <span class="asp-ssws-subscribe-discount">
@@ -77,7 +91,7 @@ $regular_price = $product->get_regular_price();
                             <?php echo wp_kses_post($subscribe_price_string); ?>
                         </span>
                     </li>
-                <?php endif; ?>
+                <?php endif; ?> -->
             <?php else : ?>
                 <li class="asp-ssws-subscribe-row-no-plans-found">
                     <?php esc_html_e('No subscribe plans found.', 'subscribe-and-save-for-woocommerce-subscriptions'); ?>

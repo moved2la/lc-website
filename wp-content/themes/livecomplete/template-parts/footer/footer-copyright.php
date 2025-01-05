@@ -130,6 +130,27 @@ if (!defined('ABSPATH')) {
         position: relative;
         overflow: visible;
     }
+
+
+    @media (max-width: 1024px) {
+        .footer-wrapper .row {
+            flex-direction: column-reverse;
+        }
+
+        .footer-wrapper .row .credits2 {
+            flex-direction: column;
+            flex-basis: 100%;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .footer-wrapper .row .social-links {
+            flex-basis: 100%;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+    }
 </style>
 
 <div class="credits container"><span class="back-to-top" id="backToTop"><i class="icofont-rounded-up parallax"></i></span>
@@ -159,7 +180,7 @@ if (!defined('ABSPATH')) {
                     <img class="icon-x" src="<?php echo get_template_directory_uri(); ?>/assets/image/icon-x.svg" />
                 </a>
             <?php endif; ?>
-            <?php if (get_theme_mod('__li_link')): ?>   
+            <?php if (get_theme_mod('__li_link')): ?>
                 <a href="<?php echo esc_url(get_theme_mod('__li_link')); ?>" target="_blank" rel="noopener noreferrer">
                     <img class="icon-linked-in" src="<?php echo get_template_directory_uri(); ?>/assets/image/icon-linkedin.svg" />
                 </a>

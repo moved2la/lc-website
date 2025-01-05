@@ -104,12 +104,12 @@
 			});
 		}
 	 
-	 	if( $('#secondary').length ){
-			$('#secondary').stickySidebar({
-				topSpacing: 60,
-				bottomSpacing: 60,
-			});
-		}
+	 	// if( $('#secondary').length ){
+		// 	$('#secondary').stickySidebar({
+		// 		topSpacing: 60,
+		// 		bottomSpacing: 60,
+		// 	});
+		// }
 		
 		if( $('.live-complete-post-carousel-widgets').length ){
 			

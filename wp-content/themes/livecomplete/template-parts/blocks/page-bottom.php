@@ -71,12 +71,12 @@ $form_result = handle_newsletter_signup();
     }
 
     .signup .heading {
-        color: var(--border-alternate, #ffffff);
+        color: #ffffff;
         text-align: left;
-        font-family: var(--heading-desktop-h2-font-family, "Roboto-Bold", sans-serif);
-        font-size: var(--heading-desktop-h2-font-size, 48px);
-        line-height: var(--heading-desktop-h2-line-height, 120%);
-        font-weight: var(--heading-desktop-h2-font-weight, 700);
+        font-family: "Roboto-Bold", sans-serif;
+        font-size: clamp(36px, 4vw, 48px);
+        line-height: 120%;
+        font-weight: 700;
         position: relative;
         align-self: stretch;
     }
@@ -180,49 +180,26 @@ $form_result = handle_newsletter_signup();
         color: var(--secondary-btn-color-h);
     }
 
-    .signup .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions {
-        color: var(--border-alternate, #ffffff);
+    .signup .terms-and-conditions {
         text-align: left;
-        font-family: var(--text-tiny-normal-font-family, "-", sans-serif);
-        font-size: var(--text-tiny-normal-font-size, 12px);
-        line-height: var(--text-tiny-normal-line-height, 150%);
-        font-weight: var(--text-tiny-normal-font-weight, 400);
+        color: #ffffff;
+        font-family: "Roboto-Regular", sans-serif;
+        font-size: 12px;
+        line-height: 150%;
+        font-weight: 400;
         position: relative;
         align-self: stretch;
     }
 
-    .signup .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions-span {
-        color: var(--border-alternate, #ffffff);
-        font-family: var(--text-tiny-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-tiny-normal-font-size, 12px);
-        line-height: var(--text-tiny-normal-line-height, 150%);
-        font-weight: var(--text-tiny-normal-font-weight, 400);
-    }
-
-    .signup .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions-span2 {
-        color: var(--border-alternate, #ffffff);
-        font-family: var(--text-tiny-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-tiny-normal-font-size, 12px);
-        line-height: var(--text-tiny-normal-line-height, 150%);
-        font-weight: var(--text-tiny-normal-font-weight, 400);
+    .signup .terms-and-conditions a {
+        color: #ffffff;
         text-decoration: underline;
     }
 
-    .signup .by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions-span3 {
-        color: var(--border-alternate, #ffffff);
-        font-family: var(--text-tiny-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-tiny-normal-font-size, 12px);
-        line-height: var(--text-tiny-normal-line-height, 150%);
-        font-weight: var(--text-tiny-normal-font-weight, 400);
+    .signup .terms-and-conditions a:hover {
+        text-decoration: none;
     }
 
-    /* Add styles for form input */
     .signup .email-input {
         background: #ffffff;
         max-width: 394px;
@@ -293,17 +270,11 @@ $form_result = handle_newsletter_signup();
                     <button type="submit" name="newsletter_signup" class="signup-button">Sign Up</button>
                 </form>
 
-                <div class="by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions">
+                <div class="terms-and-conditions">
                     <span>
-                        <span class="by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions-span">
-                            By clicking Sign Up you're confirming that you agree with our
-                        </span>
-                        <a href="/terms-and-conditions" class="by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions-span2">
-                            Terms and Conditions
-                        </a>
-                        <span class="by-clicking-sign-up-you-re-confirming-that-you-agree-with-our-terms-and-conditions-span3">
-                            .
-                        </span>
+                        <span>
+                            By clicking Sign Up you're confirming that you agree with our</span>
+                            <a href="<?php echo esc_url(home_url('/terms-and-conditions')); ?>">Terms and Conditions</a>.
                     </span>
                 </div>
             </div>

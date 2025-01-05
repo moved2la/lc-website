@@ -1747,10 +1747,15 @@ table.woocommerce-checkout-review-order-table th {
 .single_add_to_cart_button {
       max-width: 444px;
       float: left;
+      border-radius: 0;
+      border: none;
+      background-color: var(--primary-btn-bg-color);
 }
-.cart-button-wrapper button {
+.single_add_to_cart_button:hover {
+    color: var(--primary-btn-color-alt);
+}
 
+.cart-button-wrapper button {
     width: 100%;
-  
 }
 /* ---------------- Product Page ---------------- */

@@ -5,6 +5,11 @@
  * @package live-complete
  */
 
+ /**
+  * Remove WooCommerce related products from product page
+  */
+remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
+
 /**
  * Adds custom classes to the array of body classes.
  *
@@ -420,7 +425,7 @@ function save_category_bottom_content($term_id) {
     }
 }
 
-// Modified display function to handle both template parts and custom content
+// Content area for bottom of category page
 function add_category_bottom_content() {
     if (is_product_category()) {
         $category = get_queried_object();
