@@ -314,9 +314,14 @@ class live_complete_Header_Layout
                 // Return early if 404, template without hero, or WooCommerce page
                 if (
                     is_404() || is_cart() || is_checkout() || is_account_page() ||
-                    'templates/without-hero.php' == get_page_template_slug() ||
+                    'templates/without-hero.php' == get_page_template_slug() || 
                     (function_exists('is_woocommerce') && is_woocommerce())
                 ) return;
+
+                // if a post category page, return
+                if (is_singular('post') || is_category()) {
+                    return;
+                }
 
                 if (is_front_page() && is_active_sidebar('slider')) :
                     dynamic_sidebar('slider');

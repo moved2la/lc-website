@@ -23,7 +23,7 @@
                
 		<?php
         /**
-        * Hook - shoper_site_content_type.
+        * Hook - livecomplete_site_content_type.
         *
 		* @hooked site_loop_heading - 10
         * @hooked render_meta_list	- 20
@@ -32,7 +32,7 @@
 		
 		$meta = array();
 		
-		if ( is_singular() ) :
+		if ( is_singular() && !is_page() ) :
 			
 			if( live_complete_get_option('signle_meta_hide') != true ){
 				

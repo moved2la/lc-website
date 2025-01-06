@@ -21,9 +21,8 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
 
 
 <style>
-    .section-title,
-    .section-title * {
-        box-sizing: border-box;
+    .live-complete-breadcrumbs-wrap {
+        background-color: #fff;
     }
 
     .section-title {
@@ -72,11 +71,6 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         align-self: stretch;
     }
 
-    .categories,
-    .categories * {
-        box-sizing: border-box;
-    }
-
     .categories {
         display: flex;
         flex-direction: row;
@@ -88,26 +82,13 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         margin-bottom: 32px;
     }
 
-
     .categories button {
         cursor: pointer;
+        color: #000;
         transition: all 0.3s ease;
-    }
-
-    .categories button.active {
-        background-color: var(--text-primary, #000000);
-        color: var(--border-alternate, #ffffff);
-    }
-
-    .categories button.active div {
-        color: var(--border-alternate, #ffffff);
-    }
-
-    .categories .button {
-        border-style: solid;
-        border-color: var(--border-primary, #000000);
-        border-width: 1px;
+        background-color: #fff;
         padding: 8px 16px 8px 16px;
+        margin: 0 8px;
         display: flex;
         flex-direction: row;
         gap: 8px;
@@ -115,67 +96,16 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         justify-content: center;
         flex-shrink: 0;
         position: relative;
+        border: 1px solid #fff;
     }
 
-    .categories .view-all {
-        color: var(--text-primary, #000000);
-        text-align: left;
-        font-family: var(--text-regular-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-regular-normal-font-size, 16px);
-        line-height: var(--text-regular-normal-line-height, 150%);
-        font-weight: var(--text-regular-normal-font-weight, 400);
-        position: relative;
+    .categories button.active,
+    .categories button:hover {
+        background-color: #fff;
+        border: 1px solid #000;
+        color: #000;
+        border-color: #000;
     }
-
-    .categories .button2 {
-        padding: 8px 16px 8px 16px;
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        position: relative;
-    }
-
-    .categories .button2 .text-one {
-        color: var(--text-primary, #000000);
-        text-align: left;
-        font-family: var(--text-regular-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-regular-normal-font-size, 16px);
-        line-height: var(--text-regular-normal-line-height, 150%);
-        font-weight: var(--text-regular-normal-font-weight, 400);
-        position: relative;
-    }
-
-    .categories .button2 .category-three {
-        color: var(--text-primary, #000000);
-        text-align: left;
-        font-family: var(--text-regular-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-regular-normal-font-size, 16px);
-        line-height: var(--text-regular-normal-line-height, 150%);
-        font-weight: var(--text-regular-normal-font-weight, 400);
-        position: relative;
-    }
-
-    .categories .button2 .category-four {
-        color: var(--text-primary, #000000);
-        text-align: left;
-        font-family: var(--text-regular-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-regular-normal-font-size, 16px);
-        line-height: var(--text-regular-normal-line-height, 150%);
-        font-weight: var(--text-regular-normal-font-weight, 400);
-        position: relative;
-    }
-
 
     /* Blog card grid */
     .blog-grid {
@@ -216,7 +146,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         }
     }
 
-    .style-link-small-false-alternate-false-icon-position-trailing {
+    .read-more {
         text-decoration: none;
         display: flex;
         flex-direction: row;
@@ -284,7 +214,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .content2 .text-only-false-alternate-false-icon-position-no-icon {
+    .blog-grid .card .content2 .article-category {
         background: #d9734d;
         padding: 4px 8px 4px 8px;
         display: flex;
@@ -296,7 +226,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .content2 .text-only-false-alternate-false-icon-position-no-icon .text {
+    .blog-grid .card .content2 .article-category .text {
         color: var(--border-alternate, #ffffff);
         text-align: left;
         font-family: "Roboto-SemiBold", sans-serif;
@@ -316,6 +246,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         line-height: var(--text-small-semi-bold-line-height, 150%);
         font-weight: var(--text-small-semi-bold-font-weight, 600);
         position: relative;
+        align-self: stretch;
     }
 
     .blog-grid .card .content2 .title {
@@ -353,7 +284,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         align-self: stretch;
     }
 
-    .blog-grid .card .content2 .style-link-small-false-alternate-false-icon-position-trailing {
+    .blog-grid .card .content2 .read-more {
         display: flex;
         flex-direction: row;
         gap: 8px;
@@ -364,7 +295,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .content2 .style-link-small-false-alternate-false-icon-position-trailing .button {
+    .blog-grid .card .content2 .read-more .button {
         color: var(--text-primary, #000000);
         text-align: left;
         font-family: "Roboto-Regular", sans-serif;
@@ -374,7 +305,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .content2 .style-link-small-false-alternate-false-icon-position-trailing .icon-chevron-right {
+    .blog-grid .card .content2 .read-more .icon-chevron-right {
         flex-shrink: 0;
         width: 24px;
         height: 24px;
@@ -398,28 +329,36 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         <div class="view-all">View all</div>
     </button>
     <?php
-    $categories = get_categories(array(
-        'orderby' => 'name',
-        'order'   => 'ASC',
-        'hide_empty' => true,
-        'exclude' => array(1) // Exclude "uncategorized"
-    ));
+    // Get the 'blog' category object
+    $blog_cat = get_category_by_slug('blog');
 
-    foreach ($categories as $category) : ?>
-        <button class="button2" data-category="<?php echo esc_attr($category->slug); ?>">
-            <div class="category-item"><?php echo esc_html($category->name); ?></div>
-        </button>
-    <?php endforeach; ?>
+    if ($blog_cat) {
+        $subcategories = get_categories(array(
+            'parent' => $blog_cat->term_id,
+            'orderby' => 'name',
+            'order'   => 'ASC',
+            'hide_empty' => true
+        ));
+
+        foreach ($subcategories as $category) : ?>
+            <button data-category="<?php echo esc_attr($category->slug); ?>">
+                <div class="category-item"><?php echo esc_html($category->name); ?></div>
+            </button>
+    <?php endforeach;
+    }
+    ?>
 </div>
 
 
 <div class="blog-grid">
     <?php
+    // Get all posts from blog category and its subcategories
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => -1,
         'orderby' => 'date',
-        'order' => 'DESC'
+        'order' => 'DESC',
+        'cat' => $blog_cat ? $blog_cat->term_id : 0 // Only get posts from blog category
     );
 
     $blog_posts = new WP_Query($args);
@@ -428,19 +367,33 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         while ($blog_posts->have_posts()) : $blog_posts->the_post();
             $categories = get_the_category();
             $category_slugs = array();
+            $display_category = '';
+
+            // Find the most specific category (subcategory)
             foreach ($categories as $category) {
                 $category_slugs[] = $category->slug;
+
+                // If this category is a child of 'blog', use it
+                if ($category->parent === $blog_cat->term_id) {
+                    $display_category = $category->name;
+                    break;
+                }
             }
+
+            // If no subcategory was found, use the main category
+            if (empty($display_category) && !empty($categories)) {
+                $display_category = $categories[0]->name;
+            }
+
             $category_classes = implode(' ', $category_slugs);
-            $subcategory = !empty($categories) ? $categories[0]->name : 'Insights';
             $thumbnail = get_the_post_thumbnail_url() ?: get_template_directory_uri() . '/assets/image/placeholder.png';
-            
-            // Calculate reading time
+
+            // Reading time calculation
             $content = get_the_content();
             $word_count = str_word_count(strip_tags($content));
-            $reading_time = ceil($word_count / 200); // Assuming 200 words per minute reading speed
+            $reading_time = ceil($word_count / 200);
             $reading_time_text = $reading_time . ' min read';
-            
+
             // Excerpt handling
             $excerpt = get_the_excerpt();
             if (empty($excerpt)) {
@@ -456,8 +409,8 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
                 <div class="content">
                     <div class="content2">
                         <div class="info">
-                            <div class="text-only-false-alternate-false-icon-position-no-icon">
-                                <div class="text"><?php echo esc_html($subcategory); ?></div>
+                            <div class="article-category">
+                                <div class="text"><?php echo esc_html($display_category); ?></div>
                             </div>
                             <div class="text2"><?php echo esc_html($reading_time_text); ?></div>
                         </div>
@@ -466,7 +419,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
                             <div class="text3"><?php echo esc_html($excerpt); ?></div>
                         </div>
                     </div>
-                    <a href="<?php the_permalink(); ?>" class="style-link-small-false-alternate-false-icon-position-trailing">
+                    <a href="<?php the_permalink(); ?>" class="read-more">
                         <div class="button">Read more</div>
                         <img class="icon-chevron-right" src="<?php echo get_template_directory_uri() . '/assets/image/icon-chevron.svg'; ?>" />
                     </a>
