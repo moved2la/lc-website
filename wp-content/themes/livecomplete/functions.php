@@ -437,3 +437,70 @@ function add_custom_post_templates()
 }
 
 add_action('init', 'add_custom_post_templates');
+
+// Add template column to posts list
+function add_template_column($columns) {
+    $new_columns = array();
+    foreach ($columns as $key => $value) {
+        $new_columns[$key] = $value;
+        if ($key === 'title') {
+            $new_columns['post_template'] = 'Template';
+        }
+    }
+    return $new_columns;
+}
+add_filter('manage_posts_columns', 'add_template_column');
+
+// Populate template column content
+function populate_template_column($column_name, $post_id) {
+    if ($column_name === 'post_template') {
+        $template = get_post_meta($post_id, '_wp_page_template', true);
+        if ($template) {
+            // Get template name from file header
+            $template_path = get_template_directory() . '/' . $template;
+            if (file_exists($template_path)) {
+                $template_data = get_file_data($template_path, array('Template Name' => 'Template Name'));
+                if (!empty($template_data['Template Name'])) {
+                    echo esc_html($template_data['Template Name']);
+                } else {
+                    echo '—';
+                }
+            } else {
+                echo '—';
+            }
+        } else {
+            echo '—';
+        }
+    }
+}
+add_action('manage_posts_custom_column', 'populate_template_column', 10, 2);
+
+// Make the template column sortable
+function make_template_column_sortable($columns) {
+    $columns['post_template'] = 'post_template';
+    return $columns;
+}
+add_filter('manage_edit-post_sortable_columns', 'make_template_column_sortable');
+
+// Helper function to get registered templates
+function get_theme_templates($post_type)
+{
+    $templates = array();
+    $files = wp_get_theme()->get_files('php', 1);
+
+    foreach ($files as $file => $full_path) {
+        $headers = get_file_data($full_path, array(
+            'Template Name' => 'Template Name',
+            'Template Post Type' => 'Template Post Type'
+        ));
+
+        if (
+            !empty($headers['Template Name']) &&
+            (!$headers['Template Post Type'] || $headers['Template Post Type'] === $post_type)
+        ) {
+            $templates[basename($file)] = $headers['Template Name'];
+        }
+    }
+
+    return $templates;
+}

@@ -628,3 +628,6 @@ add_action('enqueue_block_editor_assets', 'enqueue_post_article_image_block_asse
 require_once get_template_directory() . '/inc/blocks/post-article-heading-block.php';
 require_once get_template_directory() . '/inc/blocks/post-article-paragraph-block.php';
 require_once get_template_directory() . '/inc/blocks/post-article-image-block.php';
+
+
+
