@@ -332,21 +332,31 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
     // Get posts from 'receipies' category first
     $receipies_posts = get_posts(array(
         'category_name' => 'receipes',
-        'numberposts' => -1
+        'numberposts' => -1,
+        'post_status' => 'publish'
     ));
 
     // Collect all tags used in these posts
     $tag_ids = array();
     foreach ($receipies_posts as $post) {
-        $post_tags = get_the_tags($post->ID);
+        $post_tags = wp_get_post_tags($post->ID);
         if ($post_tags) {
             foreach ($post_tags as $tag) {
                 $tag_ids[$tag->term_id] = $tag;
             }
         }
     }
+    
+    wp_reset_postdata();
 
-    // Display unique tags
+    // Sort tags by name
+    if (!empty($tag_ids)) {
+        usort($tag_ids, function($a, $b) {
+            return strcasecmp($a->name, $b->name);
+        });
+    }
+
+    // Display sorted tags
     foreach ($tag_ids as $tag) : ?>
         <button data-category="<?php echo esc_attr($tag->slug); ?>">
             <div class="category-item"><?php echo esc_html(ucwords($tag->name)); ?></div>
@@ -357,13 +367,12 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
 
 <div class="receipe-grid">
     <?php
-    // Get all posts from receipe category and its subcategories
+    // Modify the query to only get posts from 'receipies' category
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => -1,
-        'orderby' => 'date',
-        'order' => 'DESC',
-        'cat' => $blog_cat ? $blog_cat->term_id : 0 // Only get posts from blog category
+        'category_name' => 'receipes',
+        'post_status' => 'publish'
     );
 
     $blog_posts = new WP_Query($args);
@@ -371,17 +380,14 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
     if ($blog_posts->have_posts()) :
         while ($blog_posts->have_posts()) : $blog_posts->the_post();
             $tag_slugs = array();
-            $display_tag = 'Receipes'; // Default fallback text
+            $display_tag = 'Receipies'; // Default fallback text
 
-            // Only get tags if post is in 'receipies' category
-            if (has_category('receipes')) {
-                $tags = get_the_tags();
-                if ($tags) {
-                    foreach ($tags as $tag) {
-                        $tag_slugs[] = $tag->slug;
-                    }
-                    $display_tag = ucwords($tags[0]->name);
+            $tags = get_the_tags();
+            if ($tags) {
+                foreach ($tags as $tag) {
+                    $tag_slugs[] = $tag->slug;
                 }
+                $display_tag = ucwords($tags[0]->name);
             }
 
             // Add 'card' class and all tag slugs as classes
