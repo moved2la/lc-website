@@ -1,8 +1,13 @@
-( function( blocks, element, blockEditor ) {
+( function( blocks, element, blockEditor, components ) {
     var el = element.createElement;
-    var RichText = blockEditor.RichText;
     var MediaUpload = blockEditor.MediaUpload;
-    var Button = wp.components.Button;
+    var Button = components.Button;
+    var BlockControls = blockEditor.BlockControls;
+    var Toolbar = components.Toolbar;
+    var InspectorControls = blockEditor.InspectorControls;
+    var TextControl = components.TextControl;
+    var TextareaControl = components.TextareaControl;
+    var PanelBody = components.PanelBody;
 
     blocks.registerBlockType( 'theme-blocks/post-article-image', {
         title: 'Post Article Image',
@@ -32,42 +37,92 @@
                 props.setAttributes({
                     imageUrl: media.url,
                     imageId: media.id,
-                    imageAlt: media.alt
+                    imageAlt: media.alt || ''
                 });
             }
 
-            return el('div', { className: 'post-article-image' },
-                el('div', { className: 'image-container' },
-                    attributes.imageUrl ? 
-                        el('img', {
-                            src: attributes.imageUrl,
-                            alt: attributes.imageAlt
-                        }) :
+            return el('div', null, [
+                // Inspector Controls for alt text and caption
+                el(InspectorControls, { key: 'inspector' },
+                    el(PanelBody, {
+                        title: 'Image Settings',
+                        initialOpen: true
+                    },
+                        el(TextControl, {
+                            label: 'Alt Text',
+                            value: attributes.imageAlt,
+                            onChange: function(newAlt) {
+                                props.setAttributes({ imageAlt: newAlt });
+                            },
+                            help: 'Describe the purpose of the image. Leave empty if the image is purely decorative.'
+                        }),
+                        el(TextareaControl, {
+                            label: 'Image Caption',
+                            value: attributes.caption,
+                            onChange: function(newCaption) {
+                                props.setAttributes({ caption: newCaption });
+                            },
+                            help: 'Add a caption to describe or credit the image.'
+                        })
+                    )
+                ),
+                // Block Controls for image editing
+                el(BlockControls, { key: 'controls' },
+                    el(Toolbar, null,
                         el(MediaUpload, {
                             onSelect: onSelectImage,
                             allowedTypes: ['image'],
                             value: attributes.imageId,
                             render: function(obj) {
                                 return el(Button, {
-                                    className: 'button button-large',
-                                    onClick: obj.open
-                                }, 'Upload Image');
+                                    icon: 'edit',
+                                    onClick: obj.open,
+                                    className: 'components-toolbar__control',
+                                    label: 'Replace Image'
+                                });
                             }
                         })
+                    )
                 ),
-                el(RichText, {
-                    tagName: 'p',
-                    className: 'image-caption',
-                    value: attributes.caption,
-                    onChange: function(newCaption) {
-                        props.setAttributes({ caption: newCaption });
-                    },
-                    placeholder: 'Add image caption...'
-                })
-            );
+                // Main block content
+                el('div', { className: 'post-article-image' },
+                    el('div', { className: 'image-container' },
+                        attributes.imageUrl ? 
+                            el('img', {
+                                src: attributes.imageUrl,
+                                alt: attributes.imageAlt,
+                                onClick: function() {
+                                    const mediaUpload = new MediaUpload({
+                                        onSelect: onSelectImage,
+                                        allowedTypes: ['image'],
+                                        value: attributes.imageId,
+                                    });
+                                    mediaUpload.open();
+                                },
+                                style: { cursor: 'pointer' }
+                            }) :
+                            el(MediaUpload, {
+                                onSelect: onSelectImage,
+                                allowedTypes: ['image'],
+                                value: attributes.imageId,
+                                render: function(obj) {
+                                    return el(Button, {
+                                        className: 'button button-large',
+                                        onClick: obj.open
+                                    }, 'Upload Image');
+                                }
+                            })
+                    ),
+                    attributes.imageUrl && attributes.caption && 
+                        el('div', { className: 'caption-figure' },
+                            el('div', { className: 'image-caption-rectangle' }),
+                            el('p', { className: 'image-caption' }, attributes.caption)
+                        )
+                )
+            ]);
         },
         save: function() {
             return null;
         }
     } );
-} )( window.wp.blocks, window.wp.element, window.wp.blockEditor ); 
+} )( window.wp.blocks, window.wp.element, window.wp.blockEditor, window.wp.components ); 
