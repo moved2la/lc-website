@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Template Name: Blog Landing Page
- * The template for displaying the blog landing page
+ * Template Name: Receipe Landing Page
+ * The template for displaying the receipe landing page
  *
  * @package live-complete
  */
@@ -107,8 +107,8 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         border-color: #000;
     }
 
-    /* Blog card grid */
-    .blog-grid {
+    /* Receipe card grid */
+    .receipe-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 32px;
@@ -116,18 +116,18 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
     }
 
     @media (max-width: 1024px) {
-        .blog-grid {
+        .receipe-grid {
             grid-template-columns: repeat(2, 1fr);
         }
     }
 
     @media (max-width: 768px) {
-        .blog-grid {
+        .receipe-grid {
             grid-template-columns: 1fr;
         }
     }
 
-    .blog-grid {
+    .receipe-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 32px;
@@ -135,13 +135,13 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
     }
 
     @media (max-width: 1024px) {
-        .blog-grid {
+        .receipe-grid {
             grid-template-columns: repeat(2, 1fr);
         }
     }
 
     @media (max-width: 768px) {
-        .blog-grid {
+        .receipe-grid {
             grid-template-columns: 1fr;
         }
     }
@@ -159,8 +159,8 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
 
     }
 
-    /* Blog card */
-    .blog-grid .card {
+    /* Receipe card */
+    .receipe-grid .card {
         border-style: solid;
         border-color: var(--border-primary, #000000);
         border-width: 1px;
@@ -173,7 +173,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .placeholder-image {
+    .receipe-grid .card .placeholder-image {
         align-self: stretch;
         flex-shrink: 0;
         height: 300px;
@@ -181,7 +181,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         object-fit: cover;
     }
 
-    .blog-grid .card .content {
+    .receipe-grid .card .content {
         padding: 24px;
         display: flex;
         flex-direction: column;
@@ -193,7 +193,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .content2 {
+    .receipe-grid .card .content2 {
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -204,7 +204,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .content2 .info {
+    .receipe-grid .card .content2 .info {
         display: flex;
         flex-direction: row;
         gap: 16px;
@@ -214,7 +214,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .content2 .article-category {
+    .receipe-grid .card .content2 .article-category {
         background: #d9734d;
         padding: 4px 8px 4px 8px;
         display: flex;
@@ -226,7 +226,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .content2 .article-category .text {
+    .receipe-grid .card .content2 .article-category .text {
         color: var(--border-alternate, #ffffff);
         text-align: left;
         font-family: "Roboto-SemiBold", sans-serif;
@@ -236,7 +236,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .content2 .text2 {
+    .receipe-grid .card .content2 .text2 {
         color: var(--text-primary, #000000);
         text-align: left;
         font-family: var(--text-small-semi-bold-font-family,
@@ -249,7 +249,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         align-self: stretch;
     }
 
-    .blog-grid .card .content2 .title {
+    .receipe-grid .card .content2 .title {
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -260,7 +260,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .content2 .title .heading {
+    .receipe-grid .card .content2 .title .heading {
         color: var(--text-primary, #000000);
         text-align: left;
         font-family: var(--heading-desktop-h5-font-family, "Roboto-Bold", sans-serif);
@@ -271,7 +271,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         align-self: stretch;
     }
 
-    .blog-grid .card .content2 .title .text3 {
+    .receipe-grid .card .content2 .title .text3 {
         color: var(--text-primary, #000000);
         text-align: left;
         font-family: var(--text-regular-normal-font-family,
@@ -284,7 +284,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         align-self: stretch;
     }
 
-    .blog-grid .card .content2 .read-more {
+    .receipe-grid .card .content2 .read-more {
         display: flex;
         flex-direction: row;
         gap: 8px;
@@ -295,7 +295,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .content2 .read-more .button {
+    .receipe-grid .card .content2 .read-more .button {
         color: var(--text-primary, #000000);
         text-align: left;
         font-family: "Roboto-Regular", sans-serif;
@@ -305,7 +305,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         position: relative;
     }
 
-    .blog-grid .card .content2 .read-more .icon-chevron-right {
+    .receipe-grid .card .content2 .read-more .icon-chevron-right {
         flex-shrink: 0;
         width: 24px;
         height: 24px;
@@ -317,9 +317,9 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
 
 <div class="section-title">
     <div class="content">
-        <div class="heading">News</div>
+        <div class="heading">Receipes</div>
         <div class="sub-heading">
-            Explore the world of plant-based innovations and trends.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </div>
     </div>
 </div>
@@ -329,30 +329,35 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         <div class="view-all">View all</div>
     </button>
     <?php
-    // Get the 'blog' category object
-    $blog_cat = get_category_by_slug('blog');
+    // Get posts from 'receipies' category first
+    $receipies_posts = get_posts(array(
+        'category_name' => 'receipes',
+        'numberposts' => -1
+    ));
 
-    if ($blog_cat) {
-        $subcategories = get_categories(array(
-            'parent' => $blog_cat->term_id,
-            'orderby' => 'name',
-            'order'   => 'ASC',
-            'hide_empty' => true
-        ));
-
-        foreach ($subcategories as $category) : ?>
-            <button data-category="<?php echo esc_attr($category->slug); ?>">
-                <div class="category-item"><?php echo esc_html($category->name); ?></div>
-            </button>
-    <?php endforeach;
+    // Collect all tags used in these posts
+    $tag_ids = array();
+    foreach ($receipies_posts as $post) {
+        $post_tags = get_the_tags($post->ID);
+        if ($post_tags) {
+            foreach ($post_tags as $tag) {
+                $tag_ids[$tag->term_id] = $tag;
+            }
+        }
     }
-    ?>
+
+    // Display unique tags
+    foreach ($tag_ids as $tag) : ?>
+        <button data-category="<?php echo esc_attr($tag->slug); ?>">
+            <div class="category-item"><?php echo esc_html(ucwords($tag->name)); ?></div>
+        </button>
+    <?php endforeach; ?>
 </div>
 
 
-<div class="blog-grid">
+<div class="receipe-grid">
     <?php
-    // Get all posts from blog category and its subcategories
+    // Get all posts from receipe category and its subcategories
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => -1,
@@ -365,27 +370,27 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
 
     if ($blog_posts->have_posts()) :
         while ($blog_posts->have_posts()) : $blog_posts->the_post();
-            $categories = get_the_category();
-            $category_slugs = array();
-            $display_category = '';
+            $tag_slugs = array();
+            $display_tag = 'Receipes'; // Default fallback text
 
-            // Find the most specific category (subcategory)
-            foreach ($categories as $category) {
-                $category_slugs[] = $category->slug;
-
-                // If this category is a child of 'blog', use it
-                if ($category->parent === $blog_cat->term_id) {
-                    $display_category = $category->name;
-                    break;
+            // Only get tags if post is in 'receipies' category
+            if (has_category('receipes')) {
+                $tags = get_the_tags();
+                if ($tags) {
+                    foreach ($tags as $tag) {
+                        $tag_slugs[] = $tag->slug;
+                    }
+                    $display_tag = ucwords($tags[0]->name);
                 }
             }
 
-            // If no subcategory was found, use the main category
-            if (empty($display_category) && !empty($categories)) {
-                $display_category = $categories[0]->name;
+            // Add 'card' class and all tag slugs as classes
+            $card_classes = array('card');
+            if (!empty($tag_slugs)) {
+                $card_classes = array_merge($card_classes, $tag_slugs);
             }
+            $class_string = esc_attr(implode(' ', $card_classes));
 
-            $category_classes = implode(' ', $category_slugs);
             $thumbnail = get_the_post_thumbnail_url() ?: get_template_directory_uri() . '/assets/image/placeholder.png';
 
             // Reading time calculation
@@ -404,13 +409,13 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
                 $excerpt = wp_trim_words($excerpt, 20, '...');
             }
     ?>
-            <div class="card <?php echo esc_attr($category_classes); ?>">
+            <div class="<?php echo $class_string; ?>">
                 <img class="placeholder-image" src="<?php echo esc_url($thumbnail); ?>" />
                 <div class="content">
                     <div class="content2">
                         <div class="info">
                             <div class="article-category">
-                                <div class="text"><?php echo esc_html($display_category); ?></div>
+                                <div class="text"><?php echo esc_html(ucwords($display_tag)); ?></div>
                             </div>
                             <div class="text2"><?php echo esc_html($reading_time_text); ?></div>
                         </div>
@@ -435,7 +440,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const filterButtons = document.querySelectorAll('.categories button');
-        const cards = document.querySelectorAll('.blog-grid .card');
+        const cards = document.querySelectorAll('.receipe-grid .card');
 
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {

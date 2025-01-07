@@ -36,6 +36,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         max-width: 768px;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 60px;
     }
 </style>
 

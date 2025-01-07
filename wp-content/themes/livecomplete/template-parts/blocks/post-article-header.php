@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template part for displaying receipe post header
+ * Template part for displaying article post header
  *
  * @package live-complete
  */
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
         background-color: #fff;
     }
 
-    .receipe-post-header {
+    .article-post-header {
         background: var(--background-color-primary, #ffffff);
         display: flex;
         flex-direction: column;
@@ -29,7 +29,7 @@ if (!defined('ABSPATH')) {
         overflow: hidden;
     }
 
-    .content {
+    .article-post-header .content {
         display: flex;
         flex-direction: row;
         gap: 80px;
@@ -40,7 +40,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .content2 {
+    .article-post-header .content2 {
         display: flex;
         flex-direction: column;
         gap: 32px;
@@ -51,7 +51,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .content3 {
+    .article-post-header .content3 {
         display: flex;
         flex-direction: column;
         gap: 24px;
@@ -62,7 +62,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .content4 {
+    .article-post-header .content4 {
         display: flex;
         flex-direction: row;
         gap: 16px;
@@ -72,7 +72,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .text-only-false-alternate-false-icon-position-no-icon {
+    .article-post-header .text-only-false-alternate-false-icon-position-no-icon {
         background: #d9734d;
         padding: 4px 8px 4px 8px;
         display: flex;
@@ -84,7 +84,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .text {
+    .article-post-header .text {
         color: var(--border-alternate, #ffffff);
         text-align: left;
         font-family: "Roboto-SemiBold", sans-serif;
@@ -94,7 +94,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .blog-title-heading-will-go-here {
+    .article-post-header .blog-title-heading-will-go-here {
         color: var(--text-primary, #000000);
         text-align: left;
         font-family: var(--heading-desktop-h1-font-family, "Roboto-Bold", sans-serif);
@@ -105,7 +105,7 @@ if (!defined('ABSPATH')) {
         align-self: stretch;
     }
 
-    .content5 {
+    .article-post-header .content5 {
         padding: 4px 0px 0px 0px;
         display: flex;
         flex-direction: row;
@@ -118,7 +118,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .placeholder-image {
+    .article-post-header .placeholder-image {
         flex: 1;
         height: 450px;
         position: relative;
@@ -126,7 +126,7 @@ if (!defined('ABSPATH')) {
     }
 </style>
 
-<div class="receipe-post-header">
+<div class="article-post-header">
     <div class="content">
         <div class="content2">
             <div class="content3">
@@ -158,7 +158,9 @@ if (!defined('ABSPATH')) {
                     <?php echo get_the_title(); ?>
                 </div>
             </div>
-            <div class="content5"></div>
+            <div class="content">
+                <div class="publish-date">Published on <?php echo get_the_date('j M Y'); ?></div>
+            </div>
         </div>
         <img class="placeholder-image" src="<?php
                                             echo has_post_thumbnail()
