@@ -29,7 +29,7 @@ $layout = live_complete_get_option('page_layout');
 do_action('live_complete_container_wrap_start', esc_attr($layout));
 ?>
 
-<?php get_template_part('template-parts/blocks/post-receipe-header'); ?>
+<?php get_template_part('template-parts/blocks/post-article-header'); ?>
 
 <style>
     .article-content-container {
@@ -116,9 +116,6 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
     while (have_posts()) :
         the_post();
 
-        // echo do_blocks('<!-- wp:theme-blocks/post-article-heading /-->');
-
-        // get_template_part('template-parts/blocks/post-article-heading');
         get_template_part('template-parts/content', 'page');
 
         // If comments are open or we have at least one comment, load up the comment template.

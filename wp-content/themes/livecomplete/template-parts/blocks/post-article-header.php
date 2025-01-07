@@ -134,22 +134,43 @@ if (!defined('ABSPATH')) {
                     <div class="text-only-false-alternate-false-icon-position-no-icon">
                         <div class="text"><?php
                                             $categories = get_the_category();
-                                            $sub_category = null;
-                                            $main_category = null;
-
-                                            if (!empty($categories)) {
-                                                foreach ($categories as $category) {
-                                                    if ($category->parent != 0) {
-                                                        $sub_category = $category;
-                                                        break;
-                                                    } elseif (!$main_category) {
-                                                        $main_category = $category;
-                                                    }
+                                            $is_blog = false;
+                                            
+                                            // Check if post is in Blog category
+                                            foreach ($categories as $category) {
+                                                if (strtolower($category->name) === 'blog') {
+                                                    $is_blog = true;
+                                                    break;
                                                 }
+                                            }
 
-                                                echo esc_html($sub_category ? $sub_category->name : $main_category->name);
+                                            if ($is_blog) {
+                                                // Show first tag in title case or default to "Blog"
+                                                $post_tags = get_the_tags();
+                                                if ($post_tags) {
+                                                    echo esc_html(ucwords(strtolower($post_tags[0]->name)));
+                                                } else {
+                                                    echo 'Blog';
+                                                }
                                             } else {
-                                                echo 'Uncategorized';
+                                                // Original category logic
+                                                $sub_category = null;
+                                                $main_category = null;
+
+                                                if (!empty($categories)) {
+                                                    foreach ($categories as $category) {
+                                                        if ($category->parent != 0) {
+                                                            $sub_category = $category;
+                                                            break;
+                                                        } elseif (!$main_category) {
+                                                            $main_category = $category;
+                                                        }
+                                                    }
+
+                                                    echo esc_html($sub_category ? $sub_category->name : $main_category->name);
+                                                } else {
+                                                    echo 'Uncategorized';
+                                                }
                                             }
                                             ?></div>
                     </div>
