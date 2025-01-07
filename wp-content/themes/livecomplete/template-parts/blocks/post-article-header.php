@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template part for displaying article post header
+ * Template part for displaying receipe post header
  *
  * @package live-complete
  */
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
         background-color: #fff;
     }
 
-    .article-post-header {
+    .receipe-post-header {
         background: var(--background-color-primary, #ffffff);
         display: flex;
         flex-direction: column;
@@ -105,18 +105,6 @@ if (!defined('ABSPATH')) {
         align-self: stretch;
     }
 
-    .publish-date {
-        color: var(--text-primary, #000000);
-        text-align: left;
-        font-family: var(--text-small-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-small-normal-font-size, 14px);
-        line-height: var(--text-small-normal-line-height, 150%);
-        font-weight: var(--text-small-normal-font-weight, 400);
-        position: relative;
-    }
-
     .content5 {
         padding: 4px 0px 0px 0px;
         display: flex;
@@ -138,7 +126,7 @@ if (!defined('ABSPATH')) {
     }
 </style>
 
-<div class="article-post-header">
+<div class="receipe-post-header">
     <div class="content">
         <div class="content2">
             <div class="content3">
@@ -170,9 +158,7 @@ if (!defined('ABSPATH')) {
                     <?php echo get_the_title(); ?>
                 </div>
             </div>
-            <div class="content">
-                <div class="publish-date">Published on <?php echo get_the_date('j M Y'); ?></div>
-            </div>
+            <div class="content5"></div>
         </div>
         <img class="placeholder-image" src="<?php
                                             echo has_post_thumbnail()

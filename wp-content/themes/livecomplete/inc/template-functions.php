@@ -43,7 +43,7 @@ add_action( 'wp_head', 'live_complete_pingback_header' );
 
 if ( ! function_exists( 'live_complete_allowed_tags' ) ) :
 	/**
-	 * @see diet_shop_alowed_tags().
+	 * @see live_complete_allowed_tags().
 	 */
 function live_complete_allowed_tags() {
 	
@@ -579,3 +579,52 @@ function pdp_ship_return_customizer_settings($wp_customize)
 add_action('customize_register', 'pdp_ship_return_customizer_settings');
 
 /* ---------------- Product Page ---------------- */
+
+
+// Register custom blocks
+function enqueue_post_article_heading_block_assets()
+{
+    wp_enqueue_script(
+        'post-article-heading-block',
+        get_template_directory_uri() . '/assets/js/blocks/post-article-heading.js',
+        array('wp-blocks', 'wp-element', 'wp-block-editor'), // Added wp-block-editor dependency
+        '1.0.0',
+        true
+    );
+}
+add_action('enqueue_block_editor_assets', 'enqueue_post_article_heading_block_assets');
+
+function enqueue_post_article_paragraph_block_assets()
+{
+    wp_enqueue_script(
+        'post-article-paragraph-block',
+        get_template_directory_uri() . '/assets/js/blocks/post-article-paragraph.js',
+        array('wp-blocks', 'wp-element', 'wp-block-editor'),
+        '1.0.0',
+        true
+    );
+}
+add_action('enqueue_block_editor_assets', 'enqueue_post_article_paragraph_block_assets');
+
+function enqueue_post_article_image_block_assets()
+{
+    wp_enqueue_script(
+        'post-article-image-block',
+        get_template_directory_uri() . '/assets/js/blocks/post-article-image.js',
+        array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components'),
+        '1.0.0',
+        true
+    );
+
+    wp_enqueue_style(
+        'post-article-image-style',
+        get_template_directory_uri() . '/assets/css/post-article-image.css',
+        array(),
+        '1.0.0'
+    );
+}
+add_action('enqueue_block_editor_assets', 'enqueue_post_article_image_block_assets');
+
+require_once get_template_directory() . '/inc/blocks/post-article-heading-block.php';
+require_once get_template_directory() . '/inc/blocks/post-article-paragraph-block.php';
+require_once get_template_directory() . '/inc/blocks/post-article-image-block.php';
