@@ -504,3 +504,23 @@ function get_theme_templates($post_type)
 
     return $templates;
 }
+
+
+/*
+* Redirect post category pages to their respective landing pages,
+* so that default category page template is not shown.
+* 
+*/
+add_action('template_redirect', 'redirect_category_pages');
+
+function redirect_category_pages()
+{
+    if (is_category('blog')) {
+        wp_redirect(home_url() . '/explore/blog');
+        exit;
+    }
+    if (is_category('receipes')) {
+        wp_redirect(home_url() . '/explore/receipes');
+        exit;
+    }
+}
