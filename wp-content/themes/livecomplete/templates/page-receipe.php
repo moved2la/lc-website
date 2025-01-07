@@ -380,7 +380,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
     if ($blog_posts->have_posts()) :
         while ($blog_posts->have_posts()) : $blog_posts->the_post();
             $tag_slugs = array();
-            $display_tag = 'Receipies'; // Default fallback text
+            $display_tag = 'Receipes'; // Default fallback text
 
             $tags = get_the_tags();
             if ($tags) {

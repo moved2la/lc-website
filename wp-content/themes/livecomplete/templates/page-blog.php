@@ -329,63 +329,74 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
         <div class="view-all">View all</div>
     </button>
     <?php
-    // Get the 'blog' category object
-    $blog_cat = get_category_by_slug('blog');
+    // Get posts from 'receipies' category first
+    $receipies_posts = get_posts(array(
+        'category_name' => 'blog',
+        'numberposts' => -1,
+        'post_status' => 'publish'
+    ));
 
-    if ($blog_cat) {
-        $subcategories = get_categories(array(
-            'parent' => $blog_cat->term_id,
-            'orderby' => 'name',
-            'order'   => 'ASC',
-            'hide_empty' => true
-        ));
-
-        foreach ($subcategories as $category) : ?>
-            <button data-category="<?php echo esc_attr($category->slug); ?>">
-                <div class="category-item"><?php echo esc_html($category->name); ?></div>
-            </button>
-    <?php endforeach;
+    // Collect all tags used in these posts
+    $tag_ids = array();
+    foreach ($receipies_posts as $post) {
+        $post_tags = wp_get_post_tags($post->ID);
+        if ($post_tags) {
+            foreach ($post_tags as $tag) {
+                $tag_ids[$tag->term_id] = $tag;
+            }
+        }
     }
-    ?>
+
+    wp_reset_postdata();
+
+    // Sort tags by name
+    if (!empty($tag_ids)) {
+        usort($tag_ids, function ($a, $b) {
+            return strcasecmp($a->name, $b->name);
+        });
+    }
+
+    // Display sorted tags
+    foreach ($tag_ids as $tag) : ?>
+        <button data-category="<?php echo esc_attr($tag->slug); ?>">
+            <div class="category-item"><?php echo esc_html(ucwords($tag->name)); ?></div>
+        </button>
+    <?php endforeach; ?>
 </div>
 
 
 <div class="blog-grid">
     <?php
-    // Get all posts from blog category and its subcategories
+    // Modify the query to only get posts from 'blog' category
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => -1,
-        'orderby' => 'date',
-        'order' => 'DESC',
-        'cat' => $blog_cat ? $blog_cat->term_id : 0 // Only get posts from blog category
+        'category_name' => 'blog',
+        'post_status' => 'publish'
     );
 
     $blog_posts = new WP_Query($args);
 
     if ($blog_posts->have_posts()) :
         while ($blog_posts->have_posts()) : $blog_posts->the_post();
-            $categories = get_the_category();
-            $category_slugs = array();
-            $display_category = '';
+            $tag_slugs = array();
+            $display_tag = 'Blog'; // Default fallback text
 
-            // Find the most specific category (subcategory)
-            foreach ($categories as $category) {
-                $category_slugs[] = $category->slug;
-
-                // If this category is a child of 'blog', use it
-                if ($category->parent === $blog_cat->term_id) {
-                    $display_category = $category->name;
-                    break;
+            $tags = get_the_tags();
+            if ($tags) {
+                foreach ($tags as $tag) {
+                    $tag_slugs[] = $tag->slug;
                 }
+                $display_tag = ucwords($tags[0]->name);
             }
 
-            // If no subcategory was found, use the main category
-            if (empty($display_category) && !empty($categories)) {
-                $display_category = $categories[0]->name;
+            // Add 'card' class and all tag slugs as classes
+            $card_classes = array('card');
+            if (!empty($tag_slugs)) {
+                $card_classes = array_merge($card_classes, $tag_slugs);
             }
+            $class_string = esc_attr(implode(' ', $card_classes));
 
-            $category_classes = implode(' ', $category_slugs);
             $thumbnail = get_the_post_thumbnail_url() ?: get_template_directory_uri() . '/assets/image/placeholder.png';
 
             // Reading time calculation
@@ -404,13 +415,13 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
                 $excerpt = wp_trim_words($excerpt, 20, '...');
             }
     ?>
-            <div class="card <?php echo esc_attr($category_classes); ?>">
+            <div class="<?php echo $class_string; ?>">
                 <img class="placeholder-image" src="<?php echo esc_url($thumbnail); ?>" />
                 <div class="content">
                     <div class="content2">
                         <div class="info">
                             <div class="article-category">
-                                <div class="text"><?php echo esc_html($display_category); ?></div>
+                                <div class="text"><?php echo esc_html(ucwords($display_tag)); ?></div>
                             </div>
                             <div class="text2"><?php echo esc_html($reading_time_text); ?></div>
                         </div>
