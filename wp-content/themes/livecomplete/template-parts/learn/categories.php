@@ -14,6 +14,10 @@ if (!defined('ABSPATH')) {
 ?>
 
 <style>
+    .live-complete-breadcrumbs-wrap {
+        background-color: #fff;
+    }
+    
     .learn-wrapper {
         background: var(--background-color-primary, #ffffff);
         padding-bottom: 64px;
@@ -163,7 +167,7 @@ if (!defined('ABSPATH')) {
     }
 </style>
 
-<div class="learn-wrapper container">
+<div class="learn-wrapper">
     <div class="heading">Lorem ipsum dolor sit amet</div>
     <div class="content">
         <!-- <div class="row"> -->

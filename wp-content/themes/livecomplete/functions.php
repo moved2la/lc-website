@@ -54,6 +54,8 @@ if (class_exists('WooCommerce')) {
     require get_template_directory() . '/inc/woocommerce.php';
 }
 
+/* -------------- Featured Product Widget -------------- */
+
 class Featured_Product_Widget extends WP_Widget
 {
     public function __construct()
@@ -180,7 +182,7 @@ function register_featured_product_widget()
 }
 add_action('widgets_init', 'register_featured_product_widget');
 
-
+/* -------------- Add custom field to category form -------------- */
 
 // Add custom field to category form
 function add_category_link_text_field() {
@@ -438,6 +440,8 @@ function add_custom_post_templates()
 
 add_action('init', 'add_custom_post_templates');
 
+/* -------------- Add custom column to posts list -------------- */
+
 // Add template column to posts list
 function add_template_column($columns) {
     $new_columns = array();
@@ -505,6 +509,7 @@ function get_theme_templates($post_type)
     return $templates;
 }
 
+/* -------------- Add custom column to posts list -------------- */
 
 /*
 * Redirect post category pages to their respective landing pages,
@@ -519,8 +524,8 @@ function redirect_category_pages()
         wp_redirect(home_url() . '/explore/blog');
         exit;
     }
-    if (is_category('receipes')) {
-        wp_redirect(home_url() . '/explore/receipes');
+    if (is_category('recipes')) {
+        wp_redirect(home_url() . '/explore/recipes');
         exit;
     }
 }

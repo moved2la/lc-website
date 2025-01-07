@@ -317,7 +317,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
 
 <div class="section-title">
     <div class="content">
-        <div class="heading">Receipes</div>
+        <div class="heading">Recipes</div>
         <div class="sub-heading">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </div>
@@ -331,7 +331,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
     <?php
     // Get posts from 'receipies' category first
     $receipies_posts = get_posts(array(
-        'category_name' => 'receipes',
+        'category_name' => 'recipes',
         'numberposts' => -1,
         'post_status' => 'publish'
     ));
@@ -371,7 +371,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => -1,
-        'category_name' => 'receipes',
+        'category_name' => 'recipes',
         'post_status' => 'publish'
     );
 
@@ -380,7 +380,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
     if ($blog_posts->have_posts()) :
         while ($blog_posts->have_posts()) : $blog_posts->the_post();
             $tag_slugs = array();
-            $display_tag = 'Receipes'; // Default fallback text
+            $display_tag = 'Recipes'; // Default fallback text
 
             $tags = get_the_tags();
             if ($tags) {
