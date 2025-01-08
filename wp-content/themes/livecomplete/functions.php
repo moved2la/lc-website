@@ -266,17 +266,40 @@ function live_complete_support_template_part($atts) {
 add_shortcode('support_section', 'live_complete_support_template_part');
 
 // Add custom meta boxes for support page header
-function live_complete_support_page_meta_boxes() {
-    add_meta_box(
-        'support_page_header',
-        'Support Page Header',
-        'live_complete_support_page_header_callback',
-        'page',
-        'normal',
-        'high'
-    );
-}
-add_action('add_meta_boxes', 'live_complete_support_page_meta_boxes');
+// function live_complete_support_page_meta_boxes() {
+//     add_meta_box(
+//         'support_page_header',
+//         'Support Page Header',
+//         'live_complete_support_page_header_callback',
+//         'page',
+//         'normal',
+//         'high'
+//     );
+// }
+add_action('add_meta_boxes', function($post_type) {
+    if ($post_type != 'page') {
+        return;
+    }
+
+    // Get the current post
+    $post = get_post();
+
+    // Get the current template
+    $template_file = get_post_meta($post->ID, '_wp_page_template', true);
+
+    // Only add the metabox if this is the support page template
+    if ($template_file === 'templates/page-support.php') {
+        add_meta_box(
+            'support_page_header',
+            __('Support Page Header', 'live-complete'),
+            'live_complete_support_page_header_callback',
+            'page',
+            'normal',
+            'high'
+        );
+    }
+});
+
 
 // Meta box callback function
 function live_complete_support_page_header_callback($post) {
@@ -286,15 +309,8 @@ function live_complete_support_page_header_callback($post) {
     // Get existing values
     $header_title = get_post_meta($post->ID, '_support_header_title', true);
     $header_desc = get_post_meta($post->ID, '_support_header_desc', true);
-
-    // Default values if empty
-    if (empty($header_title)) {
-        $header_title = "We're here to help";
-    }
-    if (empty($header_desc)) {
-        $header_desc = "We're excited to hear from you! Whether you have questions, feedback, or just want to chat, our team is ready to assist you.";
-    }
     ?>
+    
     <div class="support-page-fields" style="margin: 20px 0;">
         <p>
             <label for="support_header_title" style="display: block; margin-bottom: 5px;"><strong>Header Title</strong></label>
@@ -360,7 +376,6 @@ function live_complete_save_support_page_meta($post_id) {
     }
 }
 add_action('save_post', 'live_complete_save_support_page_meta');
-
 
 
 /* Completely Disable Comments */
