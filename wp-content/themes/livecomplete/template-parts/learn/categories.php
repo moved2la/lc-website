@@ -172,7 +172,7 @@ if (!defined('ABSPATH')) {
     <div class="content">
         <!-- <div class="row"> -->
         <div class="column">
-            <img class="placeholder-image" src="<?php echo get_template_directory_uri() . '/assets/image/placeholder.png'; ?>" />
+            <img class="placeholder-image" src="<?php echo esc_url(get_post_meta(get_the_ID(), '_learn_story_image', true)) ?: get_template_directory_uri() . '/assets/image/placeholder.png'; ?>" />
             <div class="content2">
                 <div class="content3">
                     <div class="heading2">Our story</div>
@@ -191,7 +191,7 @@ if (!defined('ABSPATH')) {
             </div>
         </div>
         <div class="column">
-            <img class="placeholder-image" src="<?php echo get_template_directory_uri() . '/assets/image/placeholder.png'; ?>" />
+            <img class="placeholder-image" src="<?php echo esc_url(get_post_meta(get_the_ID(), '_learn_difference_image', true)) ?: get_template_directory_uri() . '/assets/image/placeholder.png'; ?>" />
             <div class="content2">
                 <div class="content3">
                     <div class="heading2">The difference</div>
@@ -210,7 +210,7 @@ if (!defined('ABSPATH')) {
             </div>
         </div>
         <div class="column">
-            <img class="placeholder-image" src="<?php echo get_template_directory_uri() . '/assets/image/placeholder.png'; ?>" />
+            <img class="placeholder-image" src="<?php echo esc_url(get_post_meta(get_the_ID(), '_learn_impact_image', true)) ?: get_template_directory_uri() . '/assets/image/placeholder.png'; ?>" />
             <div class="content2">
                 <div class="content3">
                     <div class="heading2">Our impact</div>

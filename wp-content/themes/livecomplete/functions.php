@@ -119,8 +119,8 @@ class Featured_Product_Widget extends WP_Widget
                     }
 
                     .featured-product-widget .product-content {
-                        flex: 1;1
-                        text-align: left;
+                        flex: 1;
+                        1 text-align: left;
                         overflow: hidden;
                     }
 
@@ -164,7 +164,7 @@ class Featured_Product_Widget extends WP_Widget
                 type="number"
                 value="<?php echo esc_attr($product_id); ?>">
         </p>
-<?php
+    <?php
     }
 
     public function update($new_instance, $old_instance)
@@ -185,21 +185,23 @@ add_action('widgets_init', 'register_featured_product_widget');
 /* -------------- Add custom field to category form -------------- */
 
 // Add custom field to category form
-function add_category_link_text_field() {
+function add_category_link_text_field()
+{
     ?>
     <div class="form-field">
         <label for="category_link_text"><?php _e('Category Link Text', 'live-complete'); ?></label>
         <input type="text" name="category_link_text" id="category_link_text">
         <p class="description"><?php _e('Enter the text to display for the category link', 'live-complete'); ?></p>
     </div>
-    <?php
+<?php
 }
 add_action('product_cat_add_form_fields', 'add_category_link_text_field');
 
 // Add custom field to category edit form
-function edit_category_link_text_field($term) {
+function edit_category_link_text_field($term)
+{
     $link_text = get_term_meta($term->term_id, 'category_link_text', true);
-    ?>
+?>
     <tr class="form-field">
         <th scope="row"><label for="category_link_text"><?php _e('Header Category Link Text', 'live-complete'); ?></label></th>
         <td>
@@ -207,26 +209,28 @@ function edit_category_link_text_field($term) {
             <p class="description"><?php _e('Enter the text to display for the category link. Used for header section on category pages. (Custom field for LiveComplete)', 'live-complete'); ?></p>
         </td>
     </tr>
-    <?php
+<?php
 }
 add_action('product_cat_edit_form_fields', 'edit_category_link_text_field');
 
 // Add heading text field to category add form
-function add_category_heading_text_field() {
-    ?>
+function add_category_heading_text_field()
+{
+?>
     <div class="form-field">
         <label for="category_heading_text"><?php _e('Category Heading Text', 'live-complete'); ?></label>
         <input type="text" name="category_heading_text" id="category_heading_text">
         <p class="description"><?php _e('Enter the heading text to display on the category page', 'live-complete'); ?></p>
     </div>
-    <?php
+<?php
 }
 add_action('product_cat_add_form_fields', 'add_category_heading_text_field');
 
 // Add heading text field to category edit form
-function edit_category_heading_text_field($term) {
+function edit_category_heading_text_field($term)
+{
     $heading_text = get_term_meta($term->term_id, 'category_heading_text', true);
-    ?>
+?>
     <tr class="form-field">
         <th scope="row"><label for="category_heading_text"><?php _e('Header Category Heading Text', 'live-complete'); ?></label></th>
         <td>
@@ -234,12 +238,13 @@ function edit_category_heading_text_field($term) {
             <p class="description"><?php _e('Enter the heading text to display on the category page. Used for header section. (Custom field for LiveComplete)', 'live-complete'); ?></p>
         </td>
     </tr>
-    <?php
+<?php
 }
 add_action('product_cat_edit_form_fields', 'edit_category_heading_text_field');
 
 // Update save function to handle both fields
-function save_category_custom_fields($term_id) {
+function save_category_custom_fields($term_id)
+{
     if (isset($_POST['category_link_text'])) {
         update_term_meta($term_id, 'category_link_text', sanitize_text_field($_POST['category_link_text']));
     }
@@ -253,7 +258,8 @@ remove_action('edited_product_cat', 'save_category_link_text');
 add_action('created_product_cat', 'save_category_custom_fields');
 add_action('edited_product_cat', 'save_category_custom_fields');
 
-function live_complete_support_template_part($atts) {
+function live_complete_support_template_part($atts)
+{
     $atts = shortcode_atts(array(
         'name' => 'contact-form' // default template part
     ), $atts);
@@ -276,7 +282,7 @@ add_shortcode('support_section', 'live_complete_support_template_part');
 //         'high'
 //     );
 // }
-add_action('add_meta_boxes', function($post_type) {
+add_action('add_meta_boxes', function ($post_type) {
     if ($post_type != 'page') {
         return;
     }
@@ -302,41 +308,41 @@ add_action('add_meta_boxes', function($post_type) {
 
 
 // Meta box callback function
-function live_complete_support_page_header_callback($post) {
+function live_complete_support_page_header_callback($post)
+{
     // Add nonce for security
     wp_nonce_field('support_page_header_nonce', 'support_page_header_nonce');
 
     // Get existing values
     $header_title = get_post_meta($post->ID, '_support_header_title', true);
     $header_desc = get_post_meta($post->ID, '_support_header_desc', true);
-    ?>
-    
+?>
+
     <div class="support-page-fields" style="margin: 20px 0;">
         <p>
             <label for="support_header_title" style="display: block; margin-bottom: 5px;"><strong>Header Title</strong></label>
-            <input 
-                type="text" 
-                id="support_header_title" 
-                name="support_header_title" 
-                value="<?php echo esc_attr($header_title); ?>" 
-                style="width: 100%;"
-            >
+            <input
+                type="text"
+                id="support_header_title"
+                name="support_header_title"
+                value="<?php echo esc_attr($header_title); ?>"
+                style="width: 100%;">
         </p>
         <p>
             <label for="support_header_desc" style="display: block; margin-bottom: 5px;"><strong>Header Description</strong></label>
-            <textarea 
-                id="support_header_desc" 
-                name="support_header_desc" 
-                rows="4" 
-                style="width: 100%;"
-            ><?php echo esc_textarea($header_desc); ?></textarea>
+            <textarea
+                id="support_header_desc"
+                name="support_header_desc"
+                rows="4"
+                style="width: 100%;"><?php echo esc_textarea($header_desc); ?></textarea>
         </p>
     </div>
-    <?php
+<?php
 }
 
 // Save meta box data
-function live_complete_save_support_page_meta($post_id) {
+function live_complete_save_support_page_meta($post_id)
+{
     // Check if nonce is set
     if (!isset($_POST['support_page_header_nonce'])) {
         return;
@@ -376,6 +382,155 @@ function live_complete_save_support_page_meta($post_id) {
     }
 }
 add_action('save_post', 'live_complete_save_support_page_meta');
+
+
+// Add meta box for Learn page template
+function add_learn_page_meta_box()
+{
+    add_meta_box(
+        'learn_page_images', // Meta box ID
+        'Learn Page Images', // Meta box title
+        'render_learn_page_meta_box', // Callback function
+        'page', // Post type
+        'normal', // Context
+        'high' // Priority
+    );
+}
+add_action('add_meta_boxes', 'add_learn_page_meta_box');
+
+// Render meta box content
+function render_learn_page_meta_box($post)
+{
+    // Add nonce for security
+    wp_nonce_field('learn_page_meta_box', 'learn_page_meta_box_nonce');
+
+    // Get existing values
+    $story_image = get_post_meta($post->ID, '_learn_story_image', true);
+    $difference_image = get_post_meta($post->ID, '_learn_difference_image', true);
+    $impact_image = get_post_meta($post->ID, '_learn_impact_image', true);
+
+    ?>
+    <style>
+        .image-preview {
+            max-width: 100px;
+            max-height: 100px;
+            margin: 10px 0;
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        .image-preview.hidden {
+            display: none;
+        }
+        .image-upload-wrap {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+    </style>
+
+    <p>
+        <label for="learn_story_image">Our Story Image:</label><br>
+        <div class="image-upload-wrap">
+            <div>
+                <input type="text" id="learn_story_image" name="learn_story_image" 
+                       value="<?php echo esc_attr(basename($story_image)); ?>" 
+                       class="widefat" 
+                       readonly="readonly" 
+                       style="background-color: #f0f0f0;">
+                <input type="hidden" name="learn_story_image_full" value="<?php echo esc_attr($story_image); ?>">
+                <button type="button" class="upload-image-button button">Upload Image</button>
+            </div>
+            <img src="<?php echo esc_url($story_image); ?>" class="image-preview <?php echo empty($story_image) ? 'hidden' : ''; ?>">
+        </div>
+    </p>
+    <p>
+        <label for="learn_difference_image">The Difference Image:</label><br>
+        <div class="image-upload-wrap">
+            <div>
+                <input type="text" id="learn_difference_image" name="learn_difference_image" 
+                       value="<?php echo esc_attr(basename($difference_image)); ?>" 
+                       class="widefat" 
+                       readonly="readonly" 
+                       style="background-color: #f0f0f0;">
+                <input type="hidden" name="learn_difference_image_full" value="<?php echo esc_attr($difference_image); ?>">
+                <button type="button" class="upload-image-button button">Upload Image</button>
+            </div>
+            <img src="<?php echo esc_url($difference_image); ?>" class="image-preview <?php echo empty($difference_image) ? 'hidden' : ''; ?>">
+        </div>
+    </p>
+    <p>
+        <label for="learn_impact_image">Our Impact Image:</label><br>
+        <div class="image-upload-wrap">
+            <div>
+                <input type="text" id="learn_impact_image" name="learn_impact_image" 
+                       value="<?php echo esc_attr(basename($impact_image)); ?>" 
+                       class="widefat" 
+                       readonly="readonly" 
+                       style="background-color: #f0f0f0;">
+                <input type="hidden" name="learn_impact_image_full" value="<?php echo esc_attr($impact_image); ?>">
+                <button type="button" class="upload-image-button button">Upload Image</button>
+            </div>
+            <img src="<?php echo esc_url($impact_image); ?>" class="image-preview <?php echo empty($impact_image) ? 'hidden' : ''; ?>">
+        </div>
+    </p>
+
+    <script>
+    jQuery(document).ready(function($) {
+        $('.upload-image-button').click(function(e) {
+            e.preventDefault();
+            var button = $(this);
+            var container = button.closest('.image-upload-wrap');
+            var preview = container.find('.image-preview');
+            
+            var image = wp.media({
+                title: 'Select or Upload Image',
+                button: {
+                    text: 'Use this image'
+                },
+                multiple: false
+            }).open()
+            .on('select', function() {
+                var uploaded_image = image.state().get('selection').first();
+                var image_url = uploaded_image.get('url');
+                var filename = image_url.split('/').pop();
+                
+                container.find('input[type="text"]').val(filename);
+                container.find('input[type="hidden"]').val(image_url);
+                preview.attr('src', image_url).removeClass('hidden');
+            });
+        });
+    });
+    </script>
+    <?php
+}
+
+// Update save function to use the full URL from hidden fields
+function save_learn_page_meta_box($post_id)
+{
+    // Check if nonce is set
+    if (!isset($_POST['learn_page_meta_box_nonce'])) {
+        return;
+    }
+
+    // Verify nonce
+    if (!wp_verify_nonce($_POST['learn_page_meta_box_nonce'], 'learn_page_meta_box')) {
+        return;
+    }
+
+    // Save the full image URLs from hidden fields
+    if (isset($_POST['learn_story_image_full'])) {
+        update_post_meta($post_id, '_learn_story_image', sanitize_text_field($_POST['learn_story_image_full']));
+    }
+    if (isset($_POST['learn_difference_image_full'])) {
+        update_post_meta($post_id, '_learn_difference_image', sanitize_text_field($_POST['learn_difference_image_full']));
+    }
+    if (isset($_POST['learn_impact_image_full'])) {
+        update_post_meta($post_id, '_learn_impact_image', sanitize_text_field($_POST['learn_impact_image_full']));
+    }
+}
+add_action('save_post', 'save_learn_page_meta_box');
 
 
 /* Completely Disable Comments */
@@ -458,7 +613,8 @@ add_action('init', 'add_custom_post_templates');
 /* -------------- Add custom column to posts list -------------- */
 
 // Add template column to posts list
-function add_template_column($columns) {
+function add_template_column($columns)
+{
     $new_columns = array();
     foreach ($columns as $key => $value) {
         $new_columns[$key] = $value;
@@ -471,7 +627,8 @@ function add_template_column($columns) {
 add_filter('manage_posts_columns', 'add_template_column');
 
 // Populate template column content
-function populate_template_column($column_name, $post_id) {
+function populate_template_column($column_name, $post_id)
+{
     if ($column_name === 'post_template') {
         $template = get_post_meta($post_id, '_wp_page_template', true);
         if ($template) {
@@ -495,7 +652,8 @@ function populate_template_column($column_name, $post_id) {
 add_action('manage_posts_custom_column', 'populate_template_column', 10, 2);
 
 // Make the template column sortable
-function make_template_column_sortable($columns) {
+function make_template_column_sortable($columns)
+{
     $columns['post_template'] = 'post_template';
     return $columns;
 }
