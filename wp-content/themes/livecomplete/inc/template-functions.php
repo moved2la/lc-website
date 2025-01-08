@@ -480,19 +480,20 @@ function custom_product_attributes_display()
     if ($product->is_type('variable')) {
         $attributes = $product->get_variation_attributes();
         $all_attributes = $product->get_attributes();
+        
+        // Get default attributes
+        $default_attributes = $product->get_default_attributes();
     } else {
         $attributes = $product->get_attributes();
         $all_attributes = $attributes;
+        $default_attributes = array();
     }
 
     if (!empty($all_attributes)) {
         echo '<div class="custom-attributes-wrapper">';
 
         foreach ($all_attributes as $attribute_name => $attribute_obj) {
-            // Get the attribute label
             $attribute_label = wc_attribute_label($attribute_name);
-
-            // Get all possible terms for this attribute
             $taxonomy = str_replace('pa_', '', $attribute_name);
             $terms = get_terms([
                 'taxonomy' => 'pa_' . $taxonomy,
@@ -504,17 +505,19 @@ function custom_product_attributes_display()
                 echo '<h4>' . esc_html($attribute_label) . '</h4>';
                 echo '<div class="attribute-buttons">';
 
-                // Get the product's terms for this attribute
                 $product_terms = wc_get_product_terms($product->get_id(), 'pa_' . $taxonomy, array('fields' => 'slugs'));
 
                 foreach ($terms as $term) {
-                    // Check if this term is assigned to the product
                     $is_active = in_array($term->slug, $product_terms);
+                    $is_default = isset($default_attributes['pa_' . $taxonomy]) && 
+                                $default_attributes['pa_' . $taxonomy] === $term->slug;
 
-                    // Set classes based on status
                     $button_classes = ['attribute-btn'];
                     if (!$is_active) {
                         $button_classes[] = 'disabled';
+                    }
+                    if ($is_default) {
+                        $button_classes[] = 'selected';
                     }
 
                     echo sprintf(
