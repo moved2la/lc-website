@@ -318,6 +318,12 @@ if (!defined('ABSPATH')) {
         color: #c62828;
         border: 1px solid #ef9a9a;
     }
+
+    .form-wrapper .product-content {
+        flex: 1;
+        text-align: left;
+        overflow: hidden;
+    }
 </style>
 
 <div class="support-section">
