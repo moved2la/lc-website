@@ -551,13 +551,32 @@ if (! function_exists('live_complete_woocommerce_cart_link')) {
     }
     add_action('woocommerce_before_add_to_cart_form', 'live_complete_product_loop_swatches', 100);
 
-    function live_complete_product_loop_quantity($product)
+    function live_complete_product_loop_quantity()
     {
-        wc_get_template('single-product/quantity-input.php');
+        global $product;
+        if ($product->is_type('variable')) {
+            // Only show quantity for variable products on this hook
+            wc_get_template('single-product/quantity-input.php');
+        }
     }
-    // Move to beginning of variations form
+
+    function live_complete_simple_product_quantity()
+    {
+        global $product;
+        if ($product->is_type('simple')) {
+            // Only show quantity for simple products on this hook
+            wc_get_template('single-product/quantity-input.php');
+        }
+    }
+
+    // Remove existing actions
     remove_action('woocommerce_before_add_to_cart_form', 'live_complete_product_loop_quantity', 5);
+
+    // Add for variation products
     add_action('woocommerce_before_variations_form', 'live_complete_product_loop_quantity', 5);
+
+    // Add for simple products
+    add_action('woocommerce_before_add_to_cart_button', 'live_complete_simple_product_quantity', 5);
     
 
     function live_complete_wcspc_get_default_options($value)
