@@ -434,9 +434,21 @@ add_action('admin_init', function () {
     }
 });
 
-// Close comments on the front-end
-add_filter('comments_open', '__return_false', 20, 2);
 add_filter('pings_open', '__return_false', 20, 2);
+
+// Replace the simple comments_open filter with a more specific one
+remove_filter('comments_open', '__return_false', 20);
+
+// Add new filter that checks if it's a product
+add_filter('comments_open', 'custom_product_comments_open', 20, 2);
+function custom_product_comments_open($open, $post_id) {
+    // Allow comments if it's a product
+    if (get_post_type($post_id) === 'product') {
+        return true;
+    }
+    // Disable comments for all other post types
+    return false;
+}
 
 // Hide existing comments
 add_filter('comments_array', '__return_empty_array', 10, 2);
