@@ -38,8 +38,8 @@ Tags:  one-column, two-columns, right-sidebar, left-sidebar, custom-header, cust
 :root {
     /* buttons */
     --primary-btn-color: #ffffff;
-    --primary-btn-bg-color: #0E4C73;
-    --primary-btn-bg-color-h: #D9734D;
+    --primary-btn-bg-color: #0e4c73;
+    --primary-btn-bg-color-h: #d9734d;
     --primary-btn-bg-color-h-alt: #000000;
 
     --primary-btn-color-alt: #ffffff;
@@ -47,13 +47,13 @@ Tags:  one-column, two-columns, right-sidebar, left-sidebar, custom-header, cust
     --primary-btn-bg-color-alt: #000000;
     --primary-btn-bg-color-alt-h: #ffffff;
 
-    --secondary-btn-color: #0E4C73;
+    --secondary-btn-color: #0e4c73;
     --secondary-btn-bg-color: #ffffff;
-    --secondary-btn-color-h: #D9734D;
+    --secondary-btn-color-h: #d9734d;
     --secondary-btn-bg-color-h: #000000;
 
     /* text links */
-    --link-color: #0E4C73;
+    --link-color: #0e4c73;
     --link-h-decoration: none;
     --link-h-decoration-alt: underline;
 
@@ -62,7 +62,7 @@ Tags:  one-column, two-columns, right-sidebar, left-sidebar, custom-header, cust
     --tertiary-color: rgba(0, 0, 0, 0.3);
     --quaternary-color: #f9f9f9;
     --opacity: 0, 0, 0;
-    --rating-color: #D9734D;
+    --rating-color: #d9734d;
     --heading-font: "Roboto", sans-serif;
     --nav-font: "Roboto", sans-serif;
     --nav-color: #000000;
@@ -1350,7 +1350,7 @@ body.error404 #content.site-content {
 }
 .live-complete-rd-navbar-toggle:focus,
 .live-complete-rd-navbar-toggle:hover {
-     background: #fff;
+    background: #fff;
 }
 .header-icon-mobile {
     display: none;
@@ -1462,7 +1462,7 @@ body.error404 #content.site-content {
         top: 0;
         float: left;
     }
-    
+
     .header-table {
         display: block;
     }
@@ -2142,4 +2142,60 @@ ul.product_list_widget span {
 /* Make the search icon clickable */
 .search-icon {
     cursor: pointer;
+}
+
+/* Menu Link Widget */
+.menu-item {
+    padding: 8px 0px 8px 0px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+    max-width: 427px;
+    min-height: 116px;
+}
+
+.menu-item-image {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 1px 10px 1px;
+    justify-content: center;   
+    flex-shrink: 0;
+    max-width: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 1;
+    position: relative;
+}
+
+.menu-item-title {
+    color: #000;
+    text-align: left;
+    font-family: "Roboto-SemiBold", sans-serif;
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 600;
+    position: relative;
+    align-self: stretch;
+}
+
+.menu-item-description {
+    color: #000;
+    text-align: left;
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 400;
+    position: relative;
+    align-self: stretch;
 }

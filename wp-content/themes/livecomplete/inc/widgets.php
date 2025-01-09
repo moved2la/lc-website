@@ -163,12 +163,12 @@ class Featured_Blog_Post_Widget extends WP_Widget
                         class="article-image"
                         src="<?php echo get_the_post_thumbnail_url($post_id, 'medium'); ?>" />
                     <div class="content">
-                        
-                            <div class="article-title"><?php echo get_the_title($post); ?></div>
-                            <div class="article-description">
-                                <?php echo get_the_excerpt($post); ?>
-                            </div>
-                        
+
+                        <div class="article-title"><?php echo get_the_title($post); ?></div>
+                        <div class="article-description">
+                            <?php echo get_the_excerpt($post); ?>
+                        </div>
+
                         <a href="<?php echo get_permalink($post); ?>" class="read-more">Read more</a>
                     </div>
                 </div>
@@ -245,7 +245,7 @@ class Featured_Blog_Post_Widget extends WP_Widget
                 type="number"
                 value="<?php echo esc_attr($post_id); ?>">
         </p>
-<?php
+        <?php
     }
 
     public function update($new_instance, $old_instance)
@@ -263,3 +263,168 @@ function register_featured_blog_post_widget()
 add_action('widgets_init', 'register_featured_blog_post_widget');
 
 /* -------------- End Blog Post Widget -------------- */
+
+/* -------------- Menu Link Widget -------------- */
+
+class Menu_Link_Widget extends WP_Widget
+{
+    public function __construct()
+    {
+        parent::__construct(
+            'menu_link_widget',
+            'Menu Link Widget',
+            array('description' => 'Displays a menu item with image, title, description, and links to a page')
+        );
+    }
+
+    public function widget($args, $instance)
+    {
+        $title = !empty($instance['title']) ? $instance['title'] : '';
+        $description = !empty($instance['description']) ? $instance['description'] : '';
+        $page_id = !empty($instance['page_id']) ? $instance['page_id'] : '';
+        $image_id = !empty($instance['image_id']) ? $instance['image_id'] : '';
+
+        if ($page_id) {
+            $page_url = get_permalink($page_id);
+            echo $args['before_widget'];
+        ?>
+            <div class="menu-item">
+
+                <div class="menu-item-image">
+                    <?php echo wp_get_attachment_image($image_id, 'medium'); ?>
+                </div>
+                <div class="menu-item-content">
+                    <a href="<?php echo esc_url($page_url); ?>">
+                        <div class="menu-item-title"><?php echo esc_html($title); ?></div>
+                    </a>
+                    <div class="menu-item-description">
+                        <?php echo esc_html($description); ?>
+                    </div>
+                </div>
+            </div>
+        <?php
+            echo $args['after_widget'];
+        }
+    }
+
+    public function form($instance)
+    {
+        $title = !empty($instance['title']) ? $instance['title'] : '';
+        $description = !empty($instance['description']) ? $instance['description'] : '';
+        $page_id = !empty($instance['page_id']) ? $instance['page_id'] : '';
+        $image_id = !empty($instance['image_id']) ? $instance['image_id'] : '';
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>">Title:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
+                name="<?php echo $this->get_field_name('title'); ?>"
+                type="text"
+                value="<?php echo esc_attr($title); ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('description'); ?>">Description:</label>
+            <textarea class="widefat" id="<?php echo $this->get_field_id('description'); ?>"
+                name="<?php echo $this->get_field_name('description'); ?>"><?php echo esc_textarea($description); ?></textarea>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('page_id'); ?>">Page:</label>
+            <?php
+            wp_dropdown_pages(array(
+                'name' => $this->get_field_name('page_id'),
+                'id' => $this->get_field_id('page_id'),
+                'selected' => $page_id
+            ));
+            ?>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('image_id'); ?>">Image:</label>
+        <div class="image-preview-wrapper">
+            <img id="<?php echo $this->get_field_id('image_preview'); ?>"
+                src="<?php echo $image_id ? wp_get_attachment_url($image_id) : ''; ?>"
+                style="max-width: 100px; <?php echo !$image_id ? 'display:none;' : ''; ?>" />
+        </div>
+        <input class="widefat" id="<?php echo $this->get_field_id('image_id'); ?>"
+            name="<?php echo $this->get_field_name('image_id'); ?>"
+            type="hidden"
+            value="<?php echo esc_attr($image_id); ?>">
+        <button class="upload_image_button button button-primary">Upload Image</button>
+        <button class="remove_image_button button" <?php echo !$image_id ? 'style="display:none;"' : ''; ?>>Remove Image</button>
+        </p>
+        <script>
+            // Initialize the media uploader functionality
+            function initMediaUploader(widget) {
+                var frame,
+                    uploadButton = widget.find('.upload_image_button'),
+                    removeButton = widget.find('.remove_image_button'),
+                    imageId = widget.find('input[name*="image_id"]'),
+                    imagePreview = widget.find('img[id*="image_preview"]');
+
+                uploadButton.off('click').on('click', function(e) {
+                    e.preventDefault();
+
+                    if (frame) {
+                        frame.open();
+                        return;
+                    }
+
+                    frame = wp.media({
+                        title: 'Select or Upload Media',
+                        button: {
+                            text: 'Use this media'
+                        },
+                        multiple: false
+                    });
+
+                    frame.on('select', function() {
+                        var attachment = frame.state().get('selection').first().toJSON();
+                        imageId.val(attachment.id);
+                        imagePreview.attr('src', attachment.url).show();
+                        removeButton.show();
+                    });
+
+                    frame.open();
+                });
+
+                removeButton.off('click').on('click', function(e) {
+                    e.preventDefault();
+                    imageId.val('');
+                    imagePreview.attr('src', '').hide();
+                    removeButton.hide();
+                });
+            }
+
+            // Initialize on document ready
+            jQuery(document).ready(function($) {
+                $('.widget[id*="menu_link_widget"]').each(function() {
+                    initMediaUploader($(this));
+                });
+            });
+
+            // Initialize when widget is added or updated
+            jQuery(document).on('widget-added widget-updated', function(event, widget) {
+                if (widget.is('[id*="menu_link_widget"]')) {
+                    initMediaUploader(widget);
+                }
+            });
+        </script>
+<?php
+    }
+
+    public function update($new_instance, $old_instance)
+    {
+        $instance = array();
+        $instance['title'] = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : '';
+        $instance['description'] = (!empty($new_instance['description'])) ? strip_tags($new_instance['description']) : '';
+        $instance['page_id'] = (!empty($new_instance['page_id'])) ? strip_tags($new_instance['page_id']) : '';
+        $instance['image_id'] = (!empty($new_instance['image_id'])) ? strip_tags($new_instance['image_id']) : '';
+        return $instance;
+    }
+}
+
+function register_menu_link_widget()
+{
+    register_widget('Menu_Link_Widget');
+}
+add_action('widgets_init', 'register_menu_link_widget');
+
+/* -------------- End Menu Link Widget -------------- */

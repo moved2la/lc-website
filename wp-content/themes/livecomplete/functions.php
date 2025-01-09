@@ -264,6 +264,27 @@ add_action('save_post', 'live_complete_save_support_page_meta');
 
 
 // Add meta box for Learn page template
+add_action('add_meta_boxes', function ($post_type) {
+    if ($post_type != 'page') {
+        return;
+    }
+
+
+    // Get the current post
+    $post = get_post();
+
+    $template_file = get_post_meta($post->ID, '_wp_page_template', true);
+    if ($template_file === 'templates/page-learn.php') {
+        add_meta_box(
+            'learn_page_images', // Meta box ID
+            'Learn Page Images', // Meta box title
+            'render_learn_page_meta_box', // Callback function
+            'page', // Post type
+            'normal', // Context
+            'high' // Priority
+        );
+    }
+});
 function add_learn_page_meta_box()
 {
     add_meta_box(
@@ -275,7 +296,7 @@ function add_learn_page_meta_box()
         'high' // Priority
     );
 }
-add_action('add_meta_boxes', 'add_learn_page_meta_box');
+
 
 // Render meta box content
 function render_learn_page_meta_box($post)
