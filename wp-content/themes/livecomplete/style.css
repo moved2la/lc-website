@@ -1446,6 +1446,9 @@ body.error404 #content.site-content {
         padding-bottom: 0 !important;
         margin-bottom: 12px !important;
     }
+    .explore-megamenu .widget_custom_html {
+        display: none !important;
+    }
 
     .site-header .container {
         max-width: 100%;
@@ -1979,6 +1982,46 @@ ul.product_list_widget span {
     transform: translateX(-50%);
     width: 0;
     height: 0;
+}
+
+.explore-megamenu {
+  background-color: #f1f1f1 !important;
+}
+.explore-megamenu-title {
+  background-color: #fff !important;
+}
+
+
+#mega-menu-wrap-menu-1 #mega-menu-menu-1 li.mega-menu-item a.mega-menu-link::before {
+    color: #D9734D
+}
+.menu-feature-products {
+  background: #F1F1F1 !important;
+  max-width: 416px;
+}
+.menu-shop-items {
+  background-color: white !important;
+  min-height: 201px !important;
+}
+@media only screen and (max-width: 1024px) {
+  .menu-shop-items {
+    min-height: 1px !important;
+  }
+}
+
+.shop-mega-menu {
+  background-color: #F1F1F1 !important;
+}
+
+.menu-learn-item li {
+   width: fit-content;
+}
+
+.menu-subtitle {
+  font-size: 14px;
+  margin-top: -30px;
+  padding-left: 25px;
+  max-width: 219px
 }
 
 /* Outer triangle (border) */
