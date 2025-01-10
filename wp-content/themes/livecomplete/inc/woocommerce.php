@@ -300,7 +300,7 @@ if (! function_exists('live_complete_woocommerce_cart_link')) {
     }
 
     /*------------------------------------*/
-    //TOOL BAR
+    // TOOL BAR
     /*------------------------------------*/
     remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
 
@@ -325,6 +325,13 @@ if (! function_exists('live_complete_woocommerce_cart_link')) {
     }
     // add_action('woocommerce_before_shop_loop', 'live_complete_result_count', 30);
 
+    /**
+     * Add Product Filter Button (for mobile)
+     */
+    function live_complete_product_filter_button() {
+        get_template_part('woocommerce/product-filter');
+    }
+    // add_action('woocommerce_before_shop_loop', 'live_complete_product_filter_button', 30);
 
 
     if (! function_exists('live_complete_header_toolbar_end')) {

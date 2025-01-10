@@ -134,6 +134,17 @@ if (!defined('ABSPATH')) {
         color: #ffffff;
     }
 
+    @media (max-width: 700px) {
+        .footer-wrapper .footer-links {
+            border-top: 1px solid #aaaaaa;
+        }
+
+        .footer-wrapper .footer-links .link {
+
+            border-bottom: 1px solid #aaaaaa;
+        }
+    }
+
     .footer-wrapper .link a:hover {
         text-decoration: var(--link-h-decoration-alt);
     }

@@ -89,7 +89,14 @@ $form_result = handle_newsletter_signup();
         justify-content: flex-start;
         flex: 1;
         position: relative;
-        /* min-width: 0; */
+        width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+        .signup .column2 {
+            flex: none;
+
+        }
     }
 
     .signup .text {
@@ -274,7 +281,7 @@ $form_result = handle_newsletter_signup();
                     <span>
                         <span>
                             By clicking Sign Up you're confirming that you agree with our</span>
-                            <a href="<?php echo esc_url(home_url('/terms-and-conditions')); ?>">Terms and Conditions</a>.
+                        <a href="<?php echo esc_url(home_url('/terms-and-conditions')); ?>">Terms and Conditions</a>.
                     </span>
                 </div>
             </div>
