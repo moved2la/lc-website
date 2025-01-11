@@ -1989,8 +1989,13 @@ ul.product_list_widget span {
 }
 .explore-megamenu-title {
   background-color: #fff !important;
+  /* min-height: 320px !important; */
 }
-
+@media only screen and (max-width: 1024px) {
+  .explore-megamenu-title {
+    min-height: 1px !important;
+  }
+}
 
 #mega-menu-wrap-menu-1 #mega-menu-menu-1 li.mega-menu-item a.mega-menu-link::before {
     color: #D9734D
@@ -2001,7 +2006,7 @@ ul.product_list_widget span {
 }
 .menu-shop-items {
   background-color: white !important;
-  min-height: 201px !important;
+  min-height: 250px !important;
 }
 @media only screen and (max-width: 1024px) {
   .menu-shop-items {

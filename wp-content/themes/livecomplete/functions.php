@@ -7,6 +7,9 @@
  *
  * @package live-complete
  */
+
+require get_template_directory() . '/vendors/sendgrid/sendgrid-php.php';
+
 /**
  * Implement the Custom Header feature.
  */
@@ -615,6 +618,15 @@ function redirect_category_pages()
     }
 }
 
+/* -------------- Remove Downloads from My Account Menu -------------- */
+function custom_my_account_menu_items($items)
+{
+    unset($items['downloads']);
+    return $items;
+}
+add_filter('woocommerce_account_menu_items', 'custom_my_account_menu_items');
+
+/* -------------- Register sidebar for WooCommerce Ajax Product Filter -------------- */
 
 function register_woof_sidebar()
 {
@@ -629,3 +641,4 @@ function register_woof_sidebar()
     ));
 }
 // add_action('widgets_init', 'register_woof_sidebar');
+
