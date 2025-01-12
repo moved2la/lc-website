@@ -63,6 +63,11 @@ if (class_exists('WooCommerce')) {
 require get_template_directory() . '/inc/widgets.php';
 
 
+/**
+ * Include AJAX handlers
+ */
+require get_template_directory() . '/inc/ajax-handlers.php';
+
 
 /* -------------- Add custom field to category form -------------- */
 
@@ -641,4 +646,23 @@ function register_woof_sidebar()
     ));
 }
 // add_action('widgets_init', 'register_woof_sidebar');
+
+function enqueue_contact_form_scripts() {
+    wp_enqueue_script(
+        'contact-form', 
+        get_template_directory_uri() . '/assets/js/contact-form.js', 
+        array(), 
+        '1.0.0', 
+        true
+    );
+
+    wp_localize_script(
+        'contact-form',
+        'contact_form_vars',
+        array(
+            'ajaxurl' => admin_url('admin-ajax.php')
+        )
+    );
+}
+add_action('wp_enqueue_scripts', 'enqueue_contact_form_scripts');
 

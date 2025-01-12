@@ -334,7 +334,7 @@ if (!defined('ABSPATH')) {
                     <div class="heading">Get in touch</div>
                 </div>
             </div>
-            <form class="support-contact-form" method="post" action="">
+            <form class="support-contact-form" method="post" action="" id="supportContactForm">
                 <?php wp_nonce_field('submit_contact_form', 'contact_form_nonce'); ?>
                 <div class="inputs">
                     <div class="input">
@@ -371,47 +371,6 @@ if (!defined('ABSPATH')) {
                 </div>
             </form>
         </div>
+        <div id="formMessage"></div>
     </div>
 </div>
-
-<?php
-// Add this at the bottom of the file
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form_nonce'])) {
-    if (wp_verify_nonce($_POST['contact_form_nonce'], 'submit_contact_form')) {
-        // Sanitize form inputs
-        $first_name = sanitize_text_field($_POST['first_name']);
-        $last_name = sanitize_text_field($_POST['last_name']);
-        $email = sanitize_email($_POST['email']);
-        $phone = sanitize_text_field($_POST['phone']);
-        $message = sanitize_textarea_field($_POST['message']);
-
-        // Email configuration
-        $to = get_option('admin_email');
-
-        $subject = 'LiveComplete.com Contact Form Submission';
-
-        // Create HTML email body
-        $body = "<html><body>";
-        $body .= "<h2>New Contact Form Submission</h2>";
-        $body .= "<p><strong>Name:</strong> " . esc_html($first_name) . " " . esc_html($last_name) . "</p>";
-        $body .= "<p><strong>Email:</strong> " . esc_html($email) . "</p>";
-        $body .= "<p><strong>Phone:</strong> " . esc_html($phone) . "</p>";
-        $body .= "<p><strong>Message:</strong><br>" . nl2br(esc_html($message)) . "</p>";
-        $body .= "</body></html>";
-
-        $headers = array(
-            'Content-Type: text/html; charset=UTF-8',
-            'From: LiveComplete Contact <' . get_option('admin_email') . '>'
-        );
-
-        // Send email using wp_mail (WP Mail SMTP will automatically handle it)
-        $sent = wp_mail($to, $subject, $body, $headers);
-
-        if ($sent) {
-            echo '<div class="form-wrapper"><div class="success-message">Thank you for your message. We\'ll get back to you soon!</div></div>';
-        } else {
-            echo '<div class="form-wrapper"><div class="error-message">Sorry, there was an error sending your message. Please try again later.</div></div>';
-        }
-    }
-}
-?>
