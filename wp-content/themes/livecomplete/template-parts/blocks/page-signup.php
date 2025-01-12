@@ -11,25 +11,6 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Handle form submission
-function handle_newsletter_signup()
-{
-    if (isset($_POST['newsletter_signup']) && isset($_POST['email'])) {
-        $email = sanitize_email($_POST['email']);
-
-        if (!is_email($email)) {
-            return array('error' => 'Please enter a valid email address.');
-        }
-
-        // Here you can add your newsletter signup logic
-        // For example, adding to a mailing list or database
-
-        return array('success' => 'Thank you for signing up!');
-    }
-    return false;
-}
-
-$form_result = handle_newsletter_signup();
 ?>
 
 <style>
@@ -261,28 +242,22 @@ $form_result = handle_newsletter_signup();
                 products, special offers, and plant-powered inspiration.
             </div>
             <div class="actions">
-                <?php if ($form_result): ?>
-                    <div class="form-message <?php echo isset($form_result['error']) ? 'error' : 'success'; ?>">
-                        <?php echo isset($form_result['error']) ? $form_result['error'] : $form_result['success']; ?>
-                    </div>
-                <?php endif; ?>
-
-                <form method="POST" class="form" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>">
+                <div id="signupMessage"></div>
+                <form id="newsletterSignupForm" class="form">
+                    <?php wp_nonce_field('submit_newsletter_signup', 'newsletter_signup_nonce'); ?>
                     <input
                         type="email"
                         name="email"
                         class="email-input"
                         placeholder="Enter your email"
-                        required>
-                    <button type="submit" name="newsletter_signup" class="signup-button">Sign Up</button>
+                        required
+                    />
+                    <button type="submit" class="signup-button">Sign Up</button>
                 </form>
 
                 <div class="terms-and-conditions">
-                    <span>
-                        <span>
-                            By clicking Sign Up you're confirming that you agree with our</span>
-                        <a href="<?php echo esc_url(home_url('/terms-and-conditions')); ?>">Terms and Conditions</a>.
-                    </span>
+                    <span>By clicking Sign Up you're confirming that you agree with our
+                    <a href="<?php echo esc_url(home_url('/terms-and-conditions')); ?>">Terms and Conditions</a>.</span>
                 </div>
             </div>
         </div>

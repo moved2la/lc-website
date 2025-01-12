@@ -90,5 +90,82 @@ function handle_contact_form_submission() {
     exit;
 }
 
+function handle_newsletter_signup() {
+    error_log('Newsletter signup handler started');
+
+    if (!check_ajax_referer('submit_newsletter_signup', 'newsletter_signup_nonce', false)) {
+        error_log('Newsletter nonce verification failed');
+        wp_send_json_error(array(
+            'message' => 'Security check failed'
+        ));
+        return;
+    }
+
+    $email = sanitize_email($_POST['email']);
+
+    if (!is_email($email)) {
+        error_log('Invalid email provided: ' . $email);
+        wp_send_json_error(array(
+            'message' => 'Please enter a valid email address.'
+        ));
+        return;
+    }
+
+    // SendGrid Marketing API configuration
+    $sendgrid_api_key = get_option('lcsg_api_key');
+    $url = 'https://api.sendgrid.com/v3/marketing/contacts';
+
+    // Prepare contact data
+    $data = array(
+        'list_ids' => array(), // Add your list ID here if you want to add to a specific list
+        'contacts' => array(
+            array(
+                'email' => $email,
+                'source' => 'website_signup'
+            )
+        )
+    );
+
+    $args = array(
+        'headers' => array(
+            'Authorization' => 'Bearer ' . $sendgrid_api_key,
+            'Content-Type' => 'application/json'
+        ),
+        'body' => json_encode($data),
+        'method' => 'PUT',
+        'timeout' => 30
+    );
+
+    $response = wp_remote_request($url, $args);
+    
+    if (is_wp_error($response)) {
+        error_log('SendGrid API Error: ' . $response->get_error_message());
+        wp_send_json_error(array(
+            'message' => 'Sorry, there was an error processing your request. Please try again later.'
+        ));
+        return;
+    }
+
+    $response_code = wp_remote_retrieve_response_code($response);
+    $response_body = wp_remote_retrieve_body($response);
+
+    error_log('SendGrid API Response Code: ' . $response_code);
+    error_log('SendGrid API Response Body: ' . $response_body);
+
+    // SendGrid returns 202 for successful contact upserts
+    if ($response_code == 202) {
+        wp_send_json_success(array(
+            'message' => 'Thank you for signing up!'
+        ));
+    } else {
+        wp_send_json_error(array(
+            'message' => 'Sorry, there was an error processing your request. Please try again later.',
+            'debug' => $response_body // Only for debugging, remove in production
+        ));
+    }
+}
+
 add_action('wp_ajax_submit_contact_form', 'handle_contact_form_submission');
-add_action('wp_ajax_nopriv_submit_contact_form', 'handle_contact_form_submission'); 
+add_action('wp_ajax_nopriv_submit_contact_form', 'handle_contact_form_submission');
+add_action('wp_ajax_submit_newsletter_signup', 'handle_newsletter_signup');
+add_action('wp_ajax_nopriv_submit_newsletter_signup', 'handle_newsletter_signup'); 

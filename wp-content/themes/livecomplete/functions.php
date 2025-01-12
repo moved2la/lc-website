@@ -648,21 +648,43 @@ function register_woof_sidebar()
 // add_action('widgets_init', 'register_woof_sidebar');
 
 function enqueue_contact_form_scripts() {
+    // Only enqueue on contact page
+    if (is_page('contact')) {
+        wp_enqueue_script(
+            'contact-form', 
+            get_template_directory_uri() . '/assets/js/contact-form.js', 
+            array(), 
+            '1.0.0', 
+            true
+        );
+
+        wp_localize_script(
+            'contact-form',
+            'contact_form_vars',
+            array(
+                'ajaxurl' => admin_url('admin-ajax.php')
+            )
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_contact_form_scripts');
+
+function enqueue_newsletter_signup_scripts() {
     wp_enqueue_script(
-        'contact-form', 
-        get_template_directory_uri() . '/assets/js/contact-form.js', 
+        'newsletter-signup', 
+        get_template_directory_uri() . '/assets/js/newsletter-signup.js', 
         array(), 
         '1.0.0', 
         true
     );
 
     wp_localize_script(
-        'contact-form',
-        'contact_form_vars',
+        'newsletter-signup',
+        'newsletter_signup_vars',
         array(
             'ajaxurl' => admin_url('admin-ajax.php')
         )
     );
 }
-add_action('wp_enqueue_scripts', 'enqueue_contact_form_scripts');
+add_action('wp_enqueue_scripts', 'enqueue_newsletter_signup_scripts');
 
