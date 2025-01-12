@@ -306,9 +306,9 @@ if( !function_exists('live_complete_elementor_editor_simplify') ){
 }
 
 /**
- * Add custom HTML block at the bottom of pages
+ * Add sign block at the bottom of pages
  */
-function live_complete_page_bottom_html() {
+function live_complete_page_signup_html() {
     // Only show on pages, not posts or other content types
     // if (!is_page()) {
     //     return;
@@ -319,7 +319,7 @@ function live_complete_page_bottom_html() {
     //     return;
     // }
 
-    get_template_part('template-parts/blocks/page', 'bottom');
+    get_template_part('template-parts/blocks/page', 'signup');
 }
 
 // Add custom content to WooCommerce category header
@@ -453,14 +453,14 @@ add_action('created_product_cat', 'save_category_bottom_content');
 add_action('live_complete_container_wrap_end', 'add_category_bottom_content', 999);
 
 // Remove existing action if it exists
-remove_action('live_complete_container_wrap_end', 'live_complete_page_bottom_html', 5);
+remove_action('live_complete_container_wrap_end', 'live_complete_page_signup_html', 5);
 
 // Add the function to run after container wrap end
-function live_complete_add_bottom_block()
+function live_complete_add_signup_block()
 {
-    live_complete_page_bottom_html();
+    live_complete_page_signup_html();
 }
-add_action('live_complete_container_wrap_end', 'live_complete_add_bottom_block', 999);
+add_action('live_complete_container_wrap_end', 'live_complete_add_signup_block', 999);
 
 
 /* ---------------- Product Page ---------------- */
