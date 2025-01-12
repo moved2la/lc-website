@@ -21,8 +21,8 @@ function handle_contact_form_submission() {
     $message = sanitize_textarea_field($_POST['message']);
 
     // Email configuration
-    $to = get_option('admin_email');
-    $subject = 'LiveComplete.com Contact Form Submission';
+    $to = get_theme_mod('lc_contact_email', get_option('admin_email'));
+    error_log('Contact form TO address: ' . $to); // Debug log
 
     // Create HTML email body
     $body = "<html><body>";
@@ -51,7 +51,7 @@ function handle_contact_form_submission() {
             'email' => get_option('admin_email'),
             'name' => 'LiveComplete Contact'
         ),
-        'subject' => $subject,
+        'subject' => 'LiveComplete.com Contact Form Submission',
         'content' => array(
             array(
                 'type' => 'text/html',
@@ -74,7 +74,7 @@ function handle_contact_form_submission() {
 
     // Log SendGrid response
     error_log('SendGrid response code: ' . $response_code);
-    error_log('SendGrid response: ' . print_r($response, true));
+    // error_log('SendGrid response: ' . print_r($response, true));
 
     if ($response_code == 202) {
         error_log('Sending success response');

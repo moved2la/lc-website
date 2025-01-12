@@ -505,3 +505,68 @@ $wp_customize->add_control(
 
     )
 );
+
+/*Email Settings Section*/
+$wp_customize->add_section(
+    'email_section_settings',
+    array(
+        'title'      => esc_html__('Email Settings', 'live-complete'),
+        'priority'   => 120,
+        'capability' => 'edit_theme_options',
+        'panel'      => 'theme_option_panel',
+    )
+);
+
+// Contact Form Email
+$wp_customize->add_setting(
+    'lc_contact_email',
+    array(
+        'default'           => get_option('admin_email'),
+        'capability'        => 'edit_theme_options',
+        'sanitize_callback' => 'sanitize_email',
+    )
+);
+$wp_customize->add_control(
+    'lc_contact_email',
+    array(
+        'label'       => esc_html__('Contact Form Email:', 'live-complete'),
+        'description' => esc_html__('Email address where contact form submissions will be sent.', 'live-complete'),
+        'section'     => 'email_section_settings',
+        'type'        => 'email',
+        'priority'    => 10,
+    )
+);
+
+function lc_add_theme_options()
+{
+    add_option('lc_contact_email', get_option('admin_email')); // Default to admin email
+
+    register_setting('general', 'lc_contact_email', array(
+        'type' => 'string',
+        'description' => 'Email address for contact form submissions',
+        'sanitize_callback' => 'sanitize_email',
+        'default' => get_option('admin_email'),
+    ));
+
+    add_settings_field(
+        'lc_contact_email',
+        'Contact Form Email',
+        'lc_contact_email_callback',
+        'general',
+        'default',
+        array('label_for' => 'lc_contact_email')
+    );
+}
+add_action('admin_init', 'lc_add_theme_options');
+
+function lc_contact_email_callback($args)
+{
+    $email = get_option('lc_contact_email');
+    echo '<input type="email" 
+             id="lc_contact_email" 
+             name="lc_contact_email" 
+             value="' . esc_attr($email) . '" 
+             class="regular-text ltr" 
+             placeholder="contact@example.com">';
+    echo '<p class="description">Email address where contact form submissions will be sent.</p>';
+}

@@ -334,7 +334,7 @@ if (!defined('ABSPATH')) {
                     <div class="heading">Get in touch</div>
                 </div>
             </div>
-            <form class="support-contact-form" method="post" action="" id="supportContactForm">
+            <form id="supportContactForm" class="support-contact-form" method="post">
                 <?php wp_nonce_field('submit_contact_form', 'contact_form_nonce'); ?>
                 <div class="inputs">
                     <div class="input">
