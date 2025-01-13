@@ -689,3 +689,13 @@ function enqueue_newsletter_signup_scripts() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_newsletter_signup_scripts');
 
+// Add favicon links to head
+function live_complete_add_favicon() {
+    ?>
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_template_directory_uri() . '/assets/image/favicon/apple-touch-icon.png'; ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri() . '/assets/image/favicon/favicon-32x32.png'; ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_template_directory_uri() . '/assets/image/favicon/favicon-16x16.png'; ?>">
+    <link rel="manifest" href="<?php echo get_template_directory_uri() . '/assets/image/favicon/site.webmanifest'; ?>">
+    <?php
+}
+add_action('wp_head', 'live_complete_add_favicon');
