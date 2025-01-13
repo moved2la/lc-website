@@ -1,0 +1,16 @@
+@import "scss/variables";
+@import "scss/mixins";
+//@import "scss/license-key";
+@import "scss/tab-structure";
+@import "scss/settings-window";
+@import "scss/settings-header";
+@import "scss/tabs";
+@import "scss/forms";
+@import "scss/base";
+
+
+#wpz-random-orders-progress {
+  margin-top: 40px;
+  inline-size: 350px;
+  display: none;
+  }

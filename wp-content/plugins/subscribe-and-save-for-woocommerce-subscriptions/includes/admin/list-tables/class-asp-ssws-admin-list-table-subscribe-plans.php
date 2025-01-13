@@ -1,0 +1,156 @@
+<?php
+
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Admin subscribe plans handler.
+ * 
+ * @class ASP_SSWS_Admin_List_Table_Subscribe_Plans
+ * @package Class
+ */
+class ASP_SSWS_Admin_List_Table_Subscribe_Plans extends WC_Admin_List_Table {
+
+	/**
+	 * Post type.
+	 *
+	 * @var string
+	 */
+	protected $list_table_type = 'asp_subscribe_plan';
+
+	/**
+	 * To not show blank slate.
+	 *
+	 * @param string $which String which tablenav is being shown.
+	 */
+	public function maybe_render_blank_state( $which ) {
+		global $post_type;
+
+		if ( $post_type === $this->list_table_type && 'bottom' === $which ) {
+			$counts = ( array ) wp_count_posts( $post_type );
+			unset( $counts[ 'auto-draft' ] );
+			$count  = array_sum( $counts );
+
+			if ( 0 < $count ) {
+				return;
+			}
+
+			$this->render_blank_state();
+
+			echo '<style type="text/css">#posts-filter .wp-list-table, #posts-filter .search-box, #posts-filter .tablenav.top, .tablenav.bottom .actions, .tablenav.bottom .tablenav-pages, .wrap .subsubsub:not(.asp-ssws-sub-sections)  { display: none; } #posts-filter .tablenav.bottom { height: auto; } </style>';
+		}
+	}
+
+	/**
+	 * Render blank state.
+	 */
+	protected function render_blank_state() {
+		echo '<div class="woocommerce-BlankState">';
+		echo '<h2 class="woocommerce-BlankState-message">' . esc_html__( 'Subscribe plans are a way to create flexible subscribe plans for your customers. They will appear here once created.', 'subscribe-and-save-for-woocommerce-subscriptions' ) . '</h2>';
+		echo '<a class="woocommerce-BlankState-cta button-primary button" href="' . esc_url( admin_url( 'post-new.php?post_type=asp_subscribe_plan' ) ) . '">' . esc_html__( 'Create your first subscribe plan', 'subscribe-and-save-for-woocommerce-subscriptions' ) . '</a>';
+		echo '</div>';
+	}
+
+	/**
+	 * Define which columns to show on this screen.
+	 *
+	 * @param array $columns Existing columns.
+	 * @return array
+	 */
+	public function define_columns( $columns ) {
+		$columns = array(
+			'cb'         => $columns[ 'cb' ],
+			'name'       => __( 'Name', 'subscribe-and-save-for-woocommerce-subscriptions' ),
+			'status'     => __( 'Status', 'subscribe-and-save-for-woocommerce-subscriptions' ),
+			'slug'       => __( 'Slug', 'subscribe-and-save-for-woocommerce-subscriptions' ),
+			'definition' => __( 'Type', 'subscribe-and-save-for-woocommerce-subscriptions' ),
+			'date'       => __( 'Date', 'subscribe-and-save-for-woocommerce-subscriptions' ),
+		);
+
+		return $columns;
+	}
+
+	/**
+	 * Define which columns are sortable.
+	 *
+	 * @param array $columns Existing columns.
+	 * @return array
+	 */
+	public function define_sortable_columns( $columns ) {
+		$custom = array(
+			'name' => 'post_title',
+		);
+
+		return wp_parse_args( $custom, $columns );
+	}
+
+	/**
+	 * Define bulk actions.
+	 *
+	 * @param array $actions Existing actions.
+	 * @return array
+	 */
+	public function define_bulk_actions( $actions ) {
+		unset( $actions[ 'edit' ] );
+		return $actions;
+	}
+
+	/**
+	 * Get row actions to show in the list table.
+	 *
+	 * @param array   $actions Array of actions.
+	 * @param WP_Post $post Current post object.
+	 * @return array
+	 */
+	public function get_row_actions( $actions, $post ) {
+		unset( $actions[ 'inline hide-if-no-js' ] );
+		return $actions;
+	}
+
+	/**
+	 * Handle any custom filters.
+	 *
+	 * @param array $query_vars Query vars.
+	 * @return array
+	 */
+	public function query_filters( $query_vars ) {
+		//Sorting
+		if ( empty( $query_vars[ 'orderby' ] ) ) {
+			$query_vars[ 'orderby' ] = 'menu_order';
+		}
+
+		if ( empty( $query_vars[ 'order' ] ) ) {
+			$query_vars[ 'order' ] = 'ASC';
+		}
+
+		return $query_vars;
+	}
+
+	/**
+	 * Render individual columns.
+	 *
+	 * @param string $column Column ID to render.
+	 * @param int    $post_id Post ID.
+	 */
+	public function render_columns( $column, $post_id ) {
+		$subscribe_plan = asp_ssws_get_subscribe_plan( $post_id );
+
+		switch ( $column ) {
+			case 'name':
+				printf( '<b><a href="%1$s">%2$s</a></b>', esc_url( $subscribe_plan->get_edit_subscribe_plan_url() ), wp_kses_post( $subscribe_plan->get_name() ) );
+				break;
+			case 'status':
+				/* translators: 1: status class 2: status name */
+				echo wp_kses_post( sprintf( '<mark class="asp-ssws-status %s"><span>%s</span></mark>', esc_attr( sanitize_html_class( 'status-' . $subscribe_plan->get_status() ) ), esc_html( asp_ssws_get_subscribe_plan_status_name( $subscribe_plan->get_status() ) ) ) );
+				break;
+			case 'slug':
+				echo wp_kses_post( $subscribe_plan->get_slug() );
+				break;
+			case 'definition':
+				$available_definitions = asp_ssws_get_subscribe_plan_definitions();
+				echo isset( $available_definitions[ $subscribe_plan->get_definition() ] ) ? wp_kses_post( $available_definitions[ $subscribe_plan->get_definition() ] ) : '';
+				break;
+		}
+	}
+}
+
+new ASP_SSWS_Admin_List_Table_Subscribe_Plans();

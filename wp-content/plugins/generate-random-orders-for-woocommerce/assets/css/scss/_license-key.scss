@@ -1,0 +1,58 @@
+/*!etm exclude start */
+
+#divi_custom_css_selectors_license_key_form {
+    border: solid 1px #e0dfdf;
+    max-width: 900px;
+    margin: 20px auto 30px;
+
+@media (min-width: 900px) {
+    display: flex;
+
+    #divi_custom_css_selectors_license_key_form_logo_container {
+        flex: initial;
+        width: 300px;
+    }
+    #divi_custom_css_selectors_license_key_form_body {
+        flex: 1;
+    }
+}
+
+#divi_custom_css_selectors_license_key_form_logo_container {
+    background-color: $dsMediumPurple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 175px;
+    padding: 0 25px;
+}
+
+#divi_custom_css_selectors_license_key_form_body {
+    padding: 25px;
+
+#divi_custom_css_selectors_license_key_form_title {
+    font-size: 25px;
+    font-weight: bold;
+    color: $dsMediumPurple;
+    margin-bottom:10px;
+}
+}
+
+input[type=submit] {
+    padding: 10px 30px;
+}
+
+input[type="password"] {
+    width: 100%;
+}
+
+@media (min-width: $breakSmall) {
+    label span {
+        padding-top: 7px;
+    }
+}
+}
+
+#divi_custom_css_selectors_license_key_form_error {
+    @include notificationMixin('error');
+}
+/*!etm exclude end */

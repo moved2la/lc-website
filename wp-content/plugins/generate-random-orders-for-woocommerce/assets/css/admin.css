@@ -1,0 +1,554 @@
+.wpz-woocommerce-random-orders-settings-box {
+  position: relative; }
+  .wpz-woocommerce-random-orders-settings-box:not(:last-child) {
+    margin-bottom: 30px; }
+  @media (min-width: 782px) {
+    .wpz-woocommerce-random-orders-settings-box {
+      padding-right: 35px; } }
+
+/*  Settings container */
+#wpz-woocommerce-random-orders-settings-container {
+  margin: 20px 15px; }
+
+/*  Settings window */
+#wpz-woocommerce-random-orders-settings {
+  border-radius: 29px;
+  font-weight: normal;
+  -webkit-transition: all ease-in .3s;
+  transition: all ease-in .3s;
+  font-size: 16px;
+  line-height: 1.6;
+  font-family: "Montserrat", sans-serif; }
+  #wpz-woocommerce-random-orders-settings p > a {
+    font-weight: 600;
+    color: #FD925C; }
+  #wpz-woocommerce-random-orders-settings p {
+    font-size: 14px; }
+  #wpz-woocommerce-random-orders-settings h1, #wpz-woocommerce-random-orders-settings h2, #wpz-woocommerce-random-orders-settings h3, #wpz-woocommerce-random-orders-settings h4, #wpz-woocommerce-random-orders-settings h5, #wpz-woocommerce-random-orders-settings h6 {
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.2; }
+  #wpz-woocommerce-random-orders-settings form > input[type=submit] {
+    font-weight: 600;
+    border-radius: 29px;
+    border: 2px solid;
+    cursor: pointer;
+    height: auto;
+    box-shadow: none !important;
+    color: #fff !important;
+    background-color: #FD925C !important;
+    border-color: #FD925C !important;
+    padding: 10px 25px !important;
+    font-size: 17px;
+    margin: 25px 0 0; }
+    #wpz-woocommerce-random-orders-settings form > input[type=submit]:hover {
+      background-color: #f86e31 !important;
+      border-color: #f86e31 !important; }
+
+#wpz-woocommerce-random-orders-settings-account {
+  padding: 20px; }
+
+/* Settings tab content */
+#wpz-woocommerce-random-orders-settings-tabs-content {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  padding: 20px 20px 34px;
+  min-height: 300px; }
+  #wpz-woocommerce-random-orders-settings-tabs-content > div {
+    display: none; }
+  #wpz-woocommerce-random-orders-settings-tabs-content > .wpz-woocommerce-random-orders-settings-active {
+    display: block; }
+
+/*
+ * 11.2 - Settings Header
+ */
+#wpz-woocommerce-random-orders-settings-header {
+  background: #6A39E4;
+  position: relative;
+  padding: 16px 23px;
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 16px 16px 0 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600; }
+  #wpz-woocommerce-random-orders-settings-header .wpz-woocommerce-random-orders-settings-logo {
+    display: flex;
+    align-items: center; }
+    #wpz-woocommerce-random-orders-settings-header .wpz-woocommerce-random-orders-settings-logo img {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+      width: 35px; }
+    #wpz-woocommerce-random-orders-settings-header .wpz-woocommerce-random-orders-settings-logo h1 {
+      margin: 0;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      display: inline-block;
+      vertical-align: middle; }
+  @media (max-width: 660px) {
+    #wpz-woocommerce-random-orders-settings-header {
+      justify-content: center; }
+      #wpz-woocommerce-random-orders-settings-header .wpz-woocommerce-random-orders-settings-header-links {
+        width: 100%;
+        margin: 0 auto 8px;
+        text-align: center; }
+      #wpz-woocommerce-random-orders-settings-header #wpz-woocommerce-random-orders-settings-header-links {
+        text-align: center; } }
+
+#wpz-woocommerce-random-orders-settings-header-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 20px;
+  padding: 8px 16px 8px 25px;
+  display: inline-block;
+  border-radius: 4px;
+  background-size: 14px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  box-shadow: none; }
+  #wpz-woocommerce-random-orders-settings-header-links a:hover {
+    opacity: 1;
+    color: #fff; }
+  #wpz-woocommerce-random-orders-settings-header-links a.active {
+    opacity: 1;
+    background-color: #5f9ea0; }
+
+#wpz-woocommerce-random-orders-settings-header-link-settings {
+  background-image: url(../images/settings.svg);
+  display: none !important; }
+
+#wpz-woocommerce-random-orders-settings-header-link-support {
+  background-image: url(../images/help.svg); }
+
+/*
+ * 11.1 - Settings Tabs
+ */
+#wpz-woocommerce-random-orders-settings #wpz-woocommerce-random-orders-settings-tabs {
+  margin: 0;
+  background-color: #6A39E4;
+  overflow: hidden;
+  border-top: 1px solid #8251FE; }
+  #wpz-woocommerce-random-orders-settings #wpz-woocommerce-random-orders-settings-tabs li {
+    margin: 0;
+    float: left;
+    display: inline-block;
+    font-weight: 500;
+    font-size: 12px; }
+    @media (max-width: 600px) {
+      #wpz-woocommerce-random-orders-settings #wpz-woocommerce-random-orders-settings-tabs li {
+        float: none;
+        display: block;
+        font-size: 12px; } }
+    #wpz-woocommerce-random-orders-settings #wpz-woocommerce-random-orders-settings-tabs li a {
+      background-color: transparent;
+      color: rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      padding: 13px 16px !important;
+      outline: none;
+      text-decoration: none;
+      -webkit-transition: all ease-in 0.3s;
+      transition: all ease-in 0.3s;
+      box-shadow: none;
+      display: block;
+      letter-spacing: 0.29px; }
+      #wpz-woocommerce-random-orders-settings #wpz-woocommerce-random-orders-settings-tabs li a:hover {
+        color: #fff;
+        background-color: #6A39E4; }
+    #wpz-woocommerce-random-orders-settings #wpz-woocommerce-random-orders-settings-tabs li.wpz-woocommerce-random-orders-settings-active a {
+      opacity: 1;
+      background-color: #8251FE;
+      color: #fff; }
+    #wpz-woocommerce-random-orders-settings #wpz-woocommerce-random-orders-settings-tabs li.wpz-woocommerce-random-orders-settings-disabled a {
+      cursor: default;
+      color: #7047ff; }
+      #wpz-woocommerce-random-orders-settings #wpz-woocommerce-random-orders-settings-tabs li.wpz-woocommerce-random-orders-settings-disabled a:hover {
+        color: #7047ff;
+        background-color: transparent; }
+
+/* Settings tab content */
+#wpz-woocommerce-random-orders-settings-tabs-content {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+  background-color: #F9FAFB;
+  padding: 45px 28px 45px;
+  min-height: 300px;
+  border-radius: 0 0 16px 16px; }
+  #wpz-woocommerce-random-orders-settings-tabs-content p {
+    margin-bottom: 35px; }
+  #wpz-woocommerce-random-orders-settings-tabs-content > div {
+    display: none; }
+  #wpz-woocommerce-random-orders-settings-tabs-content > .wpz-ai-image-lab-settings-active {
+    display: block; }
+
+#wpz-woocommerce-random-orders-settings label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #3a3a3a; }
+#wpz-woocommerce-random-orders-settings input[type="text"], #wpz-woocommerce-random-orders-settings input[type="password"], #wpz-woocommerce-random-orders-settings input[type="number"], #wpz-woocommerce-random-orders-settings select {
+  padding: 0 12px !important;
+  box-shadow: none !important;
+  background-color: #fff !important;
+  font-size: 12px;
+  font-weight: normal;
+  font-family: 'Montserrat', sans-serif;
+  color: #3a3a3a;
+  border-radius: 3px;
+  border: 1px solid #dae0e3;
+  height: 41px;
+  line-height: 41px !important;
+  width: 100%;
+  display: block;
+  margin: 0; }
+  #wpz-woocommerce-random-orders-settings input[type="text"]:focus, #wpz-woocommerce-random-orders-settings input[type="password"]:focus, #wpz-woocommerce-random-orders-settings input[type="number"]:focus, #wpz-woocommerce-random-orders-settings select:focus {
+    color: #3a3a3a;
+    border-color: #dae0e3; }
+  #wpz-woocommerce-random-orders-settings input[type="text"][disabled], #wpz-woocommerce-random-orders-settings input[type="password"][disabled], #wpz-woocommerce-random-orders-settings input[type="number"][disabled], #wpz-woocommerce-random-orders-settings select[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed; }
+  #wpz-woocommerce-random-orders-settings input[type="text"]:focus, #wpz-woocommerce-random-orders-settings input[type="password"]:focus, #wpz-woocommerce-random-orders-settings input[type="number"]:focus, #wpz-woocommerce-random-orders-settings select:focus {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05) !important; }
+#wpz-woocommerce-random-orders-settings input[type=checkbox] {
+  -webkit-appearance: none;
+  border: 1px solid #dae0e3;
+  border-radius: 7px;
+  box-shadow: none;
+  height: 25px !important;
+  width: 25px !important;
+  margin: 0 14px 0 0;
+  vertical-align: middle; }
+  #wpz-woocommerce-random-orders-settings input[type=checkbox]:before {
+    margin: 0 !important;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    float: none;
+    text-align: center;
+    padding-left: 0; }
+  #wpz-woocommerce-random-orders-settings input[type=checkbox]:hover {
+    outline: none !important;
+    border: 2px solid #6a39e4; }
+  #wpz-woocommerce-random-orders-settings input[type=checkbox]:checked {
+    background-color: #6a39e4;
+    border: none; }
+    #wpz-woocommerce-random-orders-settings input[type=checkbox]:checked:before {
+      content: url("../images/svg/check-checked.svg"); }
+  #wpz-woocommerce-random-orders-settings input[type=checkbox][disabled] {
+    opacity: .3 !important;
+    cursor: not-allowed !important; }
+#wpz-woocommerce-random-orders-settings input[type=radio] {
+  background-color: #fff !important;
+  box-shadow: inset 0 0 0 1px #949fa7 !important;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font: inherit;
+  height: 26px !important;
+  width: 26px !important;
+  margin: 0 14px 0 0;
+  outline: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  padding: 0 !important; }
+  #wpz-woocommerce-random-orders-settings input[type=radio]:hover {
+    box-shadow: inset 0 0 0 2px #6a39e4 !important;
+    outline: none !important; }
+  #wpz-woocommerce-random-orders-settings input[type=radio]:checked {
+    background-color: #6a39e4 !important;
+    box-shadow: inset 0 0 0 4px #fff !important;
+    border: 2px solid #6a39e4;
+    -webkit-transition: background .15s, box-shadow .1s;
+    transition: background .15s, box-shadow .1s; }
+    #wpz-woocommerce-random-orders-settings input[type=radio]:checked:before {
+      display: none !important; }
+  #wpz-woocommerce-random-orders-settings input[type=radio][disabled] {
+    background-color: #949fa7 !important;
+    opacity: .3 !important;
+    cursor: not-allowed !important; }
+#wpz-woocommerce-random-orders-settings input[type="submit"] {
+  line-height: 1.4;
+  cursor: pointer;
+  height: auto !important;
+  min-height: auto !important;
+  outline: none;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  border-radius: 29px;
+  border: 1px solid;
+  box-shadow: none !important;
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px 20px !important;
+  min-width: 120px;
+  color: #fff !important;
+  background-color: #9068FF !important;
+  border-color: #9068FF !important; }
+  #wpz-woocommerce-random-orders-settings input[type="submit"]:focus {
+    box-shadow: none; }
+  #wpz-woocommerce-random-orders-settings input[type="submit"][disabled] {
+    cursor: not-allowed;
+    color: #8f8e8f !important;
+    background: #E7EAEC !important;
+    border-color: #E7EAEC !important; }
+    #wpz-woocommerce-random-orders-settings input[type="submit"][disabled]:hover {
+      color: #8f8e8f !important;
+      background: #E7EAEC !important;
+      border-color: #E7EAEC !important; }
+  #wpz-woocommerce-random-orders-settings input[type="submit"]:hover {
+    padding: 10px 20px !important; }
+  #wpz-woocommerce-random-orders-settings input[type="submit"]:focus {
+    color: #fff !important;
+    background-color: #9068FF !important;
+    border-color: #9068FF !important; }
+  #wpz-woocommerce-random-orders-settings input[type="submit"]:hover {
+    color: #fff;
+    background-color: #340F96 !important;
+    border-color: #340F96 !important; }
+#wpz-woocommerce-random-orders-settings .wpz-form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 250px));
+  align-items: center; }
+  #wpz-woocommerce-random-orders-settings .wpz-form-row:last-of-type {
+    margin-bottom: 10px; }
+  #wpz-woocommerce-random-orders-settings .wpz-form-row h4 {
+    margin: 14px 0;
+    padding-bottom: 0;
+    font-size: 12px;
+    color: #3a3a3a;
+    font-weight: 600; }
+  #wpz-woocommerce-random-orders-settings .wpz-form-row select {
+    max-width: unset; }
+
+#wpz-woocommerce-random-orders-settings {
+  margin-bottom: 50px; }
+
+#wpz-woocommerce-random-orders-settings {
+  color: #3D3B38;
+  font-family: "Montserrat", sans-serif;
+  font-weight: #3D3B38;
+  line-height: 1.7;
+  font-size: 12px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+  #wpz-woocommerce-random-orders-settings h1, #wpz-woocommerce-random-orders-settings h2, #wpz-woocommerce-random-orders-settings h3, #wpz-woocommerce-random-orders-settings h4, #wpz-woocommerce-random-orders-settings h5, #wpz-woocommerce-random-orders-settings h6 {
+    color: #3D3B38;
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.7;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 1em; }
+  #wpz-woocommerce-random-orders-settings h1 {
+    font-size: 20px; }
+    @media (max-width: 960px) {
+      #wpz-woocommerce-random-orders-settings h1 {
+        font-size: 20px; } }
+    @media (max-width: 782px) {
+      #wpz-woocommerce-random-orders-settings h1 {
+        font-size: 20px; } }
+  #wpz-woocommerce-random-orders-settings h2 {
+    font-size: 17px; }
+    @media (max-width: 960px) {
+      #wpz-woocommerce-random-orders-settings h2 {
+        font-size: 16px; } }
+    @media (max-width: 782px) {
+      #wpz-woocommerce-random-orders-settings h2 {
+        font-size: 16px; } }
+  #wpz-woocommerce-random-orders-settings h3 {
+    font-size: 16px; }
+    @media (max-width: 960px) {
+      #wpz-woocommerce-random-orders-settings h3 {
+        font-size: 15px; } }
+    @media (max-width: 782px) {
+      #wpz-woocommerce-random-orders-settings h3 {
+        font-size: 13px; } }
+  #wpz-woocommerce-random-orders-settings h4 {
+    font-size: 14px; }
+    @media (max-width: 960px) {
+      #wpz-woocommerce-random-orders-settings h4 {
+        font-size: 13px; } }
+    @media (max-width: 782px) {
+      #wpz-woocommerce-random-orders-settings h4 {
+        font-size: 13px; } }
+  #wpz-woocommerce-random-orders-settings h5 {
+    font-size: 12px; }
+    @media (max-width: 960px) {
+      #wpz-woocommerce-random-orders-settings h5 {
+        font-size: 12px; } }
+    @media (max-width: 782px) {
+      #wpz-woocommerce-random-orders-settings h5 {
+        font-size: 12px; } }
+  #wpz-woocommerce-random-orders-settings img {
+    max-width: 100%; }
+  #wpz-woocommerce-random-orders-settings p {
+    margin-top: 0;
+    margin-bottom: 1em;
+    padding-bottom: 0;
+    font-weight: #3D3B38;
+    font-size: 12px;
+    line-height: 2em; }
+    #wpz-woocommerce-random-orders-settings p:last-of-type {
+      margin-bottom: 0; }
+  #wpz-woocommerce-random-orders-settings a {
+    color: #FD925C;
+    text-decoration: none;
+    box-shadow: none;
+    outline: none; }
+    #wpz-woocommerce-random-orders-settings a:focus {
+      outline: none;
+      box-shadow: none; }
+    #wpz-woocommerce-random-orders-settings a:hover, #wpz-woocommerce-random-orders-settings a:focus {
+      color: #f86e31; }
+  #wpz-woocommerce-random-orders-settings hr.wpz-solid {
+    border-top: #e7ebee 1px solid;
+    margin: 30px 0; }
+  #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button, #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-primary, #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-secondary {
+    line-height: 1.4;
+    cursor: pointer;
+    height: auto !important;
+    min-height: auto !important;
+    outline: none;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    border-radius: 29px;
+    border: 1px solid;
+    box-shadow: none !important;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 20px !important;
+    min-width: 120px; }
+    #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button:focus, #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-primary:focus, #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-secondary:focus {
+      box-shadow: none; }
+    #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button[disabled], #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-primary[disabled], #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-secondary[disabled] {
+      cursor: not-allowed;
+      color: #8f8e8f !important;
+      background: #E7EAEC !important;
+      border-color: #E7EAEC !important; }
+      #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button[disabled]:hover, #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-primary[disabled]:hover, #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-secondary[disabled]:hover {
+        color: #8f8e8f !important;
+        background: #E7EAEC !important;
+        border-color: #E7EAEC !important; }
+    #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button:hover, #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-primary:hover, #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-secondary:hover {
+      padding: 10px 20px !important; }
+  #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button.wpz-woocommerce-random-orders-button-large {
+    font-size: 14px;
+    padding: 15px 25px !important;
+    min-width: 140px; }
+    #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button.wpz-woocommerce-random-orders-button-large:hover {
+      padding: 15px 25px !important; }
+  #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button.wpz-woocommerce-random-orders-button-small {
+    font-size: 12px;
+    padding: 7px 13px !important;
+    min-width: 108px; }
+    #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button.wpz-woocommerce-random-orders-button-small:hover {
+      padding: 7px 13px !important; }
+  #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button, #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-primary {
+    color: #fff !important;
+    background-color: #FD925C !important;
+    border-color: #FD925C !important; }
+    #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button:focus, #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-primary:focus {
+      color: #fff !important;
+      background-color: #FD925C !important;
+      border-color: #FD925C !important; }
+    #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button:hover, #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-primary:hover {
+      color: #fff;
+      background-color: #FD925C !important;
+      border-color: #FD925C !important; }
+  #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-secondary {
+    color: #FD925C !important;
+    background-color: transparent !important;
+    border-color: #FD925C !important; }
+    #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-secondary:focus {
+      color: #fff !important;
+      background-color: #FD925C !important;
+      border-color: #FD925C !important; }
+    #wpz-woocommerce-random-orders-settings .wpz-woocommerce-random-orders-button-secondary:hover {
+      color: #fff !important;
+      background-color: #FD925C !important;
+      border-color: #FD925C !important; }
+  #wpz-woocommerce-random-orders-settings p.mb-20, #wpz-woocommerce-random-orders-settings .mb-20 {
+    margin-bottom: 20px; }
+  #wpz-woocommerce-random-orders-settings .mb-50 {
+    margin-bottom: 50px; }
+  #wpz-woocommerce-random-orders-settings a {
+    font-weight: 600;
+    text-decoration: underline; }
+  #wpz-woocommerce-random-orders-settings ul {
+    margin-top: 0;
+    margin-bottom: 35px;
+    font-size: 12px;
+    list-style: disc inside;
+    margin-left: 20px; }
+
+#wpz-woocommerce-random-orders-settings-container {
+  width: 98%;
+  margin: 20px auto; }
+  @media (max-width: 782px) {
+    #wpz-woocommerce-random-orders-settings-container {
+      width: 90%; } }
+
+#wpz-ai-images-settings-footnote {
+  margin-top: 1em;
+  text-align: center; }
+  #wpz-ai-images-settings-footnote small {
+    font-size: 11px; }
+
+p#wpz-woocommerce-random-orders-settings-connected-notification {
+  background-color: #5cfd8a;
+  margin: 0;
+  padding: 10px 15px;
+  text-align: left; }
+
+#wpz-ai-images-video {
+  position: relative;
+  margin-bottom: 30px; }
+  #wpz-ai-images-video img {
+    display: block; }
+  #wpz-ai-images-video small {
+    display: block;
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    font-size: 11px; }
+  #wpz-ai-images-video #wpz-ai-images-video-overlay {
+    background-color: #000000aa;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    #wpz-ai-images-video #wpz-ai-images-video-overlay a {
+      display: block;
+      overflow: hidden;
+      width: 0;
+      height: 0;
+      border-left: 50px solid #fff;
+      border-top: 25px solid #ffffff00;
+      border-bottom: 25px solid #ffffff00; }
+      @media (min-width: 768px) {
+        #wpz-ai-images-video #wpz-ai-images-video-overlay a {
+          border-left: 100px solid #fff;
+          border-top: 50px solid #ffffff00;
+          border-bottom: 50px solid #ffffff00; } }
+      #wpz-ai-images-video #wpz-ai-images-video-overlay a:hover {
+        border-left-color: #ffffff99; }
+
+#wpz-random-orders-progress {
+  margin-top: 40px;
+  inline-size: 350px;
+  display: none; }
+
+/*# sourceMappingURL=admin.css.map */

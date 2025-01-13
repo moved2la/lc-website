@@ -1,0 +1,14 @@
+.asp-ssws-cart-subscribe-form-wrapper__subscribe-plan-options .wc-block-components-totals-item__value,
+.asp-ssws-cart-subscribe-form-wrapper__subscribe-custom-plan-options .wc-block-components-totals-item__value,
+.asp-ssws-cart-subscribe-form-wrapper__subscribe-price-string .wc-block-components-totals-item__value,
+.asp-ssws-cart-subscribe-form-wrapper__cart-rule-description .wc-block-components-totals-item__value{width: 100%;font-weight: normal;white-space: normal;}
+.asp-ssws-cart-subscribe-form-wrapper__cart-rule-description .asp-ssws-cart-rule-description{margin-bottom: 10px;}
+
+.asp-ssws-cart-subscribe-form-wrapper__subscribe-plan-options select,
+.asp-ssws-cart-subscribe-form-wrapper__subscribe-custom-plan-options select{width: 100%;}
+
+.asp-ssws-cart-subscribe-form-wrapper__subscribe-plan-options .wc-block-components-totals-item__description{margin-top: 5px;}
+.asp-ssws-cart-subscribe-form-wrapper__subscribe-plan-options__subscribe-discount{color: #00a32a;}
+
+.asp-ssws-subscribe-component--disabled{opacity:.6}
+.asp-ssws-cart-subscribe-form-wrapper select{padding: 0.3em;cursor:pointer;}

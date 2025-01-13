@@ -1,0 +1,92 @@
+#asp_ssws_subscribe_plan_data,#asp_ssws_subscribe_rule_data{background:#fff;width: 100%;}
+#asp_ssws_subscribe_plan_data .hndle .plan-data-hidden-box{display:inline;line-height:inherit;vertical-align:baseline}
+#asp_ssws_subscribe_plan_data .hndle label{padding-right:1em;font-size:12px;vertical-align:baseline}
+#asp_ssws_subscribe_plan_data .hndle label:first-child{margin-right:1em;border-right:1px solid #dfdfdf;}
+#asp_ssws_subscribe_plan_data .hndle input,#asp_ssws_subscribe_plan_data .hndle select{margin-top:-3px 0 0;vertical-align:middle;}
+#asp_ssws_subscribe_plan_data .inside,#asp_ssws_subscribe_rule_data .inside{margin:0;padding:0;}
+.wc-wp-version-gte-55 #asp_ssws_subscribe_plan_data .hndle{display:block;line-height:24px;}
+#asp_ssws_subscribe_plan_data .panel-wrap {background: #fafafa;width:100%;}
+
+#asp_ssws_subscribe_plan_actions select,
+#asp_ssws_subscribe_rule_actions select{width: 100%;}
+
+#postdivrich.asp-ssws-rule-description{margin-top: 20px;margin-bottom: 0px;}
+#postdivrich.asp-ssws-rule-description .wp-editor-tools{background: none;padding-top: 0px;width: 100%;}
+#postdivrich.asp-ssws-rule-description .wp-editor-wrap{margin: 6px 12px 0;}
+#postdivrich.asp-ssws-rule-description #post-status-info{margin: 0px 12px 12px;width: calc(100% - 24px);}
+
+/* Edit Product/Subscriptions Page */
+#asp_ssws_subscribe_plan_data .wrap{margin:0;}
+#asp_ssws_subscribe_plan_data .wcs_hidden_label {display: none !important;}
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_fields .wrap,
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_trial_length_field .wrap,
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_payment_sync_date_day_field .wrap {display: block;width: 50%;}
+@media only screen and ( max-width: 1280px ) {
+	#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_fields .wrap,
+	#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_trial_length_field .wrap,
+	#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_payment_sync_date_day_field .wrap {width: 80%;}
+}
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_fields .wrap select,
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_trial_length_field .wrap input,
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_trial_length_field .wrap select,
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_payment_sync_date_day_field .wrap input,
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_payment_sync_date_day_field .wrap select {width: 48%;margin-right: 3.8%;}
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_fields .wrap .last,
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_trial_length_field .wrap .last,
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_payment_sync_date_day_field .wrap .last {margin-right: 0 !important;}
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel .subscription_sync_week_month select.wc_input_subscription_payment_sync {min-width: 180px;}
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_length_field,._subscription_interval_length_field > div{display:block;}
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_length_field > div:last-child{width:80%;display:inline-block;}
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_length_field table{width:100%;margin:10px;}
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_length_field table tbody tr td:nth-child(2) div label,
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_length_field table tbody tr td:nth-child(2) div select,
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_length_field table tbody tr td:nth-child(3) div label,
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_length_field table tbody tr td:nth-child(3) div select{margin: auto;float: none;display: inline-block !important;width: 50% !important;}
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_length_field table tbody tr td:nth-child(2) div:last-child,
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_length_field table tbody tr td:nth-child(3) div:last-child{margin-top:10px;}
+#asp_ssws_subscribe_plan_data .woocommerce_options_panel ._subscription_interval_length_field label{margin: 10px;width: 12.5%;}
+
+#asp_ssws_subscribe_rule_data .panel-wrap {background: #fff;float:left;width:100%;}
+#asp_ssws_subscribe_rule_data .panel-wrap .asp_ssws_subscribe_rule_data_tabs {position: relative;float:left;margin: 0;width: 20%;padding: 0 0 10px;line-height: 1em;box-sizing: border-box;background: #fafafa;}
+#asp_ssws_subscribe_rule_data .panel-wrap .asp_ssws_subscribe_rule_data_tabs li{margin: 0;list-style: none;}
+#asp_ssws_subscribe_rule_data .panel-wrap .asp_ssws_subscribe_rule_data_tabs li.active {position: relative;border-right: 1px solid #fff;z-index: 111;box-shadow: none;outline: none;}
+#asp_ssws_subscribe_rule_data .panel-wrap .asp_ssws_subscribe_rule_data_tabs li a {display: block;padding: 10px;text-decoration: none;box-shadow: none;outline: none;line-height:20px !important;border-bottom:1px solid #eee;border-right:1px solid #eee;}
+#asp_ssws_subscribe_rule_data .panel-wrap .asp_ssws_subscribe_rule_data_tabs li.active a {background: #eee;}
+#asp_ssws_subscribe_rule_data .panel-wrap .asp_ssws_subscribe_rule_data_tabs li a:before{font-size:14px;font-family: dashicons;margin-right: 5px;line-height: 1;}
+#asp_ssws_subscribe_rule_data .panel-wrap .asp_ssws_subscribe_rule_data_tabs .general_options a:before{content: "\f513";}
+#asp_ssws_subscribe_rule_data .panel-wrap .asp_ssws_subscribe_rule_data_tabs .criteria_options a:before{content: "\f111";}
+
+#asp_ssws_subscribe_rule_data .options_group{border: 3px solid #eee;margin: 5px;padding: 0;}
+#asp_ssws_subscribe_rule_data .asp-ssws-form-field{width: 100%;margin:2px;display:inline-grid;}
+#asp_ssws_subscribe_rule_data .asp-ssws-form-field label{font-weight: 600;}
+#asp_ssws_subscribe_rule_data select,
+#asp_ssws_subscribe_rule_data input{width: 80%;}
+#asp_ssws_subscribe_rule_data .select2.select2-container{width: 80% !important;}
+#asp_ssws_subscribe_rule_data label{float:left;margin: 0px;width: 100%;}
+
+#asp_ssws_subscribe_rule_data .asp-ssws-fieldset-duration{float:left;width: 100% !important;}
+#asp_ssws_subscribe_rule_data .asp-ssws-fieldset-duration input{width: 30%;}
+#asp_ssws_subscribe_rule_data .asp-ssws-fieldset-duration select{margin-left: 1%;width: 69%;}
+
+#asp_ssws_subscribe_rule_data .asp-ssws-fieldset-daterange{float:left;width: 100% !important;}
+#asp_ssws_subscribe_rule_data .asp-ssws-fieldset-daterange span{float:left;width: 100% !important;}
+#asp_ssws_subscribe_rule_data .asp-ssws-fieldset-daterange .asp-ssws-from-date-picker,
+#asp_ssws_subscribe_rule_data .asp-ssws-fieldset-daterange .asp-ssws-to-date-picker{width: 100%;}
+
+#asp_ssws_subscribe_rule_data #general_rule_data,
+#asp_ssws_subscribe_rule_data #criteria_rule_data{display: none;float:left;width: 80%;background: #fff;}
+
+#asp_ssws_subscribe_rule_data .asp-ssws-input,
+#asp_ssws_subscribe_rule_data .asp-ssws-select,
+#asp_ssws_subscribe_rule_data .asp-ssws-date-picker,
+#asp_ssws_subscribe_rule_data .select2-container,
+#asp_ssws_subscribe_rule_data .select2-search__field{width: 100% !important;margin:2px;}
+
+.asp-ssws-notice{border: 1px solid #2271b1;border-left-color: rgb(0, 163, 42);border-left-width: 1px;background: #fff;margin: 5px;padding: 0px;min-height: -21px;border-left-color: #2271b1;border-left-width: 3px;}
+.asp-ssws-notice p{margin: 8px;margin-left: 12px;font-size: 14px;}
+
+.asp-ssws-status{display: inline-flex;line-height: 2.5em;color: #777;background: #e5e5e5;border-radius: 4px;border-bottom: 1px solid rgba(0,0,0,.05);margin: -.25em 0;cursor: inherit !important;white-space: nowrap;max-width: 100%;}
+.asp-ssws-status > span{margin: 0 1em;overflow: hidden;text-overflow: ellipsis;}
+.asp-ssws-status.status-active{background: #c6e1c6;color: #5b841b;}
+.asp-ssws-status.status-inactive{background: #e5e5e5;color: #777;}
+.asp-ssws-not-clickable{opacity: 0.5;}
