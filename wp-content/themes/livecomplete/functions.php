@@ -647,6 +647,8 @@ function register_woof_sidebar()
 }
 // add_action('widgets_init', 'register_woof_sidebar');
 
+/* -------------- Enqueue Form Scripts -------------- */
+
 function enqueue_contact_form_scripts() {
 
     wp_enqueue_script(
@@ -689,6 +691,10 @@ function enqueue_newsletter_signup_scripts() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_newsletter_signup_scripts');
 
+/* -------------- Enqueue Form Scripts -------------- */
+
+/* -------------- Add favicon links to head -------------- */
+
 // Add favicon links to head
 function live_complete_add_favicon() {
     ?>
@@ -699,3 +705,44 @@ function live_complete_add_favicon() {
     <?php
 }
 add_action('wp_head', 'live_complete_add_favicon');
+
+/* -------------- Add favicon links to head -------------- */
+
+
+function live_complete_custom_login_logo() {
+    echo '<style type="text/css">
+        h1 a {
+            background-image: url(' . get_bloginfo('template_directory') . '/assets/image/livecomplete-logo.png) !important;
+            width: 320px;
+            height: 65px;
+            background-size: 320px 65px;
+        }
+    </style>';
+}
+add_action('login_head', 'live_complete_custom_login_logo');
+
+function live_complete_custom_login_logo_url() {
+    return home_url();
+}
+add_filter('login_headerurl', 'live_complete_custom_login_logo_url');
+
+function live_complete_custom_login_logo_title() {
+    return 'LiveComplete';
+}
+add_filter('login_headertitle', 'live_complete_custom_login_logo_title');
+
+function livecomplete_login_css() {
+    echo '<style type="text/css">
+        body.login {
+            font-family: "Roboto", sans-serif;
+            background-color: #fff;
+        }
+        .login form {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 26px 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,.13);
+        }
+    </style>';
+}
+add_action('login_enqueue_scripts', 'livecomplete_login_css');
