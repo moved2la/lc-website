@@ -139,6 +139,11 @@ if (is_single() || ! have_posts()) {
         // Initially hide the filter button
         filterButton.style.display = 'none';
 
+        function closeModalFunction() {
+            filterModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
         function moveWidget() {
             if (!wcapfWidget || !modalBody || !originalParent) {
                 console.log('Missing required elements for widget move');
@@ -148,12 +153,12 @@ if (is_single() || ! have_posts()) {
             if (window.innerWidth < 768) {
                 if (wcapfWidget.parentNode !== modalBody) {
                     modalBody.appendChild(wcapfWidget);
-                    filterButton.style.display = 'flex'; // Show button on mobile
+                    filterButton.style.display = 'flex';
                 }
             } else {
                 if (wcapfWidget.parentNode !== originalParent) {
                     originalParent.appendChild(wcapfWidget);
-                    filterButton.style.display = 'none'; // Hide button on desktop
+                    filterButton.style.display = 'none';
                 }
             }
         }
@@ -169,15 +174,13 @@ if (is_single() || ! have_posts()) {
         // Close modal with close button
         closeModal.addEventListener('click', function(e) {
             e.stopPropagation();
-            filterModal.classList.remove('active');
-            document.body.style.overflow = '';
+            closeModalFunction();
         });
 
         // Close modal when clicking outside content
         filterModal.addEventListener('click', function(e) {
             if (!modalContent.contains(e.target)) {
-                filterModal.classList.remove('active');
-                document.body.style.overflow = '';
+                closeModalFunction();
             }
         });
 
@@ -186,6 +189,11 @@ if (is_single() || ! have_posts()) {
             if (e.target === modalContent) {
                 e.stopPropagation();
             }
+        });
+
+        // Listen for WCAPF update event
+        jQuery(document).on('wcapf_update', function() {
+            closeModalFunction();
         });
 
         // Move on resize

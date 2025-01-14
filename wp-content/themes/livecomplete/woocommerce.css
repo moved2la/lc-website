@@ -229,6 +229,10 @@ toolbar
 @media (max-width: 768px) {
     .woocommerce .woocommerce-ordering {
         flex-basis: 50%;
+        width: 100%;
+    }
+    .woocommerce .woocommerce-ordering .orderby {
+       width: 100%;
     }
 }
 
