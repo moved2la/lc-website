@@ -28,7 +28,7 @@ if (is_single() || ! have_posts()) {
         min-width: 156px;
         padding-left: 8px;
         padding-right: 8px;
-        float: right;
+        flex-basis: 50%;
     }
 
     .filter-button:hover,
