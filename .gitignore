@@ -2,5 +2,5 @@
 *.log
 
 # /wp-content/plugins/
-wflogs/
+/wp-content/wflogs/
 /wp-content/themes/twentytwentyone/
