@@ -125,17 +125,50 @@ if (is_single() || ! have_posts()) {
         const filterModal = document.querySelector('.filter-modal');
         const closeModal = document.querySelector('.close-modal');
         const modalContent = document.querySelector('.filter-modal-content');
+        const modalBody = document.querySelector('.filter-modal-body');
+        
+        const wcapfWidget = document.querySelector('.wcapf-form');
+        if (!wcapfWidget) {
+            console.log('WCAPF widget not found');
+            return;
+        }
+
+        const originalParent = wcapfWidget.parentNode;
+        let isMobile = window.innerWidth < 768;
+
+        // Initially hide the filter button
+        filterButton.style.display = 'none';
+
+        function moveWidget() {
+            if (!wcapfWidget || !modalBody || !originalParent) {
+                console.log('Missing required elements for widget move');
+                return;
+            }
+
+            if (window.innerWidth < 768) {
+                if (wcapfWidget.parentNode !== modalBody) {
+                    modalBody.appendChild(wcapfWidget);
+                    filterButton.style.display = 'flex'; // Show button on mobile
+                }
+            } else {
+                if (wcapfWidget.parentNode !== originalParent) {
+                    originalParent.appendChild(wcapfWidget);
+                    filterButton.style.display = 'none'; // Hide button on desktop
+                }
+            }
+        }
 
         // Open modal
         filterButton.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent event from bubbling
+            e.stopPropagation();
             filterModal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            moveWidget();
         });
 
         // Close modal with close button
         closeModal.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent event from bubbling
+            e.stopPropagation();
             filterModal.classList.remove('active');
             document.body.style.overflow = '';
         });
@@ -148,49 +181,12 @@ if (is_single() || ! have_posts()) {
             }
         });
 
-        // Prevent modal content clicks from closing modal
+        // Prevent modal content clicks from closing modal, but only when clicking the container itself
         modalContent.addEventListener('click', function(e) {
-            e.stopPropagation();
+            if (e.target === modalContent) {
+                e.stopPropagation();
+            }
         });
-
-        // Add these new functions for moving the filter form
-        const modalBody = document.querySelector('.filter-modal-body');
-        let isMobile = window.innerWidth < 768;
-        let originalForm = null;
-
-        function moveFilterForm() {
-            const filterForm = jQuery('.wcapf-form');
-            if (!filterForm.length || !modalBody) return;
-
-            if (window.innerWidth < 768) {
-                if (!originalForm) {
-                    // Store original form if we haven't already
-                    originalForm = filterForm;
-                    // Clone the form with all data and events
-                    const clonedForm = filterForm.clone(true, true);
-                    // Move the clone to modal
-                    jQuery(modalBody).append(clonedForm);
-                    // Hide original
-                    originalForm.hide();
-                }
-            } else {
-                if (originalForm) {
-                    // Show original form
-                    originalForm.show();
-                    // Remove cloned form from modal
-                    jQuery(modalBody).find('.wcapf-form').remove();
-                    originalForm = null;
-                }
-            }
-
-            // Ensure WCAPF is initialized
-            if (typeof jQuery.fn.wcapf !== 'undefined') {
-                jQuery(document).trigger('wcapf_update');
-            }
-        }
-
-        // Initial move
-        moveFilterForm();
 
         // Move on resize
         let resizeTimer;
@@ -201,9 +197,12 @@ if (is_single() || ! have_posts()) {
                 isMobile = window.innerWidth < 768;
                 
                 if (wasMobile !== isMobile) {
-                    moveFilterForm();
+                    moveWidget();
                 }
             }, 250);
         });
+
+        // Initial move and button visibility
+        moveWidget();
     });
 </script>

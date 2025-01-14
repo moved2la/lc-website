@@ -645,7 +645,7 @@ function register_woof_sidebar()
         'after_title'   => '</h2>',
     ));
 }
-// add_action('widgets_init', 'register_woof_sidebar');
+add_action('widgets_init', 'register_woof_sidebar');
 
 /* -------------- Enqueue Form Scripts -------------- */
 

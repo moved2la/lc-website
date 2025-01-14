@@ -331,7 +331,7 @@ if (! function_exists('live_complete_woocommerce_cart_link')) {
     function live_complete_product_filter_button() {
         get_template_part('woocommerce/product-filter');
     }
-    // add_action('woocommerce_before_shop_loop', 'live_complete_product_filter_button', 30);
+    add_action('woocommerce_before_shop_loop', 'live_complete_product_filter_button', 30);
 
 
     if (! function_exists('live_complete_header_toolbar_end')) {
