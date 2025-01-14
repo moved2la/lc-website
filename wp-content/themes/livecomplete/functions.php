@@ -631,21 +631,6 @@ function custom_my_account_menu_items($items)
 }
 add_filter('woocommerce_account_menu_items', 'custom_my_account_menu_items');
 
-/* -------------- Register sidebar for WooCommerce Ajax Product Filter -------------- */
-
-function register_woof_sidebar()
-{
-    register_sidebar(array(
-        'name'          => 'WOOF Sidebar',
-        'id'            => 'woof-sidebar',
-        'description'   => 'Widget area for WooCommerce Ajax Product Filter',
-        'before_widget' => '<div class="woof-widget">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2>',
-        'after_title'   => '</h2>',
-    ));
-}
-add_action('widgets_init', 'register_woof_sidebar');
 
 /* -------------- Enqueue Form Scripts -------------- */
 
