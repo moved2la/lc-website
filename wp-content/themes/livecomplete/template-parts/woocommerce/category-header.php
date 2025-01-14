@@ -237,7 +237,7 @@ $category = $args['category'];
     }
 
     .glide__bullet {
-        background-color: #fff;
+        background-color: #CCCCCC;
         width: 10px;
         height: 10px;
         border-radius: 50%;
@@ -247,13 +247,15 @@ $category = $args['category'];
         cursor: pointer;
     }
 
-    .glide__bullet:hover {
+    .glide__bullet:hover,
+    .glide__bullet:focus,
+    .glide__bullet:active {
         border: none;
         background: var(--secondary-btn-color-h);
     }
 
     .glide__bullet--active {
-        background-color: var(--secondary-btn-color);
+        background-color: var(--secondary-btn-color-h);
     }
 </style>
 
