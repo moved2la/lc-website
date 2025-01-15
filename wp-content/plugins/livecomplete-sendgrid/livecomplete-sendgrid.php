@@ -47,7 +47,7 @@ class LiveComplete_SendGrid
             add_action('woocommerce_email', array($this, 'disable_wc_emails'));
             
             // Add single hook for new orders
-            add_action('woocommerce_checkout_order_processed', array($this, 'trigger_new_order_email'));
+            add_action('woocommerce_new_order', array($this, 'trigger_new_order_email'), 10, 1);
         }
 
         // Initialize logging
@@ -61,6 +61,17 @@ class LiveComplete_SendGrid
 
         // Install database table
         register_activation_hook(__FILE__, array($this, 'install'));
+
+        // Run install on plugin load to ensure table is up to date
+        add_action('plugins_loaded', array($this, 'install'));
+
+        // Add order status change hooks
+        // add_action('woocommerce_order_status_pending_to_processing', array($this, 'trigger_new_order_email'));
+        // add_action('woocommerce_order_status_pending_to_completed', array($this, 'trigger_new_order_email'));
+        // add_action('woocommerce_order_status_pending_to_on-hold', array($this, 'trigger_new_order_email'));
+        // add_action('woocommerce_order_status_failed_to_processing', array($this, 'trigger_new_order_email'));
+        // add_action('woocommerce_order_status_failed_to_completed', array($this, 'trigger_new_order_email'));
+        // add_action('woocommerce_order_status_failed_to_on-hold', array($this, 'trigger_new_order_email'));
     }
 
     private function is_woocommerce_active() {
@@ -226,22 +237,22 @@ class LiveComplete_SendGrid
     private function render_history_tab() {
         $emails = $this->get_email_history();
         if (!empty($emails)): ?>
-            <table class="widefat">
+            <table class="widefat sendgrid-history-table">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Template Type</th>
-                        <th>Recipient</th>
-                        <th>Subject</th>
-                        <th>Status</th>
-                        <th>Details</th>
+                        <th class="column-date">Date</th>
+                        <th class="column-template">Template Type</th>
+                        <th class="column-recipient">Recipient</th>
+                        <th class="column-subject">Subject</th>
+                        <th class="column-status">Status</th>
+                        <th class="column-details">Details</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($emails as $email): ?>
                         <tr>
-                            <td><?php echo esc_html($email->timestamp); ?></td>
-                            <td>
+                            <td class="column-date"><?php echo esc_html($email->timestamp); ?></td>
+                            <td class="column-template">
                                 <?php 
                                 if (!empty($email->template_type)) {
                                     // Convert class name to readable format
@@ -253,14 +264,14 @@ class LiveComplete_SendGrid
                                 }
                                 ?>
                             </td>
-                            <td><?php echo esc_html($email->recipient); ?></td>
-                            <td><?php echo esc_html($email->subject); ?></td>
-                            <td>
+                            <td class="column-recipient"><?php echo esc_html($email->recipient); ?></td>
+                            <td class="column-subject"><?php echo esc_html($email->subject); ?></td>
+                            <td class="column-status">
                                 <span class="status-badge status-<?php echo esc_attr($email->status); ?>">
                                     <?php echo esc_html(ucfirst($email->status)); ?>
                                 </span>
                             </td>
-                            <td>
+                            <td class="column-details">
                                 <?php if (!empty($email->error)): ?>
                                     <pre><?php echo esc_html($email->error); ?></pre>
                                 <?php endif; ?>
@@ -271,11 +282,38 @@ class LiveComplete_SendGrid
             </table>
             
             <style>
+                .sendgrid-history-table {
+                    table-layout: fixed;
+                    width: 100%;
+                }
+                .sendgrid-history-table .column-date {
+                    width: 12%;
+                }
+                .sendgrid-history-table .column-template {
+                    width: 15%;
+                }
+                .sendgrid-history-table .column-recipient {
+                    width: 18%;
+                }
+                .sendgrid-history-table .column-subject {
+                    width: 25%;
+                }
+                .sendgrid-history-table .column-status {
+                    width: 10%;
+                }
+                .sendgrid-history-table .column-details {
+                    width: 20%;
+                }
+                .sendgrid-history-table td {
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
+                }
                 .status-badge {
                     padding: 3px 8px;
                     border-radius: 3px;
                     font-size: 12px;
                     font-weight: bold;
+                    display: inline-block;
                 }
                 .status-success {
                     background-color: #dff0d8;
@@ -288,39 +326,31 @@ class LiveComplete_SendGrid
                 .nav-tab-wrapper {
                     margin-bottom: 20px;
                 }
+                .sendgrid-history-table pre {
+                    white-space: pre-wrap;
+                    margin: 0;
+                    font-size: 12px;
+                }
             </style>
         <?php else: ?>
             <p>No emails have been sent yet.</p>
         <?php endif;
     }
 
-    public function send_via_sendgrid($args)
-    {
+    public function send_via_sendgrid($args) {
         if (empty($this->api_key)) {
             $this->log_error('SendGrid API key is not set');
             return false;
         }
 
-        // Debug log the incoming arguments
-        $this->log_error('WP Mail Request', array(
-            'args' => $args,
-            'backtrace' => wp_debug_backtrace_summary()
-        ));
-
         // Extract wp_mail arguments
-        $to = !empty($args['to']) ? $args['to'] : get_option('admin_email');
-        $subject = !empty($args['subject']) ? $args['subject'] : '';
-        $message = !empty($args['message']) ? $args['message'] : '';
-        $headers = !empty($args['headers']) ? $args['headers'] : array();
-        $attachments = !empty($args['attachments']) ? $args['attachments'] : array();
+        $to = $args['to'];
+        $subject = $args['subject'];
+        $message = $args['message'];
+        $headers = isset($args['headers']) ? $args['headers'] : array();
+        $attachments = isset($args['attachments']) ? $args['attachments'] : array();
 
-        // Log the recipient being used
-        $this->log_error('Using recipient', array(
-            'to' => $to,
-            'is_fallback' => empty($args['to'])
-        ));
-
-        // Format the 'to' parameter to handle arrays and strings
+        // Format the 'to' parameter
         $to_emails = array();
         if (is_array($to)) {
             foreach ($to as $recipient) {
@@ -330,27 +360,26 @@ class LiveComplete_SendGrid
             $to_emails[] = array('email' => $to);
         }
 
-        // Base email structure
+        // Base email structure with subject
         $email = array(
             'personalizations' => array(
                 array(
-                    'to' => $to_emails
+                    'to' => $to_emails,
+                    'subject' => $subject // Add subject to personalization
                 )
             ),
-            'subject' => $subject
+            'subject' => $subject // Add subject to root level
         );
 
         // Get template data from filter
         $template_data = array();
         if (has_filter('lcsg_template_data')) {
             $template_data = apply_filters('lcsg_template_data', array());
-            $this->log_error('Template data from filter', array(
-                'template_data' => $template_data
-            ));
         }
 
-        // Only use template if template_id is explicitly set in the data
+        // Check if we should use template
         if (!empty($template_data['template_id'])) {
+            // Use SendGrid template
             $email['template_id'] = $template_data['template_id'];
             
             // Remove template_id from dynamic data
@@ -360,53 +389,21 @@ class LiveComplete_SendGrid
             $email['personalizations'][0]['dynamic_template_data'] = $template_data;
 
             $this->log_error('Using SendGrid template', array(
-                'template_id' => $email['template_id']
+                'template_id' => $email['template_id'],
+                'template_data' => $template_data,
+                'subject' => $subject
             ));
         } else {
-            // No template ID provided, use default WooCommerce template content
+            // Use original wp_mail data
             $email['content'] = array(
                 array(
                     'type' => 'text/html',
                     'value' => $message
                 )
             );
-            $this->log_error('Using default WooCommerce template');
-        }
-
-        // Parse headers for from email and reply-to
-        $from_email = get_option('lcsg_from_email', get_option('admin_email'));
-        $from_name = get_option('lcsg_from_name', get_bloginfo('name'));
-        $reply_to_email = get_option('lcsg_reply_to_email', $from_email);
-
-        if (!empty($headers)) {
-            foreach ((array)$headers as $header) {
-                if (strpos($header, 'From:') === 0) {
-                    $from = str_replace('From:', '', $header);
-                    $from = trim($from);
-                    if (strpos($from, '<') !== false) {
-                        preg_match('/(.*?)\s*<(.+)>/', $from, $matches);
-                        $from_name = trim($matches[1]);
-                        $from_email = trim($matches[2]);
-                    } else {
-                        $from_email = $from;
-                    }
-                } elseif (strpos($header, 'Reply-To:') === 0) {
-                    $reply_to = str_replace('Reply-To:', '', $header);
-                    $reply_to_email = trim($reply_to);
-                }
-            }
-        }
-
-        $email['from'] = array(
-            'email' => $from_email,
-            'name' => $from_name
-        );
-
-        // Add reply-to if set
-        if (!empty($reply_to_email)) {
-            $email['reply_to'] = array(
-                'email' => $reply_to_email
-            );
+            $this->log_error('Using original wp_mail data', array(
+                'subject' => $subject
+            ));
         }
 
         // Send email via SendGrid API
@@ -556,6 +553,18 @@ class LiveComplete_SendGrid
         global $wpdb;
         $table_name = $wpdb->prefix . 'sendgrid_emails';
 
+        // Debug log the incoming data
+        $this->log_error('Attempting to log email status', array(
+            'data' => $data,
+            'table' => $table_name
+        ));
+
+        // Check if table exists, if not create it
+        if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+            $this->log_error('Table does not exist, creating now');
+            $this->install();
+        }
+
         // Get template type from template data
         $template_type = '';
         if (has_filter('lcsg_template_data')) {
@@ -579,24 +588,37 @@ class LiveComplete_SendGrid
         // Ensure error is properly formatted for database
         $error = is_array($data['error']) ? json_encode($data['error']) : $data['error'];
 
+        // Prepare insert data
+        $insert_data = array(
+            'recipient' => substr($recipient, 0, 1000),
+            'subject' => substr($data['subject'], 0, 1000),
+            'status' => $data['status'],
+            'error' => $error,
+            'template_type' => $data['template_type'],
+            'timestamp' => $data['timestamp']
+        );
+
+        // Debug log the insert data
+        $this->log_error('Attempting database insert', array(
+            'insert_data' => $insert_data
+        ));
+
         // Insert with sanitized values
-        $wpdb->insert(
+        $result = $wpdb->insert(
             $table_name,
-            array(
-                'recipient' => substr($recipient, 0, 1000),
-                'subject' => substr($data['subject'], 0, 1000),
-                'status' => $data['status'],
-                'error' => $error,
-                'template_type' => $data['template_type'],
-                'timestamp' => $data['timestamp']
-            ),
+            $insert_data,
             array('%s', '%s', '%s', '%s', '%s', '%s')
         );
 
-        if ($wpdb->last_error) {
+        if ($result === false) {
             $this->log_error('Database error while logging email status', array(
                 'error' => $wpdb->last_error,
-                'data' => $data
+                'data' => $data,
+                'insert_data' => $insert_data
+            ));
+        } else {
+            $this->log_error('Successfully logged email status', array(
+                'insert_id' => $wpdb->insert_id
             ));
         }
     }
@@ -619,28 +641,68 @@ class LiveComplete_SendGrid
         $charset_collate = $wpdb->get_charset_collate();
 
         // Check if table exists
-        if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
-            $sql = "CREATE TABLE $table_name (
-                id bigint(20) NOT NULL AUTO_INCREMENT,
-                recipient text NOT NULL,
-                subject text NOT NULL,
-                status varchar(20) NOT NULL,
-                error text,
-                template_type varchar(100),
-                timestamp datetime NOT NULL,
-                PRIMARY KEY  (id)
-            ) $charset_collate;";
+        $table_exists = $wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name;
 
-            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-            dbDelta($sql);
+        // Create or update table
+        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            id bigint(20) NOT NULL AUTO_INCREMENT,
+            recipient text NOT NULL,
+            subject text NOT NULL,
+            status varchar(20) NOT NULL,
+            error text,
+            template_type varchar(100),
+            timestamp datetime NOT NULL,
+            PRIMARY KEY  (id)
+        ) $charset_collate;";
+
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+
+        // If table existed, check if we need to add the template_type column
+        if ($table_exists) {
+            $column_exists = $wpdb->get_results("SHOW COLUMNS FROM `{$table_name}` LIKE 'template_type'");
+            if (empty($column_exists)) {
+                $this->log_error('Adding template_type column');
+                $wpdb->query("ALTER TABLE `{$table_name}` ADD COLUMN `template_type` varchar(100) AFTER `error`");
+                
+                if ($wpdb->last_error) {
+                    $this->log_error('Failed to add template_type column', array(
+                        'error' => $wpdb->last_error
+                    ));
+                }
+            }
+        }
+
+        // Verify table structure
+        if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+            $this->log_error('Failed to create database table', array(
+                'table' => $table_name,
+                'sql' => $sql,
+                'last_error' => $wpdb->last_error
+            ));
+        } else {
+            $this->log_error('Database table verified', array(
+                'table' => $table_name
+            ));
         }
     }
 
     public function disable_wc_emails($email_class) {
         // Remove all default WooCommerce email actions
         foreach ($email_class->emails as $email) {
-            remove_all_actions(isset($email->trigger_action) ? $email->trigger_action : '');
+            if (isset($email->trigger_action)) {
+                remove_all_actions($email->trigger_action);
+            }
         }
+
+        // Remove specific order hooks to prevent duplicates
+        remove_action('woocommerce_order_status_pending_to_processing_notification', array($email_class->emails['WC_Email_New_Order'], 'trigger'));
+        remove_action('woocommerce_order_status_pending_to_completed_notification', array($email_class->emails['WC_Email_New_Order'], 'trigger'));
+        remove_action('woocommerce_order_status_pending_to_on-hold_notification', array($email_class->emails['WC_Email_New_Order'], 'trigger'));
+        remove_action('woocommerce_order_status_failed_to_processing_notification', array($email_class->emails['WC_Email_New_Order'], 'trigger'));
+        remove_action('woocommerce_order_status_failed_to_completed_notification', array($email_class->emails['WC_Email_New_Order'], 'trigger'));
+        remove_action('woocommerce_order_status_failed_to_on-hold_notification', array($email_class->emails['WC_Email_New_Order'], 'trigger'));
+        remove_action('woocommerce_checkout_order_processed', array($email_class->emails['WC_Email_New_Order'], 'trigger'));
 
         $this->log_error('Disabled WooCommerce default emails');
     }
@@ -651,6 +713,7 @@ class LiveComplete_SendGrid
      * @param int $order_id
      */
     public function trigger_new_order_email($order_id) {
+        // Check if this email has already been sent
         $order = wc_get_order($order_id);
         if (!$order) {
             $this->log_error('Failed to get order for email trigger', array('order_id' => $order_id));
@@ -682,6 +745,7 @@ class LiveComplete_SendGrid
             array('message' => $content)
         );
 
+        // Log the attempt
         $this->log_error('New order email trigger attempt', array(
             'order_id' => $order_id,
             'sent' => $sent,

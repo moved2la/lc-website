@@ -74,7 +74,7 @@ require get_template_directory() . '/inc/ajax-handlers.php';
 // Add custom field to category form
 function add_category_link_text_field()
 {
-    ?>
+?>
     <div class="form-field">
         <label for="category_link_text"><?php _e('Category Link Text', 'live-complete'); ?></label>
         <input type="text" name="category_link_text" id="category_link_text">
@@ -317,7 +317,7 @@ function render_learn_page_meta_box($post)
     $difference_image = get_post_meta($post->ID, '_learn_difference_image', true);
     $impact_image = get_post_meta($post->ID, '_learn_impact_image', true);
 
-    ?>
+?>
     <style>
         .image-preview {
             max-width: 100px;
@@ -328,9 +328,11 @@ function render_learn_page_meta_box($post)
             border-radius: 4px;
             padding: 5px;
         }
+
         .image-preview.hidden {
             display: none;
         }
+
         .image-upload-wrap {
             display: flex;
             align-items: center;
@@ -340,78 +342,78 @@ function render_learn_page_meta_box($post)
 
     <p>
         <label for="learn_story_image">Our Story Image:</label><br>
-        <div class="image-upload-wrap">
-            <div>
-                <input type="text" id="learn_story_image" name="learn_story_image" 
-                       value="<?php echo esc_attr(basename($story_image)); ?>" 
-                       class="widefat" 
-                       readonly="readonly" 
-                       style="background-color: #f0f0f0;">
-                <input type="hidden" name="learn_story_image_full" value="<?php echo esc_attr($story_image); ?>">
-                <button type="button" class="upload-image-button button">Upload Image</button>
-            </div>
-            <img src="<?php echo esc_url($story_image); ?>" class="image-preview <?php echo empty($story_image) ? 'hidden' : ''; ?>">
+    <div class="image-upload-wrap">
+        <div>
+            <input type="text" id="learn_story_image" name="learn_story_image"
+                value="<?php echo esc_attr(basename($story_image)); ?>"
+                class="widefat"
+                readonly="readonly"
+                style="background-color: #f0f0f0;">
+            <input type="hidden" name="learn_story_image_full" value="<?php echo esc_attr($story_image); ?>">
+            <button type="button" class="upload-image-button button">Upload Image</button>
         </div>
+        <img src="<?php echo esc_url($story_image); ?>" class="image-preview <?php echo empty($story_image) ? 'hidden' : ''; ?>">
+    </div>
     </p>
     <p>
         <label for="learn_difference_image">The Difference Image:</label><br>
-        <div class="image-upload-wrap">
-            <div>
-                <input type="text" id="learn_difference_image" name="learn_difference_image" 
-                       value="<?php echo esc_attr(basename($difference_image)); ?>" 
-                       class="widefat" 
-                       readonly="readonly" 
-                       style="background-color: #f0f0f0;">
-                <input type="hidden" name="learn_difference_image_full" value="<?php echo esc_attr($difference_image); ?>">
-                <button type="button" class="upload-image-button button">Upload Image</button>
-            </div>
-            <img src="<?php echo esc_url($difference_image); ?>" class="image-preview <?php echo empty($difference_image) ? 'hidden' : ''; ?>">
+    <div class="image-upload-wrap">
+        <div>
+            <input type="text" id="learn_difference_image" name="learn_difference_image"
+                value="<?php echo esc_attr(basename($difference_image)); ?>"
+                class="widefat"
+                readonly="readonly"
+                style="background-color: #f0f0f0;">
+            <input type="hidden" name="learn_difference_image_full" value="<?php echo esc_attr($difference_image); ?>">
+            <button type="button" class="upload-image-button button">Upload Image</button>
         </div>
+        <img src="<?php echo esc_url($difference_image); ?>" class="image-preview <?php echo empty($difference_image) ? 'hidden' : ''; ?>">
+    </div>
     </p>
     <p>
         <label for="learn_impact_image">Our Impact Image:</label><br>
-        <div class="image-upload-wrap">
-            <div>
-                <input type="text" id="learn_impact_image" name="learn_impact_image" 
-                       value="<?php echo esc_attr(basename($impact_image)); ?>" 
-                       class="widefat" 
-                       readonly="readonly" 
-                       style="background-color: #f0f0f0;">
-                <input type="hidden" name="learn_impact_image_full" value="<?php echo esc_attr($impact_image); ?>">
-                <button type="button" class="upload-image-button button">Upload Image</button>
-            </div>
-            <img src="<?php echo esc_url($impact_image); ?>" class="image-preview <?php echo empty($impact_image) ? 'hidden' : ''; ?>">
+    <div class="image-upload-wrap">
+        <div>
+            <input type="text" id="learn_impact_image" name="learn_impact_image"
+                value="<?php echo esc_attr(basename($impact_image)); ?>"
+                class="widefat"
+                readonly="readonly"
+                style="background-color: #f0f0f0;">
+            <input type="hidden" name="learn_impact_image_full" value="<?php echo esc_attr($impact_image); ?>">
+            <button type="button" class="upload-image-button button">Upload Image</button>
         </div>
+        <img src="<?php echo esc_url($impact_image); ?>" class="image-preview <?php echo empty($impact_image) ? 'hidden' : ''; ?>">
+    </div>
     </p>
 
     <script>
-    jQuery(document).ready(function($) {
-        $('.upload-image-button').click(function(e) {
-            e.preventDefault();
-            var button = $(this);
-            var container = button.closest('.image-upload-wrap');
-            var preview = container.find('.image-preview');
-            
-            var image = wp.media({
-                title: 'Select or Upload Image',
-                button: {
-                    text: 'Use this image'
-                },
-                multiple: false
-            }).open()
-            .on('select', function() {
-                var uploaded_image = image.state().get('selection').first();
-                var image_url = uploaded_image.get('url');
-                var filename = image_url.split('/').pop();
-                
-                container.find('input[type="text"]').val(filename);
-                container.find('input[type="hidden"]').val(image_url);
-                preview.attr('src', image_url).removeClass('hidden');
+        jQuery(document).ready(function($) {
+            $('.upload-image-button').click(function(e) {
+                e.preventDefault();
+                var button = $(this);
+                var container = button.closest('.image-upload-wrap');
+                var preview = container.find('.image-preview');
+
+                var image = wp.media({
+                        title: 'Select or Upload Image',
+                        button: {
+                            text: 'Use this image'
+                        },
+                        multiple: false
+                    }).open()
+                    .on('select', function() {
+                        var uploaded_image = image.state().get('selection').first();
+                        var image_url = uploaded_image.get('url');
+                        var filename = image_url.split('/').pop();
+
+                        container.find('input[type="text"]').val(filename);
+                        container.find('input[type="hidden"]').val(image_url);
+                        preview.attr('src', image_url).removeClass('hidden');
+                    });
             });
         });
-    });
     </script>
-    <?php
+<?php
 }
 
 // Update save function to use the full URL from hidden fields
@@ -470,7 +472,8 @@ remove_filter('comments_open', '__return_false', 20);
 
 // Add new filter that checks if it's a product
 add_filter('comments_open', 'custom_product_comments_open', 20, 2);
-function custom_product_comments_open($open, $post_id) {
+function custom_product_comments_open($open, $post_id)
+{
     // Allow comments if it's a product
     if (get_post_type($post_id) === 'product') {
         return true;
@@ -634,13 +637,14 @@ add_filter('woocommerce_account_menu_items', 'custom_my_account_menu_items');
 
 /* -------------- Enqueue Form Scripts -------------- */
 
-function enqueue_contact_form_scripts() {
+function enqueue_contact_form_scripts()
+{
 
     wp_enqueue_script(
-        'contact-form', 
-        get_template_directory_uri() . '/assets/js/contact-form.js', 
-        array(), 
-        '1.0.0', 
+        'contact-form',
+        get_template_directory_uri() . '/assets/js/contact-form.js',
+        array(),
+        '1.0.0',
         true
     );
 
@@ -651,17 +655,17 @@ function enqueue_contact_form_scripts() {
             'ajaxurl' => admin_url('admin-ajax.php')
         )
     );
- 
 }
 add_action('wp_enqueue_scripts', 'enqueue_contact_form_scripts');
 
-function enqueue_newsletter_signup_scripts() {
+function enqueue_newsletter_signup_scripts()
+{
 
     wp_enqueue_script(
-        'newsletter-signup', 
-        get_template_directory_uri() . '/assets/js/newsletter-signup.js', 
-        array(), 
-        '1.0.0', 
+        'newsletter-signup',
+        get_template_directory_uri() . '/assets/js/newsletter-signup.js',
+        array(),
+        '1.0.0',
         true
     );
 
@@ -672,7 +676,6 @@ function enqueue_newsletter_signup_scripts() {
             'ajaxurl' => admin_url('admin-ajax.php')
         )
     );
-
 }
 add_action('wp_enqueue_scripts', 'enqueue_newsletter_signup_scripts');
 
@@ -681,8 +684,9 @@ add_action('wp_enqueue_scripts', 'enqueue_newsletter_signup_scripts');
 /* -------------- Add favicon links to head -------------- */
 
 // Add favicon links to head
-function live_complete_add_favicon() {
-    ?>
+function live_complete_add_favicon()
+{
+?>
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_template_directory_uri() . '/assets/image/favicon/apple-touch-icon.png'; ?>">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri() . '/assets/image/favicon/favicon-32x32.png'; ?>">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_template_directory_uri() . '/assets/image/favicon/favicon-16x16.png'; ?>">
@@ -694,7 +698,8 @@ add_action('wp_head', 'live_complete_add_favicon');
 /* -------------- Add favicon links to head -------------- */
 
 
-function live_complete_custom_login_logo() {
+function live_complete_custom_login_logo()
+{
     echo '<style type="text/css">
         h1 a {
             background-image: url(' . get_bloginfo('template_directory') . '/assets/image/livecomplete-logo.png) !important;
@@ -706,17 +711,20 @@ function live_complete_custom_login_logo() {
 }
 add_action('login_head', 'live_complete_custom_login_logo');
 
-function live_complete_custom_login_logo_url() {
+function live_complete_custom_login_logo_url()
+{
     return home_url();
 }
 add_filter('login_headerurl', 'live_complete_custom_login_logo_url');
 
-function live_complete_custom_login_logo_title() {
+function live_complete_custom_login_logo_title()
+{
     return 'LiveComplete';
 }
 add_filter('login_headertitle', 'live_complete_custom_login_logo_title');
 
-function livecomplete_login_css() {
+function livecomplete_login_css()
+{
     echo '<style type="text/css">
         body.login {
             font-family: "Roboto", sans-serif;
@@ -731,3 +739,90 @@ function livecomplete_login_css() {
     </style>';
 }
 add_action('login_enqueue_scripts', 'livecomplete_login_css');
+
+
+
+
+/**
+ * Quick hack to preview WooCommerce e-mails.
+ * 
+ * Add this to <yourtheme>/functions.php and then visit a url like:
+ * http://<site_url>/wp-admin/admin-ajax.php?action=previewemail
+ *
+ * @return null
+ */
+function mytheme_preview_email() {
+    global $woocommerce;
+
+    if ( ! is_admin() ) {
+        return null;
+    }
+
+    $mailer = $woocommerce->mailer();
+    $email_options = array();
+
+    foreach ( $mailer->emails as $key => $obj ) {
+        $email_options[$key] = $obj->title;
+    }
+
+    $in_order_id = isset( $_GET['order'] ) ? $_GET['order'] : '';
+    $in_email_type = isset( $_GET['email_type'] ) ? $_GET['email_type'] : '';
+
+    $order_number = is_numeric( $in_order_id ) ? (int) $in_order_id : '';
+    $email_class = isset( $email_options[ $in_email_type ] ) ? $in_email_type : '';
+    $order = $order_number ? wc_get_order( $order_number ) : false;
+
+    $error = '';
+    $email_html = '';
+
+    if ( ! $in_order_id && ! $in_email_type ) {
+        $error = '<p>Please select an email type and enter an order #</p>';
+    } elseif ( ! $email_class ) {
+        $error = '<p>Bad email type</p>';
+    } elseif ( ! $order ) {
+        $error = '<p>Bad order #</p>';
+    } else {
+        $email = $mailer->emails[$email_class];
+        $email->object = $order;
+        $email_html = apply_filters( 'woocommerce_mail_content', $email->style_inline( $email->get_content_html() ) );
+    }
+
+
+?>
+<!DOCTYPE HTML>
+<html>
+<head></head>
+<body>
+<form method="get" action="<?php echo site_url(); ?>/wp-admin/admin-ajax.php">
+    <input type="hidden" name="action" value="previewemail">
+    <select name="email_type">
+        <option value="--">Email Type</option>
+        <?php
+            foreach( $email_options as $class => $label ){ 
+                if ( $email_class && $class == $email_class ) {
+                    $selected = 'selected';
+                } else {
+                    $selected = '';
+                }
+            ?> 
+                <option value="<?php echo $class; ?>" <?php echo $selected; ?> ><?php echo $label; ?></option>
+        <?php } ?>
+        </select>
+    <input type="text" name="order" value="<?php echo $order_number; ?>" placeholder="order #">
+    <input type="submit" value="Go">
+</form>
+<?php 
+if ( $error ) {
+    echo "<div class='error'>$error</div>";
+} else {
+    echo $email_html;
+}
+?>
+</body>
+</html>
+
+<?php
+    return null; 
+}
+
+add_action('wp_ajax_previewemail', 'mytheme_preview_email');

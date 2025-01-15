@@ -54,7 +54,7 @@ for ($i = ($args[1] - 1) * $args[0]; $i < $args[1] * $args[0]; ++$i) {
 	$order->set_date_created( date('Y-m-d H:i:s', $orderTs) );
 	$order->set_billing_address($addresses[$orderAddressKey]);
 	$order->set_shipping_address($addresses[$orderAddressKey]);
-	$order->set_billing_email('example'.rand(1, 3).'@example.com');
+	$order->set_billing_email('warren@livecomplete.com');
 	
 	$numItems = rand(1, 5);
 	$productIdsInOrder = [];
