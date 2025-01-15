@@ -60,7 +60,8 @@ WooCommerce styles override
     letter-spacing: 1px;
 }
 .woocommerce ul.products li.product .added_to_cart.wc-forward {
-    display: block;
+    /* display: block; */
+    display: none;
     min-width: 70%;
     max-width: 81%;
     width: auto;
@@ -156,9 +157,7 @@ WooCommerce styles override
     width: 42px;
     height: 42px;
     line-height: 40px;
-
     display: block;
-    border: 1px solid #fff;
     margin: 0px 5px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -168,11 +167,23 @@ WooCommerce styles override
 .woocommerce nav.woocommerce-pagination ul li span.current,
 .woocommerce nav.woocommerce-pagination ul li a:hover,
 .woocommerce nav.woocommerce-pagination ul li a:focus {
-    border: 1px solid #ececec;
+    /* border: 1px solid #ececec; */
+     border: 1px solid var(--secondary-btn-color);
 }
+
 .woocommerce nav.woocommerce-pagination ul li a.prev,
 .woocommerce nav.woocommerce-pagination ul li a.next {
     border: none;
+}
+
+.woocommerce nav.woocommerce-pagination .page-numbers li a,
+.woocommerce nav.woocommerce-pagination .page-numbers li a.next,
+.woocommerce nav.woocommerce-pagination .page-numbers li span {
+    border: 1px solid var(--secondary-btn-color);
+    color: var(--secondary-btn-color);
+}
+.woocommerce nav.woocommerce-pagination .page-numbers li a:hover {
+    border: 1px solid var(--secondary-btn-color-h);
 }
 
 ul.products li.product .button.theme-btn.loading span:after {
@@ -1544,9 +1555,6 @@ table.woocommerce-checkout-review-order-table th {
     font-size: 20px;
     display: block;
     border: 1px solid var(--secondary-color);
-    border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
 }
 .product_actions_btn_wrap a i {
     display: block;
@@ -1556,6 +1564,7 @@ table.woocommerce-checkout-review-order-table th {
 .product_actions_btn_wrap a:focus {
     color: var(--secondary-color);
     background: var(--quaternary-color);
+    text-decoration: none;
 }
 
 .live_complete_variations_wrap {
@@ -1626,8 +1635,6 @@ table.woocommerce-checkout-review-order-table th {
 .content-area {
     background-color: #fff !important;
 }
-
-
 
 .category-custom-header {
     margin-bottom: 2em;
@@ -1773,6 +1780,123 @@ table.woocommerce-checkout-review-order-table th {
 .cart-button-wrapper button {
     width: 100%;
 }
+
+/* PDP Subscribe section 
+  (override WooCommerce Subscriptions plugin) */
+.asp-product_level-subscribe-wrapper {
+  padding-top: 20px !important;
+  max-width: 470px !important;
+}
+.single_variation_wrap {
+  max-width: 470px !important;
+}
+.asp-ssws-subscribe-wrapper {
+  text-align: left !important;
+}
+.asp-ssws-subscribe-wrapper ul {
+  padding-left: 0 !important;
+}
+.asp-ssws-subscribe-options {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  flex-direction: column !important;
+}
+.asp-ssws-subscribe-options li {
+    border: 1px solid #000 !important;
+    font-size: 16px !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+.asp-ssws-subscribe-options li:last-child {
+  border-bottom: none !important;
+}
+.asp-ssws-pay-option-one-time {
+  border: 1px solid #000 !important;
+  background-color: #F2F2F2 !important;
+  margin-bottom: 24px !important;
+}
+.asp-ssws-pay-option-subscribe {
+  border-bottom: none !important;
+}
+.asp-ssws-subscribe-plan-options {
+   border: 1px solid #000 !important;
+   border-top: none !important;
+   margin-left: 0 !important;
+   /* gap: 10px; */
+   /* margin-top: 10px; */
+}
+.asp-ssws-pay-option  {
+  margin-right: 10px !important;
+  width: 24px !important;
+  height: 24px !important;
+  appearance: none !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  border: 1px solid black !important;
+}
+.asp-ssws-pay-option:hover {
+    border: 2px solid black !important;
+}
+.asp-ssws-pay-option:checked {
+  background: #0E4C73 !important;
+  border: none !important;
+}
+.asp-ssws-subscribe-wrapper ul li label {
+  margin-bottom: 0 !important;
+}
+.asp-ssws-subscribe-plan-options > li > input {
+  margin-bottom: 0 !important;
+}
+
+.asp-ssws-subscribe-plan-options > li {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  display: flex !important;
+  gap: 10px !important;
+}
+.asp-ssws-subscribe-plan-options li:first-child {
+  margin-top: 0 !important;
+}
+.asp-ssws-pay-option-one-time label {
+  font-size: 16px !important;
+  font-family: "Roboto-Medium",
+    sans-serif !important;
+}
+.asp-ssws-subscribe-options .price-label {
+    margin-left: auto !important;
+}
+.asp-ssws-subscribe-row-plan-selection {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.asp-ssws-subscribe-row-plan-selection select {
+  height: 48px !important;
+  line-height: 48px !important;
+  border-color: #000 !important;
+  background: #fff !important;
+  padding: 9px !important;
+  margin-bottom: 10px !important;
+}
+
+
+
 /* ---------------- Product Page ---------------- */
+
+
+/* Cart page quanity selector */
+.wc-block-cart-item__quantity .wc-block-components-quantity-selector {
+    max-height: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.wc-block-cart-item__quantity .wc-block-components-quantity-selector input[type="number"],
+.wc-block-cart-item__quantity .wc-block-components-quantity-selector button {
+    height: 100%;
+    line-height: 40px;
+}
 
 
