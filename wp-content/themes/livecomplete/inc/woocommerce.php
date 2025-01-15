@@ -595,4 +595,15 @@ if (! function_exists('live_complete_woocommerce_cart_link')) {
     }
     add_filter('wcspc_get_default_options', 'live_complete_wcspc_get_default_options');
 
+
+    /**
+     * Add NutriMatch section after product tabs on single product pages
+     */
+    function live_complete_add_nutrimatch_after_tabs() {
+        if (is_product()) {
+            get_template_part('template-parts/blocks/nutrimatch');
+        }
+    }
+    // add_action('woocommerce_after_single_product_summary', 'live_complete_add_nutrimatch_after_tabs', 12);
+
    

@@ -20,7 +20,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
 
 <?php get_template_part('template-parts/home/block-1'); ?>
 
-<?php get_template_part('template-parts/home/nutrimatch'); ?>
+<?php get_template_part('template-parts/blocks/nutrimatch'); ?>
 
 <?php get_template_part('template-parts/home/nutrition'); ?>
 

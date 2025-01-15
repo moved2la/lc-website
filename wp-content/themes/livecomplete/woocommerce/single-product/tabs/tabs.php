@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Single Product tabs
  *
@@ -15,8 +16,8 @@
  * @version 3.8.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (! defined('ABSPATH')) {
+    exit;
 }
 
 /**
@@ -26,38 +27,59 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @see woocommerce_default_product_tabs()
  */
-$product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
+$product_tabs = apply_filters('woocommerce_product_tabs', array());
 
 // TODO: Remove this once we have the product data
-$product_tabs = ''; 
+$product_tabs = '';
 
-if ( ! empty( $product_tabs ) ) : ?>
 
-	<div class="woocommerce-tabs wc-tabs-wrapper row">
-    	<div class="col-lg-3 col-md-3 col-sm-3 col-12">
-		<ul class="tabs wc-tabs" role="tablist">
-			<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
-				<li class="<?php echo esc_attr( $key ); ?>_tab" id="tab-title-<?php echo esc_attr( $key ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $key ); ?>">
-					<a href="#tab-<?php echo esc_attr( $key ); ?>">
-						<?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?>
-					</a>
-				</li>
-			<?php endforeach; ?>
-		</ul>
-       </div>
-       <div class="col-lg-9 col-md-9 col-sm-9 col-12"> 
-		<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
-			<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
-				<?php
-				if ( isset( $product_tab['callback'] ) ) {
-					call_user_func( $product_tab['callback'], $key, $product_tab );
-				}
-				?>
-			</div>
-		<?php endforeach; ?>
-		</div>
-		<?php do_action( 'woocommerce_product_after_tabs' ); ?>
-        
-	</div>
+
+if (! empty($product_tabs)) : ?>
+
+    <div class="woocommerce-tabs wc-tabs-wrapper row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+            <ul class="tabs wc-tabs" role="tablist">
+                <?php foreach ($product_tabs as $key => $product_tab) : ?>
+                    <li class="<?php echo esc_attr($key); ?>_tab" id="tab-title-<?php echo esc_attr($key); ?>" role="tab" aria-controls="tab-<?php echo esc_attr($key); ?>">
+                        <a href="#tab-<?php echo esc_attr($key); ?>">
+                            <?php echo wp_kses_post(apply_filters('woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key)); ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 col-12">
+            <?php foreach ($product_tabs as $key => $product_tab) : ?>
+                <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr($key); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr($key); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr($key); ?>">
+                    <?php
+                    if (isset($product_tab['callback'])) {
+                        call_user_func($product_tab['callback'], $key, $product_tab);
+                    }
+                    ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <?php do_action('woocommerce_product_after_tabs'); ?>
+
+    </div>
 
 <?php endif; ?>
+
+<style>
+    .content-area.container .full-width-section {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
+</style>
+
+<div class="full-width-section">
+    <div class="woocommerce-tabs wc-tabs-wrapper row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <?php get_template_part('template-parts/blocks/nutrimatch'); ?>
+        </div>
+    </div>
+</div>
