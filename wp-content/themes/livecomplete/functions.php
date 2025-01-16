@@ -743,31 +743,37 @@ add_action('login_enqueue_scripts', 'livecomplete_login_css');
 
 
 // Add custom fields to shop page
-add_action('add_meta_boxes', function () {
-    add_meta_box(
-        'shop_page_settings',
-        __('Shop Page Settings', 'live-complete'),
-        function ($post) {
-            wp_nonce_field('shop_page_settings', 'shop_page_settings_nonce');
+add_action('add_meta_boxes', function ($post_type) {
+    // Get the current post
+    $post = get_post();
+    
+    // Check if this is the shop page
+    if ($post && wc_get_page_id('shop') === $post->ID) {
+        add_meta_box(
+            'shop_page_settings',
+            __('Shop Page Settings', 'live-complete'),
+            function ($post) {
+                wp_nonce_field('shop_page_settings', 'shop_page_settings_nonce');
 
-            $heading_text = get_post_meta($post->ID, 'category_heading_text', true);
-            $description = get_post_meta($post->ID, 'category_description', true);
-    ?>
-        <p>
-            <label for="category_heading_text"><?php _e('Custom Heading Text', 'live-complete'); ?></label><br>
-            <input type="text" id="category_heading_text" name="category_heading_text" value="<?php echo esc_attr($heading_text); ?>" style="width: 100%">
-        </p>
-        <p>
-            <label for="category_description"><?php _e('Custom Description', 'live-complete'); ?></label><br>
-            <textarea id="category_description" name="category_description" rows="5" style="width: 100%"><?php echo esc_textarea($description); ?></textarea>
-        </p>
-    <?php
-        },
-        'page',
-        'normal',
-        'high'
-    );
-}, 10, 2);
+                $heading_text = get_post_meta($post->ID, 'category_heading_text', true);
+                $description = get_post_meta($post->ID, 'category_description', true);
+                ?>
+                <p>
+                    <label for="category_heading_text"><?php _e('Custom Heading Text', 'live-complete'); ?></label><br>
+                    <input type="text" id="category_heading_text" name="category_heading_text" value="<?php echo esc_attr($heading_text); ?>" style="width: 100%">
+                </p>
+                <p>
+                    <label for="category_description"><?php _e('Custom Description', 'live-complete'); ?></label><br>
+                    <textarea id="category_description" name="category_description" rows="5" style="width: 100%"><?php echo esc_textarea($description); ?></textarea>
+                </p>
+                <?php
+            },
+            'page',
+            'normal',
+            'high'
+        );
+    }
+}, 10, 1);
 
 // Save custom fields
 add_action('save_post', function ($post_id) {
