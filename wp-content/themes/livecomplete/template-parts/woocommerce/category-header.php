@@ -11,8 +11,29 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Access the category object passed from the template part
-$category = $args['category'];
+// Check and get the proper category object
+if (!isset($args['category']) || !$args['category']) {
+    // If we're on a product category archive page, get the current category
+    $category = get_queried_object();
+}  else {
+    $category = $args['category'];
+}
+
+// Only validate category object if we're not on shop or search page
+if (!is_shop() && !is_search() && !is_a($category, 'WP_Term')) {
+    return; // Exit if we don't have a valid category
+}
+
+// Get subcategories of the current category (only if we have a valid category)
+if (is_a($category, 'WP_Term')) {
+    $subcategories = get_terms(array(
+        'taxonomy' => 'product_cat',
+        'parent' => $category->term_id,
+        'hide_empty' => false
+    ));
+} else {
+    $subcategories = array(); // Empty array for shop/search pages
+}
 ?>
 
 <style>
@@ -259,35 +280,42 @@ $category = $args['category'];
     }
 </style>
 
-<?php
-// Get subcategories of the current category
-$subcategories = get_terms(array(
-    'taxonomy' => 'product_cat',
-    'parent' => $category->term_id,
-    'hide_empty' => false
-));
-?>
-
 <div class="category-custom-header">
     <div class="container">
         <div class="content <?php echo is_shop() || empty($subcategories) ? 'no-carousel' : ''; ?>">
             <div class="heading-text">
                 <h1 class="heading-title">
                     <?php
-                    $heading_text = get_term_meta($category->term_id, 'category_heading_text', true);
-                    if (!$heading_text) {
-                        // Fallback to category name if no custom heading is set
-                        echo esc_html($category->name);
-                    } else {
-                        echo esc_html($heading_text);
+                    if (is_a($category, 'WP_Term')) {
+                        $heading_text = get_term_meta($category->term_id, 'category_heading_text', true);
+                        if (!$heading_text) {
+                            echo esc_html($category->name);
+                        } else {
+                            echo esc_html($heading_text);
+                        }
+                    } else if (is_search() && is_woocommerce()) {
+                        echo esc_html__('Search Results', 'live-complete');
+                    } else if (is_shop()) {
+                        $shop_page_id = wc_get_page_id('shop');
+                        $shop_title = get_post_meta($shop_page_id, 'category_heading_text', true);
+                        echo esc_html($shop_title ?: get_option('woocommerce_shop_page_title', 'Shop'));
                     }
                     ?>
                 </h1>
-                <?php if ($category->description) : ?>
-                    <div
-                        class="header-desc">
+                <?php if (is_a($category, 'WP_Term') && $category->description) : ?>
+                    <div class="header-desc">
                         <?php echo wp_kses_post($category->description); ?>
                     </div>
+                <?php elseif (is_shop() && !is_search()) : ?>
+                    <?php 
+                    $shop_page_id = wc_get_page_id('shop');
+                    $shop_description = get_post_meta($shop_page_id, 'category_description', true);
+                    if ($shop_description) : 
+                    ?>
+                        <div class="header-desc">
+                            <?php echo wp_kses_post($shop_description); ?>
+                        </div>
+                    <?php endif; ?>
                 <?php endif; ?>
             </div>
 

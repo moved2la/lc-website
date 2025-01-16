@@ -742,6 +742,56 @@ add_action('login_enqueue_scripts', 'livecomplete_login_css');
 
 
 
+// Add custom fields to shop page
+add_action('add_meta_boxes', function () {
+    add_meta_box(
+        'shop_page_settings',
+        __('Shop Page Settings', 'live-complete'),
+        function ($post) {
+            wp_nonce_field('shop_page_settings', 'shop_page_settings_nonce');
+
+            $heading_text = get_post_meta($post->ID, 'category_heading_text', true);
+            $description = get_post_meta($post->ID, 'category_description', true);
+    ?>
+        <p>
+            <label for="category_heading_text"><?php _e('Custom Heading Text', 'live-complete'); ?></label><br>
+            <input type="text" id="category_heading_text" name="category_heading_text" value="<?php echo esc_attr($heading_text); ?>" style="width: 100%">
+        </p>
+        <p>
+            <label for="category_description"><?php _e('Custom Description', 'live-complete'); ?></label><br>
+            <textarea id="category_description" name="category_description" rows="5" style="width: 100%"><?php echo esc_textarea($description); ?></textarea>
+        </p>
+    <?php
+        },
+        'page',
+        'normal',
+        'high'
+    );
+}, 10, 2);
+
+// Save custom fields
+add_action('save_post', function ($post_id) {
+    // Check if this is the shop page
+    if (wc_get_page_id('shop') !== $post_id) {
+        return;
+    }
+
+    // Verify nonce
+    if (!isset($_POST['shop_page_settings_nonce']) || !wp_verify_nonce($_POST['shop_page_settings_nonce'], 'shop_page_settings')) {
+        return;
+    }
+
+    // Save heading text
+    if (isset($_POST['category_heading_text'])) {
+        update_post_meta($post_id, 'category_heading_text', sanitize_text_field($_POST['category_heading_text']));
+    }
+
+    // Save description
+    if (isset($_POST['category_description'])) {
+        update_post_meta($post_id, 'category_description', wp_kses_post($_POST['category_description']));
+    }
+}, 10, 1);
+
 
 /**
  * Quick hack to preview WooCommerce e-mails.
@@ -751,78 +801,82 @@ add_action('login_enqueue_scripts', 'livecomplete_login_css');
  *
  * @return null
  */
-function mytheme_preview_email() {
+function mytheme_preview_email()
+{
     global $woocommerce;
 
-    if ( ! is_admin() ) {
+    if (! is_admin()) {
         return null;
     }
 
     $mailer = $woocommerce->mailer();
     $email_options = array();
 
-    foreach ( $mailer->emails as $key => $obj ) {
+    foreach ($mailer->emails as $key => $obj) {
         $email_options[$key] = $obj->title;
     }
 
-    $in_order_id = isset( $_GET['order'] ) ? $_GET['order'] : '';
-    $in_email_type = isset( $_GET['email_type'] ) ? $_GET['email_type'] : '';
+    $in_order_id = isset($_GET['order']) ? $_GET['order'] : '';
+    $in_email_type = isset($_GET['email_type']) ? $_GET['email_type'] : '';
 
-    $order_number = is_numeric( $in_order_id ) ? (int) $in_order_id : '';
-    $email_class = isset( $email_options[ $in_email_type ] ) ? $in_email_type : '';
-    $order = $order_number ? wc_get_order( $order_number ) : false;
+    $order_number = is_numeric($in_order_id) ? (int) $in_order_id : '';
+    $email_class = isset($email_options[$in_email_type]) ? $in_email_type : '';
+    $order = $order_number ? wc_get_order($order_number) : false;
 
     $error = '';
     $email_html = '';
 
-    if ( ! $in_order_id && ! $in_email_type ) {
+    if (! $in_order_id && ! $in_email_type) {
         $error = '<p>Please select an email type and enter an order #</p>';
-    } elseif ( ! $email_class ) {
+    } elseif (! $email_class) {
         $error = '<p>Bad email type</p>';
-    } elseif ( ! $order ) {
+    } elseif (! $order) {
         $error = '<p>Bad order #</p>';
     } else {
         $email = $mailer->emails[$email_class];
         $email->object = $order;
-        $email_html = apply_filters( 'woocommerce_mail_content', $email->style_inline( $email->get_content_html() ) );
+        $email_html = apply_filters('woocommerce_mail_content', $email->style_inline($email->get_content_html()));
     }
 
 
-?>
-<!DOCTYPE HTML>
-<html>
-<head></head>
-<body>
-<form method="get" action="<?php echo site_url(); ?>/wp-admin/admin-ajax.php">
-    <input type="hidden" name="action" value="previewemail">
-    <select name="email_type">
-        <option value="--">Email Type</option>
+    ?>
+    <!DOCTYPE HTML>
+    <html>
+
+    <head></head>
+
+    <body>
+        <form method="get" action="<?php echo site_url(); ?>/wp-admin/admin-ajax.php">
+            <input type="hidden" name="action" value="previewemail">
+            <select name="email_type">
+                <option value="--">Email Type</option>
+                <?php
+                foreach ($email_options as $class => $label) {
+                    if ($email_class && $class == $email_class) {
+                        $selected = 'selected';
+                    } else {
+                        $selected = '';
+                    }
+                ?>
+                    <option value="<?php echo $class; ?>" <?php echo $selected; ?>><?php echo $label; ?></option>
+                <?php } ?>
+            </select>
+            <input type="text" name="order" value="<?php echo $order_number; ?>" placeholder="order #">
+            <input type="submit" value="Go">
+        </form>
         <?php
-            foreach( $email_options as $class => $label ){ 
-                if ( $email_class && $class == $email_class ) {
-                    $selected = 'selected';
-                } else {
-                    $selected = '';
-                }
-            ?> 
-                <option value="<?php echo $class; ?>" <?php echo $selected; ?> ><?php echo $label; ?></option>
-        <?php } ?>
-        </select>
-    <input type="text" name="order" value="<?php echo $order_number; ?>" placeholder="order #">
-    <input type="submit" value="Go">
-</form>
-<?php 
-if ( $error ) {
-    echo "<div class='error'>$error</div>";
-} else {
-    echo $email_html;
-}
-?>
-</body>
-</html>
+        if ($error) {
+            echo "<div class='error'>$error</div>";
+        } else {
+            echo $email_html;
+        }
+        ?>
+    </body>
+
+    </html>
 
 <?php
-    return null; 
+    return null;
 }
 
 add_action('wp_ajax_previewemail', 'mytheme_preview_email');
