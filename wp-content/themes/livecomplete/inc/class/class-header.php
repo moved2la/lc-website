@@ -341,7 +341,31 @@ class live_complete_Header_Layout
                     if (!empty($template)) return;
                 ?>
 
-                    <div id="static_header_banner" class="header-style-1">
+                    <style>
+                        /* .site-header-bg-wrap {
+                            width: 100%;
+                            overflow: hidden;
+                        }
+
+                        .site-header-bg-container {
+                            width: 100%;
+                        }
+
+                        .site-header-bg {
+                            width: 100%;
+                            height: 100%;
+                            background-position: center;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        } */
+                    </style>
+
+                    <?php
+                        // Get image dimensions
+                        $image_data = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+                        $aspect_ratio = $image_data ? $image_data[1] . '/' . $image_data[2] : '16/9'; // Default to 16:9 if no image
+                    ?>
+                    <div id="static_header_banner" class="header-style-1" style="aspect-ratio: <?php echo esc_attr($aspect_ratio); ?>;">
 
                         <?php if (!is_front_page()) : ?>
                             <div class="site-header-text-wrap">
@@ -351,7 +375,10 @@ class live_complete_Header_Layout
 
                         <?php if (!empty($banner_image)) : ?>
                             <div class="site-header-bg-wrap">
-                                <div class="site-header-bg background-effect" style="background-image: url(<?php echo esc_url($banner_image); ?>); background-attachment: scroll;"></div>
+
+                                <div class="site-header-bg-container" style="aspect-ratio: <?php echo esc_attr($aspect_ratio); ?>;">
+                                    <div class="site-header-bg background-effect" style="background-image: url(<?php echo esc_url($banner_image); ?>);"></div>
+                                </div>
                             </div>
                         <?php endif; ?>
 
