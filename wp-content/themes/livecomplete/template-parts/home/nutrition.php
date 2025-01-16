@@ -50,9 +50,8 @@ if (!defined('ABSPATH')) {
         align-items: flex-start;
         justify-content: flex-start;
         flex-shrink: 0;
-        width: 644px;
+        max-width: 644px;
         position: relative;
-        max-width: 100%;
     }
 
     .shop-by-category .content2 {
@@ -144,11 +143,10 @@ if (!defined('ABSPATH')) {
         <div class="container">
             <div class="content">
                 <div class="content2">
-                    <div class="heading">
+                    <h2 class="heading">
                         Personalized nutrition for
-                        <br />
                         every lifestyle
-                    </div>
+                    </h2>
                     <div class="text">
                         Our plant-based products are thoughtfully crafted to meet the unique
                         needs of different lifestyles. Whether you&#039;re looking for

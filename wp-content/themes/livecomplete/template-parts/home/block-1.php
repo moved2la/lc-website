@@ -39,17 +39,18 @@ if (!defined('ABSPATH')) {
         align-items: flex-start;
         justify-content: flex-start;
         flex-shrink: 0;
-        width: 504px;
+        max-width: 504px;
         position: relative;
+        flex: 1;
     }
 
-    .home-block-1 .medium-length-hero-headline-goes-here {
-        color: var(--text-primary, #000000);
+    .home-block-1 .home-block-1-heading {
+        color: #000000;
         text-align: left;
-        font-family: var(--heading-desktop-h1-font-family, "Roboto-Bold", sans-serif);
-        font-size: var(--heading-desktop-h1-font-size, 56px);
-        line-height: var(--heading-desktop-h1-line-height, 120%);
-        font-weight: var(--heading-desktop-h1-font-weight, 700);
+        font-family: "Roboto-Bold", sans-serif;
+        font-size: clamp(40px, 5vw, 56px);
+        line-height: 120%;
+        font-weight: 700;
         position: relative;
         align-self: stretch;
     }
@@ -62,9 +63,10 @@ if (!defined('ABSPATH')) {
         justify-content: flex-start;
         flex: 1;
         position: relative;
+        max-width: 776px;
     }
 
-    .home-block-1 .lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique-duis-cursus-mi-quis-viverra-ornare-eros-dolor-interdum-nulla-ut-commodo-diam-libero-vitae-erat {
+    .home-block-1 .home-block-1-description {
         color: var(--text-primary, #000000);
         text-align: left;
         font-family: var(--text-medium-normal-font-family,
@@ -104,18 +106,28 @@ if (!defined('ABSPATH')) {
     .home-block-1 .site-content {
         background: #f1f1f1;
     }
+
+    @media (max-width: 768px) {
+        .home-block-1 {
+            flex-direction: column;
+        }
+        
+        .home-block-1 .column,
+        .home-block-1 .column2 {
+            max-width: 100%;
+        }
+    }
 </style>
 
 <div class="home-block-1-wrapper">
     <div class="home-block-1 container">
         <div class="column">
-            <div class="medium-length-hero-headline-goes-here">
+            <div class="home-block-1-heading">
                 The plant-based lifestyle without compromise
             </div>
         </div>
         <div class="column2">
-            <div
-                class="lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique-duis-cursus-mi-quis-viverra-ornare-eros-dolor-interdum-nulla-ut-commodo-diam-libero-vitae-erat">
+            <div class="home-block-1-description">
                 Live Complete delivers plant-based nutrition that’s nutritionally
                 identical to animal products —without the downsides. No compromises on
                 taste, texture, or health. Join us in creating a sustainable, complete

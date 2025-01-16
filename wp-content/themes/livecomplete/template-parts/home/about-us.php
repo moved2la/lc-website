@@ -36,8 +36,8 @@ if (!defined('ABSPATH')) {
         align-items: flex-start;
         justify-content: flex-start;
         flex-shrink: 0;
-        width: 768px;
         position: relative;
+        max-width: 768px;
     }
 
     .about-us .content {
@@ -52,12 +52,12 @@ if (!defined('ABSPATH')) {
     }
 
     .about-us .section-title {
-        color: var(--border-primary, #000000);
+        color: #000000;
         text-align: left;
-        font-family: var(--heading-desktop-h2-font-family, "Roboto-Bold", sans-serif);
-        font-size: var(--heading-desktop-h2-font-size, 48px);
-        line-height: var(--heading-desktop-h2-line-height, 120%);
-        font-weight: var(--heading-desktop-h2-font-weight, 700);
+        font-family: "Roboto-Bold", sans-serif;
+        font-size: clamp(36px, 4vw, 48px);
+        line-height: 120%;
+        font-weight: 700;
         position: relative;
         align-self: stretch;
     }
@@ -95,6 +95,7 @@ if (!defined('ABSPATH')) {
         align-self: stretch;
         flex-shrink: 0;
         position: relative;
+        flex-wrap: wrap;
     }
 
     .about-us .content3 {
@@ -105,6 +106,8 @@ if (!defined('ABSPATH')) {
         justify-content: flex-start;
         flex: 1;
         position: relative;
+        max-width: 416px;
+        min-width: 300px;
     }
 
     .about-us .section-one {
@@ -206,15 +209,28 @@ if (!defined('ABSPATH')) {
         position: relative;
         overflow: hidden;
     }
+
+    @media screen and (max-width: 768px) {
+        .about-us .section-one,
+        .about-us .section-two,
+        .about-us .section-three {
+            margin: 0 auto;
+            align-self: center;
+        }
+
+        .about-us .content3 {
+            align-items: center;
+        }
+    }
 </style>
 
 <div class="about-us-wrapper">
     <div class="about-us container">
         <div class="section-header">
             <div class="content">
-                <div class="section-title">
+                <h2 class="section-title">
                     Redefining plant-based living
-                </div>
+                </h2>
                 <div class="section-description">
                     Discover how we’re transforming plant-based living through innovation,
                     sustainability, and a commitment to better health for people and the
