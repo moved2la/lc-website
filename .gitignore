@@ -3,4 +3,6 @@
 
 # /wp-content/plugins/
 /wp-content/wflogs/
+/wp-content/ebwp-backups/
+/wp-content/ebwp-temps/
 /wp-content/themes/twentytwentyone/
