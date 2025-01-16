@@ -122,9 +122,9 @@ if (!defined('ABSPATH')) {
 <div class="home-block-1-wrapper">
     <div class="home-block-1 container">
         <div class="column">
-            <div class="home-block-1-heading">
+            <h1 class="home-block-1-heading">
                 The plant-based lifestyle without compromise
-            </div>
+            </h1>
         </div>
         <div class="column2">
             <div class="home-block-1-description">

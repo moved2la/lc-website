@@ -246,9 +246,9 @@ if (!defined('ABSPATH')) {
                         <img class="group" src="<?php echo get_template_directory_uri() . '/assets/image/about-us-journey.svg'; ?>" />
                     </div>
                     <div class="content4">
-                        <div class="section-column-title">
+                        <h5 class="section-column-title">
                             Our journey to complete nutrition
-                        </div>
+                        </h5>
                         <div class="section-column-description">
                             Discover how Live Complete began with a bold vision: to
                             revolutionize plant-based living with products that offer complete
@@ -267,9 +267,9 @@ if (!defined('ABSPATH')) {
                         <img class="group" src="<?php echo get_template_directory_uri() . '/assets/image/about-us-science.svg'; ?>" />
                     </div>
                     <div class="content4">
-                        <div class="section-column-title">
+                        <h5 class="section-column-title">
                             What sets us apart
-                        </div>
+                        </h5>
                         <div class="section-column-description">
                             Explore the science and innovation behind our bioequivalent
                             formulations. See how we match the nutrition of animal
@@ -288,9 +288,9 @@ if (!defined('ABSPATH')) {
                         <img class="group" src="<?php echo get_template_directory_uri() . '/assets/image/about-us-impact.svg'; ?>" />
                     </div>
                     <div class="content4">
-                        <div class="section-column-title">
+                        <h5 class="section-column-title">
                             Impacting health, planet, and animals
-                        </div>
+                        </h5>
                         <div
                             class="section-column-description">
                             Learn how Live Complete is shaping a healthier, more sustainable

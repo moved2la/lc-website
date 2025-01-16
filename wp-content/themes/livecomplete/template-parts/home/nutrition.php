@@ -52,6 +52,7 @@ if (!defined('ABSPATH')) {
         flex-shrink: 0;
         max-width: 644px;
         position: relative;
+        width: 100%;
     }
 
     .shop-by-category .content2 {
@@ -64,29 +65,26 @@ if (!defined('ABSPATH')) {
         align-self: stretch;
         flex-shrink: 0;
         position: relative;
-        min-width: 300px;
     }
 
     .shop-by-category .heading {
-        color: var(--text-primary, #000000);
+        color: #000000;
         text-align: left;
-        font-family: var(--heading-desktop-h3-font-family, "Roboto-Bold", sans-serif);
-        font-size: var(--heading-desktop-h3-font-size, 40px);
-        line-height: var(--heading-desktop-h3-line-height, 120%);
-        font-weight: var(--heading-desktop-h3-font-weight, 700);
+        font-family: "Roboto-Bold", sans-serif;
+        font-size: clamp(36px, 4vw, 40px);
+        line-height: 120%;
+        font-weight: 700;
         position: relative;
         align-self: stretch;
     }
 
     .shop-by-category .text {
-        color: var(--text-primary, #000000);
+        color: #000000;
         text-align: left;
-        font-family: var(--text-medium-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-medium-normal-font-size, 18px);
-        line-height: var(--text-medium-normal-line-height, 150%);
-        font-weight: var(--text-medium-normal-font-weight, 400);
+        font-family: "Roboto-Regular", sans-serif;
+        font-size: 18px;
+        line-height: 150%;
+        font-weight: 400;
         position: relative;
         align-self: stretch;
     }
@@ -130,8 +128,7 @@ if (!defined('ABSPATH')) {
 
     .shop-by-category .image-prev {
         flex-shrink: 0;
-        width: 588px;
-        height: 610px;
+        min-width: 345px;
         position: relative;
         object-fit: cover;
         height: auto;
@@ -143,10 +140,10 @@ if (!defined('ABSPATH')) {
         <div class="container">
             <div class="content">
                 <div class="content2">
-                    <h2 class="heading">
+                    <h3 class="heading">
                         Personalized nutrition for
                         every lifestyle
-                    </h2>
+                    </h3>
                     <div class="text">
                         Our plant-based products are thoughtfully crafted to meet the unique
                         needs of different lifestyles. Whether you&#039;re looking for
