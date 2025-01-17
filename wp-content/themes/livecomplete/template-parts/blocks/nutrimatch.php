@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
 <style>
     .nutri-match-wrapper {
         background: #d9734d;
-        padding: 60px 0px 60px 0px;
+        padding: 60px 10px 60px 10px;
         /* display: flex;
         flex-direction: column;
         gap: 40px;

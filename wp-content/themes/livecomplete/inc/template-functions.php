@@ -548,11 +548,11 @@ function live_complete_shipping_returns_info() {
 }
 
 
-
+// Customizer settings for PDP shipping and returns
 function pdp_ship_return_customizer_settings($wp_customize)
 {
     // Add new section
-    $wp_customize->add_section('pdp_ship_return_section', array(
+    $wp_customize->add_section('pdp_custom_section', array(
         'title' => 'Product Page',
         'panel' => 'woocommerce', 
     ));
@@ -564,7 +564,7 @@ function pdp_ship_return_customizer_settings($wp_customize)
     ));
     $wp_customize->add_control('pdp_shipping_content', array(
         'label' => 'Shipping Content',
-        'section' => 'pdp_ship_return_section',
+        'section' => 'pdp_custom_section',
         'type' => 'textarea',
     ));
 
@@ -575,11 +575,64 @@ function pdp_ship_return_customizer_settings($wp_customize)
     ));
     $wp_customize->add_control('pdp_returns_content', array(
         'label' => 'Returns Content',
-        'section' => 'pdp_ship_return_section',
+        'section' => 'pdp_custom_section',
         'type' => 'textarea',
     ));
 }
 add_action('customize_register', 'pdp_ship_return_customizer_settings');
+
+
+// Customizer settings for PDP content block 1 image
+function pdp_content_1_image_customizer_settings($wp_customize)
+{
+    // Add section if it doesn't exist
+    if (!$wp_customize->get_section('pdp_custom_section')) {
+        $wp_customize->add_section('pdp_custom_section', array(
+            'title' => __('Product Page', 'live-complete'),
+            'panel' => 'woocommerce',
+        ));
+    }
+
+    // Add setting
+    $wp_customize->add_setting('pdp_content_1_image', array(
+        'default' => '',
+        'sanitize_callback' => 'absint'
+    ));
+
+    // Add control
+    $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'pdp_content_1_image', array(
+        'label' => __('Content Block 1 Image', 'live-complete'),
+        'section' => 'pdp_custom_section',
+        'mime_type' => 'image',
+    )));
+}
+add_action('customize_register', 'pdp_content_1_image_customizer_settings');
+
+// Customizer settings for PDP content block 2 image
+function pdp_content_2_image_customizer_settings($wp_customize)
+{
+    // Add section if it doesn't exist
+    if (!$wp_customize->get_section('pdp_custom_section')) {
+        $wp_customize->add_section('pdp_custom_section', array(
+            'title' => __('Product Page', 'live-complete'),
+            'panel' => 'woocommerce',
+        ));
+    }
+
+    // Add setting
+    $wp_customize->add_setting('pdp_content_2_image', array(
+        'default' => '',
+        'sanitize_callback' => 'absint'
+    ));
+
+    // Add control
+    $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'pdp_content_2_image', array(
+        'label' => __('Content Block 2 Image', 'live-complete'),
+        'section' => 'pdp_custom_section',
+        'mime_type' => 'image',
+    )));
+}
+add_action('customize_register', 'pdp_content_2_image_customizer_settings');
 
 /* ---------------- Product Page ---------------- */
 

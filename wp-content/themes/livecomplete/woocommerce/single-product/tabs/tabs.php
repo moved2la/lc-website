@@ -65,17 +65,21 @@ if (! empty($product_tabs)) : ?>
 
 <?php endif; ?>
 
-<style>
-    .content-area.container .full-width-section {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-    }
-</style>
+<!-- Content Section 1 -->
+<div class="woocommerce-tabs wc-tabs-wrapper row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <?php get_template_part('template-parts/blocks/pdp-content-1'); ?>
+    </div>
+</div>
 
+<!-- Content Section 2 -->
+<div class="woocommerce-tabs wc-tabs-wrapper row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <?php get_template_part('template-parts/blocks/pdp-content-2'); ?>
+    </div>
+</div>
+
+<!-- Nutrimatch -->
 <div class="full-width-section">
     <div class="woocommerce-tabs wc-tabs-wrapper row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-12">

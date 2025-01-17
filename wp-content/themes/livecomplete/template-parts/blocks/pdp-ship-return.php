@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Template part for displaying the signup block
+ * Template part for displaying the shipping and returns block 
+ * under summary on product page.
  *
  * @package live-complete
  */

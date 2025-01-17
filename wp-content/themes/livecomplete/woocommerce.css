@@ -1399,10 +1399,20 @@ table.woocommerce-checkout-review-order-table th {
     }
     .single.single-product .quantity {
         display: block;
-        margin: 0px auto !important;
+        /* margin: 0px auto !important; */
         float: none !important;
-        width: 140px;
+        width: 147px;
     }
+    .single.single-product .quantity button.plus {
+        margin-left: 0 !important;
+    }
+    .single.single-product .quantity button.minus {
+        margin-left: -1px !important;
+    }
+    .woocommerce div.product form.cart {
+        text-align: left;
+    }
+
     .woocommerce #content div.product div.summary .btn {
         float: none;
         margin: 0px auto;
