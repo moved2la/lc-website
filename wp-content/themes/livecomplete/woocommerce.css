@@ -1186,7 +1186,6 @@ ul.wc_payment_methods li p {
 }
 .woocommerce-form.woocommerce-form-login.login .form-row.woocommerce-form-row {
     width: 50%;
-    float: left;
     clear: none;
 }
 .woocommerce-form.woocommerce-form-login.login label {

@@ -211,7 +211,7 @@ class live_complete_Header_Layout
 
                 <ul class="header-icon">
                     <li class="account-icon">
-                        <a href="javascript:void(0)">
+                        <a href="<?php echo esc_url(home_url('/my-account')); ?>">
                             <img src="<?php echo get_template_directory_uri() . '/assets/image/account.svg'; ?>" alt="Account">
                         </a>
                     </li>
@@ -341,25 +341,6 @@ class live_complete_Header_Layout
                     if (!empty($template)) return;
                 ?>
 
-                    <style>
-                        /* .site-header-bg-wrap {
-                            width: 100%;
-                            overflow: hidden;
-                        }
-
-                        .site-header-bg-container {
-                            width: 100%;
-                        }
-
-                        .site-header-bg {
-                            width: 100%;
-                            height: 100%;
-                            background-position: center;
-                            background-size: cover;
-                            background-repeat: no-repeat;
-                        } */
-                    </style>
-
                     <?php
                         // Get image dimensions
                         $image_data = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
@@ -468,7 +449,7 @@ class live_complete_Header_Layout
                 });
             }
             /**
-             * Add JavaScript to handle cart quantity updates
+             * Handle cart quantity updates
              */
             public function add_cart_quantity_script()
             {
