@@ -3,6 +3,7 @@ Theme Name: live-complete
 
 WooCommerce styles override
 */
+
 .woocommerce ul.products li.product,
 .woocommerce-page ul.products li.product {
     background: #fff;
@@ -676,7 +677,7 @@ p.comment-form-comment {
     clear: both;
 }
 /*--------------------------------------*/
-/*Reivew
+/*Reviews
 /*---------------------------------*/
 
 #reviews h4.comments-title {
@@ -799,6 +800,28 @@ p.comment-form-comment {
 /*--------------
 # CART
 --------------*/
+
+/* WooCommerce Empty Cart Block */
+.wp-block-woocommerce-empty-cart-block .wp-block-heading {
+    margin-bottom: 20px !important;
+}
+
+.wp-block-woocommerce-empty-cart-block .wc-block-grid__product {
+  text-align: left !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+}
+.wp-block-woocommerce-empty-cart-block .wc-block-grid__product-link {
+  text-decoration: none !important;
+}
+.wp-block-woocommerce-empty-cart-block .wc-block-grid__product-image {
+  max-width: 300px !important;
+}
+/* WooCommerce using wrong font for star rating */
+.wc-block-grid__product-rating .star-rating {
+    font-family: star !important;
+}
+
 dl.variation {
     margin: 0px;
     padding: 0px;
