@@ -14,8 +14,6 @@ if (!defined('ABSPATH')) {
 ?>
 
 <style>
-
-
     .shipping-page-content-wrapper {
         background-color: #f1f1f1;
     }
@@ -26,9 +24,13 @@ if (!defined('ABSPATH')) {
         padding-bottom: 60px;
         display: flex;
         gap: 60px;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 
     .shipping-quote {
+        flex: 1 1 369px;
+        min-width: 300px;
         color: var(--text-primary, #000000);
         text-align: left;
         font-family: var(--heading-mobile-h4-font-family, "Roboto-Bold", sans-serif);
@@ -36,30 +38,62 @@ if (!defined('ABSPATH')) {
         line-height: var(--heading-mobile-h4-line-height, 140%);
         font-weight: var(--heading-mobile-h4-font-weight, 700);
         position: relative;
-        max-width: 369px;
+        max-width: 420px;
         box-sizing: border-box;
+        margin: 30px 64px;
+        height: fit-content;
+        display: inline-block;
     }
 
-    .quote-mark {
-        color: var(--primary-color, #FF6B35);
+    .shipping-quote::before,
+    .shipping-quote::after {
+        content: "\201C";
+        color: #D9734D;
         font-family: "Roboto-Bold", sans-serif;
-        font-size: 48px;
-        line-height: 120%;
-        font-weight: 700;
+        font-size: 128px;
+        position: absolute;
     }
 
-    /* .shipping-quote::before {
-        left: 0;
-        top: 0;
+    .shipping-quote::before {
+        top: -10px;
+        left: -64px;
     }
 
     .shipping-quote::after {
         content: "\201D";
+        bottom: -40px;
+        right: -40px;
+    }
+
+    .quote-mark {
+        color: #D9734D;
+        font-family: "Roboto-Bold", sans-serif;
+        font-size: 64px;
+        font-weight: 700;
+        line-height: 120%;
+        display: block;
+        height: 39px;
+        width: 34px;
+        position: absolute;
+    }
+
+    .quote-mark-open {
+        content: "\201C";
+        left: 0;
+        top: 0;
+        margin-left: -34px;
+        margin-top: -34px;
+    }
+
+    .quote-mark-close {
+        content: "\201D";
         right: 0;
-        bottom: 0;
-    } */
+        /* bottom: 0; */
+    }
 
     .shipping-info {
+        flex: 1 1 400px;
+        min-width: 300px;
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
@@ -98,8 +132,10 @@ if (!defined('ABSPATH')) {
 <div class="shipping-page-content-wrapper full-width-section">
     <div class="shipping-page-content-wrapper-inner container">
         <div class="shipping-quote">
-            <span class="quote-mark">"</span>Your satisfaction is our priority. We strive to deliver your products
-            safely and promptly.<span class="quote-mark">"</span>
+            <!-- <span class="quote-mark quote-mark-open">"</span> -->
+            Your satisfaction is our priority. We strive to deliver your products
+            safely and promptly.
+            <!-- <span class="quote-mark quote-mark-close">"</span> -->
         </div>
 
         <div class="shipping-info">
