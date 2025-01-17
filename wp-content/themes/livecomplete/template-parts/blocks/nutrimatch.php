@@ -17,12 +17,6 @@ if (!defined('ABSPATH')) {
     .nutri-match-wrapper {
         background: #d9734d;
         padding: 60px 10px 60px 10px;
-        /* display: flex;
-        flex-direction: column;
-        gap: 40px;
-        align-items: center;
-        justify-content: flex-start;
-        position: relative; */
     }
 
     .nutri-match {

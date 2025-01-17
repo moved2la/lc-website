@@ -107,25 +107,23 @@ if (!defined('ABSPATH')) {
     }
 
     .pdp-content-1 .pdp-content-1__heading {
-        color: var(--text-primary, #000000);
+        color: #000000;
         text-align: left;
-        font-family: var(--heading-desktop-h3-font-family, "Roboto-Bold", sans-serif);
-        font-size: var(--heading-desktop-h3-font-size, 40px);
-        line-height: var(--heading-desktop-h3-line-height, 120%);
-        font-weight: var(--heading-desktop-h3-font-weight, 700);
+        font-family: "Roboto-Bold", sans-serif;
+        font-size: clamp(32px, 4vw, 40px);
+        line-height: 120%;
+        font-weight: 700;
         position: relative;
         align-self: stretch;
     }
 
     .pdp-content-1 .pdp-content-1__text {
-        color: var(--text-primary, #000000);
+        color: #000000;
         text-align: left;
-        font-family: var(--text-medium-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-medium-normal-font-size, 18px);
-        line-height: var(--text-medium-normal-line-height, 150%);
-        font-weight: var(--text-medium-normal-font-weight, 400);
+        font-family: "Roboto-Regular", sans-serif;
+        font-size: 18px;
+        line-height: 150%;
+        font-weight: 400;
         position: relative;
         align-self: stretch;
     }
@@ -176,8 +174,7 @@ if (!defined('ABSPATH')) {
     @media screen and (max-width: 768px) {
         .pdp-content-1 .pdp-content-1__container {
             flex-direction: column-reverse;
-            gap: 1rem;
-            /* Reduced gap for mobile */
+            gap: 1rem; /* Reduced gap for mobile */
         }
 
         .pdp-content-1 .pdp-content-1__column {

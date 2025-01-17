@@ -19,9 +19,9 @@ if (!defined('ABSPATH')) {
 
         <div class="pdp-content-2__column">
             <div class="content2">
-                <div class="pdp-content-2__heading">
+                <h3 class="pdp-content-2__heading">
                     Complete nutrition, no compromises
-                </div>
+                </h3>
                 <div class="pdp-content-1__text">
                     Revolutionize your protein game with our plant-based powder,
                     bioequivalent to animal proteins. Enjoy the same nutritional
@@ -95,7 +95,7 @@ if (!defined('ABSPATH')) {
         color: #000000;
         text-align: left;
         font-family: "Roboto-Bold", sans-serif;
-        font-size: 40px;
+        font-size: clamp(32px, 4vw, 40px);
         line-height: 120%;
         font-weight: 700;
         position: relative;
@@ -103,14 +103,12 @@ if (!defined('ABSPATH')) {
     }
 
     .pdp-content-2 .pdp-content-2__text {
-        color: var(--text-primary, #000000);
+        color: #000000;
         text-align: left;
-        font-family: var(--text-medium-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-medium-normal-font-size, 18px);
-        line-height: var(--text-medium-normal-line-height, 150%);
-        font-weight: var(--text-medium-normal-font-weight, 400);
+        font-family: "Roboto-Regular", sans-serif;
+        font-size: 18px;
+        line-height: 150%;
+        font-weight: 400;
         position: relative;
         align-self: stretch;
     }
@@ -171,9 +169,7 @@ if (!defined('ABSPATH')) {
 
     @media screen and (max-width: 768px) {
         .pdp-content-2 .pdp-content-2__container {
-            /* flex-direction: column-reverse; */
-            gap: 1rem;
-            /* Reduced gap for mobile */
+            gap: 1rem; /* Reduced gap for mobile */
         }
 
         .pdp-content-2 .pdp-content-2__column {
