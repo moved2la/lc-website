@@ -1319,13 +1319,17 @@ ul.wc_payment_methods li p {
 }
 .woocommerce-order-details h2,
 .woocommerce-customer-details h2 {
-    position: absolute;
+    /* position: absolute; */
     top: -20px;
 }
 .woocommerce-order-details,
 .woocommerce-customer-details {
     padding: 20px;
     margin-top: 50px;
+}
+.woocommerce-customer-details {
+    display: block;
+    overflow: auto;
 }
 .woocommerce-form-login__submit {
     display: block;
