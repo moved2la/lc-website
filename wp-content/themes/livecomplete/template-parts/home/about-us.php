@@ -255,7 +255,7 @@ if (!defined('ABSPATH')) {
                             nutrition, unparalleled taste, and zero compromise. Learn more about
                             the passion driving us forward.
                         </div>
-                        <a href="<?php echo get_permalink(get_page_by_path('contact-us')); ?>"
+                        <a href="<?php echo home_url('/learn/our-story/'); ?>"
                             class="category-link ">
                             <div class="button">Read our story</div>
                             <img class="icon-chevron-right" src="<?php echo get_template_directory_uri() . '/assets/image/icon-chevron.svg'; ?>" />
@@ -276,7 +276,7 @@ if (!defined('ABSPATH')) {
                             products—without the downsides—delivering taste, texture, and
                             efficiency unmatched in the plant-based world.
                         </div>
-                        <a href="<?php echo get_permalink(get_page_by_path('contact-us')); ?>"
+                        <a href="<?php echo home_url('/learn/the-difference/'); ?>"
                             class="category-link ">
                             <div class="button">Discover the difference</div>
                             <img class="icon-chevron-right" src="<?php echo get_template_directory_uri() . '/assets/image/icon-chevron.svg'; ?>" />
@@ -298,7 +298,7 @@ if (!defined('ABSPATH')) {
                             see how every choice you make with us contributes to meaningful
                             change.
                         </div>
-                        <a href="<?php echo get_permalink(get_page_by_path('contact-us')); ?>"
+                        <a href="<?php echo home_url('/learn/our-impact/'); ?>"
                             class="category-link ">
                             <div class="button">Learn about our impact</div>
                             <img class="icon-chevron-right" src="<?php echo get_template_directory_uri() . '/assets/image/icon-chevron.svg'; ?>" />
