@@ -1,7 +1,7 @@
 # Log files
 *.log
 
-/wp-content/plugins/
+# /wp-content/plugins/
 /wp-content/wflogs/
 /wp-content/ebwp-backups/
 /wp-content/ebwp-temps/
