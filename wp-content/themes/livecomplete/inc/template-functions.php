@@ -703,13 +703,6 @@ function enqueue_post_article_image_block_assets()
         '1.0.0',
         true
     );
-
-    // wp_enqueue_style(
-    //     'post-article-image-style',
-    //     get_template_directory_uri() . '/assets/css/post-article-image.css',
-    //     array(),
-    //     '1.0.0'
-    // );
 }
 add_action('enqueue_block_editor_assets', 'enqueue_post_article_image_block_assets');
 
