@@ -471,7 +471,7 @@ remove_action('woocommerce_single_product_summary', 'woocommerce_template_single
 add_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 25);
 
 
-// Add custom attribute display
+// Add custom attribute display before add to cart form
 function custom_product_attributes_display()
 {
     global $product;
@@ -637,18 +637,50 @@ add_action('customize_register', 'pdp_content_2_image_customizer_settings');
 /* ---------------- Product Page ---------------- */
 
 
-// Register custom blocks
+/* ---------------- Post Article Blocks ---------------- */
+
+function add_livecomplete_block_category($block_categories)
+{
+    $block_categories[] = array(
+        'slug'  => 'livecomplete',
+        'title' => __('LiveComplete', 'livecomplete'),
+        'icon'  => null,
+    );
+
+    return $block_categories;
+}
+add_filter('block_categories_all', 'add_livecomplete_block_category');
+
 function enqueue_post_article_heading_block_assets()
 {
     wp_enqueue_script(
         'post-article-heading-block',
         get_template_directory_uri() . '/assets/js/blocks/post-article-heading.js',
-        array('wp-blocks', 'wp-element', 'wp-block-editor'), // Added wp-block-editor dependency
+        array('wp-blocks', 'wp-element', 'wp-block-editor'), 
         '1.0.0',
         true
     );
 }
 add_action('enqueue_block_editor_assets', 'enqueue_post_article_heading_block_assets');
+
+function enqueue_post_article_subheading_block_assets()
+{
+    wp_enqueue_script(
+        'post-article-subheading-block',
+        get_template_directory_uri() . '/assets/js/blocks/post-article-subheading.js',
+        array('wp-blocks', 'wp-element', 'wp-block-editor'),
+        '1.0.0',
+        true
+    );
+
+    wp_enqueue_style(
+        'post-article-subheading-style',
+        get_template_directory_uri() . '/assets/css/post-article.css',
+        array(),
+        '1.0.0'
+    );  
+}
+add_action('enqueue_block_editor_assets', 'enqueue_post_article_subheading_block_assets');
 
 function enqueue_post_article_paragraph_block_assets()
 {
@@ -672,18 +704,32 @@ function enqueue_post_article_image_block_assets()
         true
     );
 
-    wp_enqueue_style(
-        'post-article-image-style',
-        get_template_directory_uri() . '/assets/css/post-article-image.css',
-        array(),
-        '1.0.0'
-    );
+    // wp_enqueue_style(
+    //     'post-article-image-style',
+    //     get_template_directory_uri() . '/assets/css/post-article-image.css',
+    //     array(),
+    //     '1.0.0'
+    // );
 }
 add_action('enqueue_block_editor_assets', 'enqueue_post_article_image_block_assets');
 
+function enqueue_post_article_quote_block_assets()
+{
+    wp_enqueue_script(
+        'post-article-quote-block',
+        get_template_directory_uri() . '/assets/js/blocks/post-article-quote.js',
+        array('wp-blocks', 'wp-element', 'wp-block-editor'),
+        '1.0.0',
+        true
+    );
+}
+add_action('enqueue_block_editor_assets', 'enqueue_post_article_quote_block_assets');
+
 require_once get_template_directory() . '/inc/blocks/post-article-heading-block.php';
+require_once get_template_directory() . '/inc/blocks/post-article-subheading-block.php';
 require_once get_template_directory() . '/inc/blocks/post-article-paragraph-block.php';
 require_once get_template_directory() . '/inc/blocks/post-article-image-block.php';
+require_once get_template_directory() . '/inc/blocks/post-article-quote-block.php';
 
-
+/* ---------------- Post Article Blocks ---------------- */
 

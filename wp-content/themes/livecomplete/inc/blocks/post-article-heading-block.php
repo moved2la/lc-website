@@ -11,17 +11,11 @@ function register_post_article_heading_block()
                 'default' => '',
             ),
         ),
+        'category'        => 'livecomplete',
     ));
 }
 add_action('init', 'register_post_article_heading_block');
 
-// function render_post_article_heading_block($attributes)
-// {
-//     // Load and return the template part
-//     ob_start();
-//     include(get_template_directory() . '/template-parts/blocks/post-article-heading.php');
-//     return ob_get_clean();
-// }
 
 function render_post_article_heading_block($attributes)
 {

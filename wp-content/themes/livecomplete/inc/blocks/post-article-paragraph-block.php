@@ -12,6 +12,7 @@ function register_post_article_paragraph_block() {
                 'default' => '',
             ),
         ),
+        'category'        => 'livecomplete',
     ));
 }
 add_action('init', 'register_post_article_paragraph_block');

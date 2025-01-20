@@ -5,7 +5,7 @@
     blocks.registerBlockType( 'theme-blocks/post-article-paragraph', {
         title: 'Post Article Paragraph',
         icon: 'text',
-        category: 'formatting',
+        category: 'livecomplete',
         attributes: {
             content: {
                 type: 'string',

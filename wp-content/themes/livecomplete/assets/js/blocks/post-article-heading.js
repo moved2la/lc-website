@@ -5,7 +5,7 @@
     blocks.registerBlockType( 'theme-blocks/post-article-heading', {
         title: 'Post Article Heading',
         icon: 'heading',
-        category: 'formatting',
+        category: 'livecomplete',
         attributes: {
             introText: {
                 type: 'string',

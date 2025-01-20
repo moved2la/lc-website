@@ -12,7 +12,7 @@
     blocks.registerBlockType( 'theme-blocks/post-article-image', {
         title: 'Post Article Image',
         icon: 'format-image',
-        category: 'formatting',
+        category: 'livecomplete',
         attributes: {
             imageUrl: {
                 type: 'string',

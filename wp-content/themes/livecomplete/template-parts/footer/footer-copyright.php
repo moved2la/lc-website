@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 ?>
 
 <style>
-    .credits {
+    .footer-bottom {
         display: flex;
         flex-direction: column;
         gap: 32px;
@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .credits2 {
+    .footer-bottom .credits-text {
         display: flex;
         flex-direction: row;
         gap: 24px;
@@ -34,54 +34,19 @@ if (!defined('ABSPATH')) {
         flex-shrink: 0;
         position: relative;
         flex-wrap: wrap;
+        color: #fff;
+        text-align: left;
+        font-family: "Roboto-Regular", sans-serif;
+        font-size: 14px;
+        line-height: 150%;
+        font-weight: 400;
     }
 
-    ._2024-relume-all-rights-reserved {
-        color: var(--border-alternate, #ffffff);
-        text-align: left;
-        font-family: var(--text-small-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-small-normal-font-size, 14px);
-        line-height: var(--text-small-normal-line-height, 150%);
-        font-weight: var(--text-small-normal-font-weight, 400);
-        position: relative;
-    }
-
-    .privacy-policy {
-        color: var(--background-color-primary, #ffffff);
-        text-align: left;
-        font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-        font-size: var(--text-small-link-font-size, 14px);
-        line-height: var(--text-small-link-line-height, 150%);
-        font-weight: var(--text-small-link-font-weight, 400);
+    .footer-bottom .policy-link {
         text-decoration: underline;
-        position: relative;
     }
 
-    .terms-of-service {
-        color: var(--background-color-primary, #ffffff);
-        text-align: left;
-        font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-        font-size: var(--text-small-link-font-size, 14px);
-        line-height: var(--text-small-link-line-height, 150%);
-        font-weight: var(--text-small-link-font-weight, 400);
-        text-decoration: underline;
-        position: relative;
-    }
-
-    .cookies-settings {
-        color: var(--background-color-primary, #ffffff);
-        text-align: left;
-        font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-        font-size: var(--text-small-link-font-size, 14px);
-        line-height: var(--text-small-link-line-height, 150%);
-        font-weight: var(--text-small-link-font-weight, 400);
-        text-decoration: underline;
-        position: relative;
-    }
-
-    .social-links {
+    .footer-bottom .social-links {
         display: flex;
         flex-direction: row;
         gap: 12px;
@@ -91,7 +56,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .icon-facebook {
+    .footer-bottom .icon-facebook {
         flex-shrink: 0;
         width: 24px;
         height: 24px;
@@ -99,7 +64,7 @@ if (!defined('ABSPATH')) {
         overflow: visible;
     }
 
-    .icon-instagram {
+    .footer-bottom .icon-instagram {
         flex-shrink: 0;
         width: 24px;
         height: 24px;
@@ -107,7 +72,7 @@ if (!defined('ABSPATH')) {
         overflow: visible;
     }
 
-    .icon-x {
+    .footer-bottom .icon-x {
         flex-shrink: 0;
         width: 24px;
         height: 24px;
@@ -115,7 +80,7 @@ if (!defined('ABSPATH')) {
         overflow: visible;
     }
 
-    .icon-linked-in {
+    .footer-bottom .icon-linked-in {
         flex-shrink: 0;
         width: 24px;
         height: 24px;
@@ -123,7 +88,7 @@ if (!defined('ABSPATH')) {
         overflow: visible;
     }
 
-    .icon-youtube {
+    .footer-bottom .icon-youtube {
         flex-shrink: 0;
         width: 24px;
         height: 24px;
@@ -137,7 +102,7 @@ if (!defined('ABSPATH')) {
             flex-direction: column-reverse;
         }
 
-        .footer-wrapper .row .credits2 {
+        .footer-wrapper .row .credits-text {
             flex-direction: column;
             flex-basis: 100%;
             justify-content: center;
@@ -153,16 +118,16 @@ if (!defined('ABSPATH')) {
     }
 </style>
 
-<div class="credits container"><span class="back-to-top" id="backToTop"><i class="icofont-rounded-up parallax"></i></span>
+<div class="footer-bottom container"><span class="back-to-top" id="backToTop"><i class="icofont-rounded-up parallax"></i></span>
     <div class="divider"></div>
     <div class="row">
-        <div class="credits2">
-            <div class="_2024-relume-all-rights-reserved">
-                © 2024 Live Complete. All rights reserved.
-            </div>
-            <div class="privacy-policy">Privacy Notice</div>
-            <div class="terms-of-service">Terms and Conditions</div>
-            <div class="cookies-settings">Cookie Policy</div>
+        <div class="credits-text">
+            <span>
+                © <?php echo date('Y'); ?> Live Complete. All rights reserved.
+            </span>
+            <div class="policy-link">Privacy Notice</div>
+            <div class="policy-link">Terms and Conditions</div>
+            <div class="policy-link">Cookie Policy</div>
         </div>
         <div class="social-links">
             <?php if (get_theme_mod('__fb_link')): ?>
