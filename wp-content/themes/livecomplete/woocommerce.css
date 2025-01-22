@@ -1659,13 +1659,8 @@ table.woocommerce-checkout-review-order-table th {
     display: block;
 }
 
-.woocommerce-active .site-content {
-    /* background-color: #fff; */
-}
-
-
 .live-complete-breadcrumbs-wrap {
-    background-color: #F1F1F1;
+    background-color: #FFFFFF;
 }
 
 .content-area {

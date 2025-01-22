@@ -23,6 +23,14 @@
         <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/vendors/glide/assets/glide.core.min.css'; ?>">
         <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/vendors/glide/assets/glide.theme.min.css'; ?>">
         <script src="<?php echo get_template_directory_uri() . '/vendors/glide/glide.min.js'; ?>"></script>
+  
+    <?php endif; ?>
+    <?php if (is_product_category() || is_shop()) : ?>
+        <style>
+            .live-complete-breadcrumbs-wrap {
+                background-color: #F1F1F1 !important;
+            }
+        </style>
     <?php endif; ?>
 
     <?php wp_head(); ?>
