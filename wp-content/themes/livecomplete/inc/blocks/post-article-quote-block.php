@@ -1,6 +1,6 @@
 <?php
 function register_post_article_quote_block() {
-    register_block_type('theme-blocks/post-article-quote', array(
+    register_block_type(get_theme_file_path('inc/blocks/post-article-quote'), array(
         'render_callback' => 'render_post_article_quote_block',
         'attributes'      => array(
             'className'   => array(

@@ -2,7 +2,7 @@
 function register_post_article_subheading_block()
 {
     // Register the block using register_block_type
-    register_block_type('theme-blocks/post-article-subheading', array(
+    register_block_type(get_theme_file_path('inc/blocks/post-article-subheading'), array(
         'render_callback' => 'render_post_article_subheading_block',
         'attributes'      => array(
             'subheadingText' => array(
