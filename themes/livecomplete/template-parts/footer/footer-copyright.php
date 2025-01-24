@@ -135,8 +135,12 @@ if (!defined('ABSPATH')) {
             <a href="<?php echo get_privacy_policy_url(); ?>">
                 <div class="policy-link">Privacy Policy</div>
             </a>
-            <div class="policy-link">Terms and Conditions</div>
-            <div class="policy-link">Cookie Policy</div>
+            <a href="<?php echo get_privacy_policy_url(); ?>">
+                <div class="policy-link">Terms and Conditions</div>
+            </a>
+            <a href="<?php echo get_privacy_policy_url(); ?>">
+                <div class="policy-link">Cookie Policy</div>
+            </a>
         </div>
         <div class="social-links">
             <?php if (get_theme_mod('__fb_link')): ?>
