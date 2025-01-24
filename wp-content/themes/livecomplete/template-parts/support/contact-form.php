@@ -19,10 +19,7 @@ if (!defined('ABSPATH')) {
         display: flex;
         flex-direction: column;
         margin: 0 auto;
-        /* margin-top: 51px;
-        margin-bottom: 64px; */
         max-width: 768px;
-        /* gap: 20px; */
     }
 
     .support-contact-form {
@@ -51,12 +48,12 @@ if (!defined('ABSPATH')) {
     }
 
     .form-wrapper .heading {
-        color: var(--text-primary, #000000);
+        color:  #000000;
         text-align: center;
-        font-family: var(--heading-desktop-h2-font-family, "Roboto-Bold", sans-serif);
-        font-size: var(--heading-desktop-h2-font-size, 48px);
-        line-height: var(--heading-desktop-h2-line-height, 120%);
-        font-weight: var(--heading-desktop-h2-font-weight, 700);
+        font-family: "Roboto-Bold", sans-serif;
+        font-size: 48px;
+        line-height: 120%;
+        font-weight: 700;
         position: relative;
         align-self: stretch;
     }
@@ -64,7 +61,6 @@ if (!defined('ABSPATH')) {
     .form-wrapper .inputs {
         display: flex;
         flex-direction: column;
-        gap: 24px;
         align-items: flex-start;
         justify-content: flex-start;
         position: relative;
@@ -82,14 +78,12 @@ if (!defined('ABSPATH')) {
     }
 
     .form-wrapper .first-name {
-        color: var(--text-primary, #000000);
+        color: #000000;
         text-align: left;
-        font-family: var(--text-regular-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-regular-normal-font-size, 16px);
-        line-height: var(--text-regular-normal-line-height, 150%);
-        font-weight: var(--text-regular-normal-font-weight, 400);
+        font-family: "Roboto-Regular", sans-serif;
+        font-size: 16px;
+        line-height: 150%;
+        font-weight: 400;
         position: relative;
         align-self: stretch;
     }
@@ -97,12 +91,10 @@ if (!defined('ABSPATH')) {
     .form-wrapper .text-field {
         background: #ffffff;
         border-style: solid;
-        border-color: var(--color-neutral-black, #000000);
+        border-color: #000000;
         border-width: 1px;
-        padding: 12px;
         display: flex;
         flex-direction: row;
-        gap: 8px;
         align-items: center;
         justify-content: flex-start;
         align-self: stretch;
@@ -110,80 +102,21 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .form-wrapper .last-name {
-        color: var(--text-primary, #000000);
+    .form-wrapper .text-label {
+        color: #000000;
         text-align: left;
-        font-family: var(--text-regular-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-regular-normal-font-size, 16px);
-        line-height: var(--text-regular-normal-line-height, 150%);
-        font-weight: var(--text-regular-normal-font-weight, 400);
+        font-family: "Roboto-Regular", sans-serif;
+        font-size: 16px;
+        line-height: 150%;
+        font-weight: 400;
         position: relative;
         align-self: stretch;
     }
 
-    .form-wrapper .inputs2 {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        align-items: flex-start;
-        justify-content: flex-start;
-        position: relative;
-    }
-
-    .form-wrapper .email {
-        color: var(--text-primary, #000000);
-        text-align: left;
-        font-family: var(--text-regular-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-regular-normal-font-size, 16px);
-        line-height: var(--text-regular-normal-line-height, 150%);
-        font-weight: var(--text-regular-normal-font-weight, 400);
-        position: relative;
-        align-self: stretch;
-    }
-
-    .form-wrapper .phone-number {
-        color: var(--text-primary, #000000);
-        text-align: left;
-        font-family: var(--text-regular-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-regular-normal-font-size, 16px);
-        line-height: var(--text-regular-normal-line-height, 150%);
-        font-weight: var(--text-regular-normal-font-weight, 400);
-        position: relative;
-        align-self: stretch;
-    }
-
-    .form-wrapper .input2 {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        align-items: flex-start;
-        justify-content: flex-start;
-        position: relative;
-    }
-
-    .form-wrapper .message {
-        color: var(--text-primary, #000000);
-        text-align: left;
-        font-family: var(--text-regular-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-regular-normal-font-size, 16px);
-        line-height: var(--text-regular-normal-line-height, 150%);
-        font-weight: var(--text-regular-normal-font-weight, 400);
-        position: relative;
-        align-self: stretch;
-    }
-
-    .form-wrapper .alternate-false {
+    .form-wrapper textarea {
         background: #ffffff;
         border-style: solid;
-        border-color: var(--color-neutral-black, #000000);
+        border-color:  #000000;
         border-width: 1px;
         padding: 12px;
         display: flex;
@@ -197,32 +130,20 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .form-wrapper .type-your-message {
-        color: var(--color-neutral-neutral, #666666);
-        text-align: left;
-        font-family: "Roboto-Regular", sans-serif;
-        font-size: 16px;
-        line-height: 150%;
-        font-weight: 400;
-        position: relative;
-        flex: 1;
-    }
-
-    .form-wrapper .selected-false-alternate-false {
-        padding: 0px 0px 16px 0px;
+    .form-wrapper .terms-checkbox {
+        padding: 0px 0px 24px 0px;
         display: flex;
         flex-direction: row;
         gap: 8px;
         align-items: center;
         justify-content: flex-start;
-        height: 37px;
         position: relative;
     }
 
     .form-wrapper .checkbox {
-        background: var(--color-neutral-white, #ffffff);
+        background: #ffffff;
         border-style: solid;
-        border-color: var(--border-primary, #000000);
+        border-color: #000000;
         border-width: 1px;
         flex-shrink: 0;
         width: 18px;
@@ -232,8 +153,8 @@ if (!defined('ABSPATH')) {
         margin: 0;
     }
 
-    .form-wrapper .label {
-        color: var(--text-primary, #000000);
+    .form-wrapper .checkbox-label {
+        color: #000000;
         text-align: left;
         font-family: "Roboto-Regular", sans-serif;
         font-size: 14px;
@@ -255,20 +176,8 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .form-wrapper .style-primary-small-false-alternate-false-icon-position-no-icon {
-        background: #0e4c73;
-        padding: 12px 24px 12px 24px;
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        position: relative;
-    }
-
     .button {
-        color: var(--text-alternate, #ffffff);
+        color: #ffffff;
         text-align: left;
         font-family: "Roboto-SemiBold", sans-serif;
         font-size: 16px;
@@ -301,9 +210,9 @@ if (!defined('ABSPATH')) {
         padding: 16px 24px;
         margin: 24px auto;
         max-width: 768px;
-        font-family: var(--text-regular-normal-font-family, "Roboto-Regular", sans-serif);
-        font-size: var(--text-regular-normal-font-size, 16px);
-        line-height: var(--text-regular-normal-line-height, 150%);
+        font-family: "Roboto-Regular", sans-serif;
+        font-size: 16px;
+        line-height: 150%;
         border-radius: 4px;
     }
 
@@ -338,31 +247,28 @@ if (!defined('ABSPATH')) {
                 <?php wp_nonce_field('submit_contact_form', 'contact_form_nonce'); ?>
                 <div class="inputs">
                     <div class="input">
-                        <label for="first_name" class="first-name">First name</label>
+                        <label for="first_name" class="text-label">First name</label>
                         <input type="text" id="first_name" name="first_name" class="text-field" required>
                     </div>
                     <div class="input">
-                        <label for="last_name" class="last-name">Last name</label>
+                        <label for="last_name" class="text-label">Last name</label>
                         <input type="text" id="last_name" name="last_name" class="text-field" required>
                     </div>
-                </div>
-                <div class="inputs2">
                     <div class="input">
-                        <label for="email" class="email">Email</label>
+                        <label for="email" class="text-label">Email</label>
                         <input type="email" id="email" name="email" class="text-field" required>
                     </div>
                     <div class="input">
-                        <label for="phone" class="phone-number">Phone number</label>
+                        <label for="phone" class="text-label">Phone number</label>
                         <input type="tel" id="phone" name="phone" class="text-field">
                     </div>
+                    <label for="message" class="text-label">Message</label>
+                    <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
                 </div>
-                <div class="input2">
-                    <label for="message" class="message">Message</label>
-                    <textarea id="message" name="message" class="alternate-false" placeholder="Your message here..." required></textarea>
-                </div>
-                <div class="selected-false-alternate-false">
+
+                <div class="terms-checkbox">
                     <input type="checkbox" id="terms" name="terms" class="checkbox" required>
-                    <label for="terms" class="label">I agree to the Terms & Conditions</label>
+                    <label for="terms" class="checkbox-label">I agree to the Terms & Conditions</label>
                 </div>
                 <div class="button-primary">
                     <button type="submit">

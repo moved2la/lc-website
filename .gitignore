@@ -1,7 +1,14 @@
 # Log files
 *.log
 
-# /wp-content/plugins/
+# Ignore everything by default
+*
+
+# But allow wp-content directory and its contents
+!wp-content/
+!wp-content/**
+
+# Then ignore specific wp-content subdirectories
 /wp-content/wflogs/
 /wp-content/ebwp-backups/
 /wp-content/ebwp-temps/

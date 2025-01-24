@@ -1,0 +1,16 @@
+2025-01-02T21:28:33+00:00 NOTICE 3.1.0 - No subscription webhooks found using API version 3. No updates needed. CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE 7.8.0 upgrade complete from Subscriptions v0 while WooCommerce WC_VERSION 9.5.1 and database version 9.5.1 was active. CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE Environment info: CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE     WordPress Version : 6.7.1 CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE Active Plugins: CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE     Advanced Custom Fields by WP Engine – 6.3.11 CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE     Breadcrumb NavXT by John Havlik – 7.3.1 CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE     Export Products, Order & Customers for WooCommerce by WPFactory – 2.2.3 CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE     InstaWP Connect by InstaWP Team – 0.1.0.73 CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE     Kadence WooCommerce Email Designer by Kadence WP – 1.5.14 CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE     Maintenance mode for WooCommerce by netfett – 1.2 CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE     Max Mega Menu by megamenu.com – 3.4.1 CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE     WCAPF - WooCommerce Ajax Product Filter by wptools.io – 4.2.1 CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE     WooCommerce Subscriptions by WooCommerce – 7.0.0 CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE     WooCommerce by Automattic – 9.5.1 CONTEXT: {"_legacy":true}
+2025-01-02T21:28:33+00:00 NOTICE     WP Mail SMTP by WP Mail SMTP – 4.3.0 CONTEXT: {"_legacy":true}

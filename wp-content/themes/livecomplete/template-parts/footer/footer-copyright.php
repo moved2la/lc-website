@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template part for copyright section
+ * Template part for footer copyright section
  *
  * @package live-complete
  */
@@ -43,7 +43,14 @@ if (!defined('ABSPATH')) {
     }
 
     .footer-bottom .policy-link {
-        text-decoration: underline;
+
+        color: #fff;
+    }
+
+    .footer-bottom .policy-link:hover,
+    .footer-bottom .policy-link:focus,
+    .footer-bottom .policy-link:active {
+        color: #fff;
     }
 
     .footer-bottom .social-links {
@@ -125,7 +132,9 @@ if (!defined('ABSPATH')) {
             <span>
                 © <?php echo date('Y'); ?> Live Complete. All rights reserved.
             </span>
-            <div class="policy-link">Privacy Notice</div>
+            <a href="<?php echo get_privacy_policy_url(); ?>">
+                <div class="policy-link">Privacy Policy</div>
+            </a>
             <div class="policy-link">Terms and Conditions</div>
             <div class="policy-link">Cookie Policy</div>
         </div>

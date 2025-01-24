@@ -1,0 +1,6 @@
+2025-01-10T23:03:55+00:00 CRITICAL Transactional email triggered fatal error for callback woocommerce_order_status_pending_to_completed_notification
+
+2025-01-10T23:05:20+00:00 CRITICAL Transactional email triggered fatal error for callback woocommerce_order_status_pending_to_completed_notification
+
+2025-01-10T23:08:43+00:00 CRITICAL Transactional email triggered fatal error for callback woocommerce_order_status_pending_to_processing_notification
+

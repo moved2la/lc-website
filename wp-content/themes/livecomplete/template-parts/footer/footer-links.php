@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template part for links section
+ * Template part for footer links section
  *
  * @package live-complete
  */
