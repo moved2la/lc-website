@@ -135,10 +135,10 @@ if (!defined('ABSPATH')) {
             <a href="<?php echo get_privacy_policy_url(); ?>">
                 <div class="policy-link">Privacy Policy</div>
             </a>
-            <a href="<?php echo get_privacy_policy_url(); ?>">
+            <a href="<?php echo get_permalink(get_page_by_path('terms-and-conditions')); ?>">
                 <div class="policy-link">Terms and Conditions</div>
             </a>
-            <a href="<?php echo get_privacy_policy_url(); ?>">
+            <a href="<?php echo get_permalink(get_page_by_path('cookie-policy')); ?>">
                 <div class="policy-link">Cookie Policy</div>
             </a>
         </div>
