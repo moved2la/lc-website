@@ -64,7 +64,8 @@ class live_complete_Footer_Layout
 
     public function site_footer_links() {
         $html = get_template_part('template-parts/footer/footer-links');
-        echo wp_kses($html, $this->allowed_tags());
+
+        echo $html;
     }
 
 
