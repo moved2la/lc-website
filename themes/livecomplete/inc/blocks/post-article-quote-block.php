@@ -1,13 +1,13 @@
 <?php
 function register_post_article_quote_block() {
-    register_block_type(get_theme_file_path('inc/blocks/post-article-quote'), array(
+    register_block_type('livecomplete/post-article-quote', array(
         'render_callback' => 'render_post_article_quote_block',
         'attributes'      => array(
-            'className'   => array(
+            'classname'   => array(
                 'type'    => 'string',
                 'default' => '',
             ),
-            'quoteText'   => array(
+            'quotetext'   => array(
                 'type'    => 'string',
                 'default' => '',
             ),
@@ -19,10 +19,10 @@ add_action('init', 'register_post_article_quote_block');
 
 function render_post_article_quote_block($attributes) {
     // Ensure we have content, even if empty
-    $content = isset($attributes['quoteText']) ? $attributes['quoteText'] : '';
+    $content = isset($attributes['quotetext']) ? $attributes['quotetext'] : '';
     $className = 'post-article-quote';
-    if (!empty($attributes['className'])) {
-        $className .= ' ' . $attributes['className'];
+    if (!empty($attributes['classname'])) {
+        $className .= ' ' . $attributes['classname'];
     }
     
     // Debug output to error log

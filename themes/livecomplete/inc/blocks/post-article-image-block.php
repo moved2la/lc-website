@@ -1,20 +1,20 @@
 <?php
 function register_post_article_image_block() {
-    register_block_type(get_theme_file_path('inc/blocks/post-article-image'), array(
+    register_block_type('livecomplete/post-article-image', array(
         'render_callback' => 'render_post_article_image_block',
         'attributes'      => array(
-            'className' => array(
+            'classname' => array(
                 'type'    => 'string',
                 'default' => '',
             ),
-            'imageUrl'  => array(
+            'imageurl'  => array(
                 'type'    => 'string',
                 'default' => '',
             ),
-            'imageId'   => array(
+            'imageid'   => array(
                 'type'    => 'number',
             ),
-            'imageAlt'  => array(
+            'imagealt'  => array(
                 'type'    => 'string',
                 'default' => '',
             ),
@@ -30,18 +30,18 @@ add_action('init', 'register_post_article_image_block');
 
 function render_post_article_image_block($attributes) {
     $className = 'post-article-image';
-    if (!empty($attributes['className'])) {
-        $className .= ' ' . $attributes['className'];
+    if (!empty($attributes['classname'])) {
+        $className .= ' ' . $attributes['classname'];
     }
 
     ob_start();
     ?>
     <div class="<?php echo esc_attr($className); ?>">
-        <?php if (!empty($attributes['imageUrl'])) : ?>
+        <?php if (!empty($attributes['imageurl'])) : ?>
             <div class="image-container">
                 <img 
-                    src="<?php echo esc_url($attributes['imageUrl']); ?>" 
-                    alt="<?php echo esc_attr($attributes['imageAlt']); ?>"
+                    src="<?php echo esc_url($attributes['imageurl']); ?>" 
+                    alt="<?php echo esc_attr($attributes['imagealt']); ?>"
                 />
             </div>
         <?php endif; ?>

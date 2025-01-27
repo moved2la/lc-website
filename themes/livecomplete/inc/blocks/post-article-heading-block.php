@@ -2,11 +2,11 @@
 function register_post_article_heading_block()
 {
     // Register the block using register_block_type
-    register_block_type(get_theme_file_path('inc/blocks/post-article-heading'), array(
+    register_block_type('livecomplete/post-article-heading', array(
         'render_callback' => 'render_post_article_heading_block',
         'attributes'      => array(
             // Add any custom attributes here if needed
-            'className'   => array(
+            'classname'   => array(
                 'type'    => 'string',
                 'default' => '',
             ),
@@ -19,7 +19,7 @@ add_action('init', 'register_post_article_heading_block');
 
 function render_post_article_heading_block($attributes)
 {
-    $intro_text = isset($attributes['introText']) ? $attributes['introText'] : 'Introduction';
+    $intro_text = isset($attributes['introtext']) ? $attributes['introtext'] : 'Introduction';
 
     ob_start();
     ?>
