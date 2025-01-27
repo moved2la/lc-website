@@ -2324,3 +2324,10 @@ ul.product_list_widget span {
     max-width: 1360px;
   }
 }
+
+
+/* Cookie Consent modal override */
+.cc-link:hover {
+    background: white;
+}
+

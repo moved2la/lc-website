@@ -887,6 +887,8 @@ function mytheme_preview_email()
 
 add_action('wp_ajax_previewemail', 'mytheme_preview_email');
 
+/** -------------- Add Google Tag Manager -------------- */
+
 function add_GTM_script_header() {
     echo "<!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -906,4 +908,16 @@ function add_GTM_script_body() {
 }
 add_action('wp_body_open', 'add_GTM_script_body');
 
+/** -------------- Add Google Tag Manager -------------- */
 
+
+
+// Remove Yoast SEO menu for non-admin users
+add_action('admin_menu', 'hide_yoast_for_non_admins', 999);
+
+function hide_yoast_for_non_admins()
+{
+    if (!current_user_can('administrator')) {
+        remove_menu_page('wpseo_workouts');
+    }
+}
