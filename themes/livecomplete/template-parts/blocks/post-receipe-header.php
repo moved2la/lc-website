@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     }
 
     .receipe-post-header {
-        background: var(--background-color-primary, #ffffff);
+        background: #fff;
         display: flex;
         flex-direction: column;
         gap: 80px;
@@ -29,7 +29,7 @@ if (!defined('ABSPATH')) {
         overflow: hidden;
     }
 
-    .receipe-post-header .content {
+    .receipe-post-header .content-row {
         display: flex;
         flex-direction: row;
         gap: 80px;
@@ -38,20 +38,21 @@ if (!defined('ABSPATH')) {
         align-self: stretch;
         flex-shrink: 0;
         position: relative;
+        flex-wrap: wrap;
     }
 
-    .receipe-post-header .content2 {
+    .receipe-post-header .content-col1 {
         display: flex;
         flex-direction: column;
         gap: 32px;
         align-items: flex-start;
         justify-content: flex-start;
         flex-shrink: 0;
-        width: 420px;
+        max-width: 420px;
         position: relative;
     }
 
-    .receipe-post-header .content3 {
+    .receipe-post-header .content-col2 {
         display: flex;
         flex-direction: column;
         gap: 24px;
@@ -62,17 +63,7 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .receipe-post-header .content4 {
-        display: flex;
-        flex-direction: row;
-        gap: 16px;
-        align-items: center;
-        justify-content: flex-start;
-        flex-shrink: 0;
-        position: relative;
-    }
-
-    .receipe-post-header .text-only-false-alternate-false-icon-position-no-icon {
+    .receipe-post-header .blog-tag {
         background: #d9734d;
         padding: 4px 8px 4px 8px;
         display: flex;
@@ -84,8 +75,8 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .receipe-post-header .text {
-        color: var(--border-alternate, #ffffff);
+    .receipe-post-header .blog-tag-text {
+        color: #fff;
         text-align: left;
         font-family: "Roboto-SemiBold", sans-serif;
         font-size: 14px;
@@ -94,39 +85,24 @@ if (!defined('ABSPATH')) {
         position: relative;
     }
 
-    .receipe-post-header .blog-title-heading-will-go-here {
-        color: var(--text-primary, #000000);
+    .receipe-post-header .blog-title {
+        color: #000;
         text-align: left;
-        font-family: var(--heading-desktop-h1-font-family, "Roboto-Bold", sans-serif);
-        font-size: var(--heading-desktop-h1-font-size, 56px);
-        line-height: var(--heading-desktop-h1-line-height, 120%);
-        font-weight: var(--heading-desktop-h1-font-weight, 700);
+        font-family: "Roboto-Bold", sans-serif;
+        font-size: 56px;
+        line-height: 120%;
+        font-weight: 700;
         position: relative;
         align-self: stretch;
     }
 
     .receipe-post-header .publish-date {
-        color: var(--text-primary, #000000);
+        color: #000;
         text-align: left;
-        font-family: var(--text-small-normal-font-family,
-                "Roboto-Regular",
-                sans-serif);
-        font-size: var(--text-small-normal-font-size, 14px);
-        line-height: var(--text-small-normal-line-height, 150%);
-        font-weight: var(--text-small-normal-font-weight, 400);
-        position: relative;
-    }
-
-    .receipe-post-header .content5 {
-        padding: 4px 0px 0px 0px;
-        display: flex;
-        flex-direction: row;
-        gap: 4px;
-        align-items: flex-start;
-        justify-content: flex-start;
-        align-self: stretch;
-        flex-shrink: 0;
-        height: 25px;
+        font-family: "Roboto-Regular", sans-serif;
+        font-size: 14px;
+        line-height: 150%;
+        font-weight: 400;
         position: relative;
     }
 
@@ -135,60 +111,88 @@ if (!defined('ABSPATH')) {
         max-height: 450px;
         position: relative;
         object-fit: cover;
+        min-width: 300px;
+    }
+
+    .receipe-post-header .author {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        line-height: 150%;
+        font-weight: 400;
+        gap: 8px;
+    }
+
+    .receipe-post-header .author img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
     }
 </style>
 
 <div class="receipe-post-header">
-    <div class="content">
-        <div class="content2">
-            <div class="content3">
-                <div class="content4">
-                    <div class="text-only-false-alternate-false-icon-position-no-icon">
-                        <div class="text"><?php
-                                            $categories = get_the_category();
-                                            $is_blog = false;
+    <div class="content-row">
+        <div class="content-col1">
+            <div class="content-col2">
+                <div class="blog-tag">
+                    <div class="blog-tag-text"><?php
+                                                $categories = get_the_category();
+                                                $is_blog = false;
 
-                                            // Check if post is in Blog category
-                                            foreach ($categories as $category) {
-                                                if (strtolower($category->name) === 'blog') {
-                                                    $is_blog = true;
-                                                    break;
-                                                }
-                                            }
-
-                                            if ($is_blog) {
-                                                // Show first tag in title case or default to "Blog"
-                                                $post_tags = get_the_tags();
-                                                if ($post_tags) {
-                                                    echo esc_html(ucwords(strtolower($post_tags[0]->name)));
-                                                } else {
-                                                    echo 'Blog';
-                                                }
-                                            } else {
-                                                // Original category logic
-                                                $sub_category = null;
-                                                $main_category = null;
-
-                                                if (!empty($categories)) {
-                                                    foreach ($categories as $category) {
-                                                        if ($category->parent != 0) {
-                                                            $sub_category = $category;
-                                                            break;
-                                                        } elseif (!$main_category) {
-                                                            $main_category = $category;
-                                                        }
+                                                // Check if post is in Blog category
+                                                foreach ($categories as $category) {
+                                                    if (strtolower($category->name) === 'blog') {
+                                                        $is_blog = true;
+                                                        break;
                                                     }
-
-                                                    echo esc_html($sub_category ? $sub_category->name : $main_category->name);
-                                                } else {
-                                                    echo 'Uncategorized';
                                                 }
-                                            }
-                                            ?></div>
-                    </div>
+
+                                                if ($is_blog) {
+                                                    // Show first tag in title case or default to "Blog"
+                                                    $post_tags = get_the_tags();
+                                                    if ($post_tags) {
+                                                        echo esc_html(ucwords(strtolower($post_tags[0]->name)));
+                                                    } else {
+                                                        echo 'Blog';
+                                                    }
+                                                } else {
+                                                    // Original category logic
+                                                    $sub_category = null;
+                                                    $main_category = null;
+
+                                                    if (!empty($categories)) {
+                                                        foreach ($categories as $category) {
+                                                            if ($category->parent != 0) {
+                                                                $sub_category = $category;
+                                                                break;
+                                                            } elseif (!$main_category) {
+                                                                $main_category = $category;
+                                                            }
+                                                        }
+
+                                                        echo esc_html($sub_category ? $sub_category->name : $main_category->name);
+                                                    } else {
+                                                        echo 'Uncategorized';
+                                                    }
+                                                }
+                                                ?></div>
                 </div>
-                <div class="blog-title-heading-will-go-here">
+                <div class="blog-title">
                     <?php echo get_the_title(); ?>
+                </div>
+            </div>
+            <div class="content-row">
+                <div class="content-col1" style="gap: 0;">
+                    <div class="publish-date">Published on <?php echo get_the_date('j M Y'); ?></div>
+                    <div class="author">
+                        <?php
+                        $avatar = get_avatar(get_the_author_meta('ID'), 24);
+                        if ($avatar && !empty(get_avatar_url(get_the_author_meta('ID')))) {
+                            echo $avatar;
+                        }
+                        ?>
+                        By <?php echo get_the_author_meta('display_name'); ?>
+                    </div>
                 </div>
             </div>
         </div>
