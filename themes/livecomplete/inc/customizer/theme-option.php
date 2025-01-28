@@ -308,15 +308,15 @@ $wp_customize->add_control(
 );
 
 $wp_customize->add_setting(
-    'signle_meta_hide',
+    'single_meta_hide',
     array(
-        'default'           => $default['signle_meta_hide'],
+        'default'           => $default['single_meta_hide'],
         'capability'        => 'edit_theme_options',
         'sanitize_callback' => 'live_complete_sanitize_checkbox',
     )
 );
 $wp_customize->add_control(
-    'signle_meta_hide',
+    'single_meta_hide',
     array(
         'label'    => esc_html__('Hide Single post Meta Info ?', 'live-complete'),
         'section'  => 'theme_option_section_settings',

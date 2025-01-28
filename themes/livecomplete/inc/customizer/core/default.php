@@ -26,7 +26,7 @@ if ( ! function_exists( 'live_complete_get_default_theme_options' ) ) :
 		$defaults['blog_loop_content_type']     	= 'excerpt';
 		
 		$defaults['blog_meta_hide']     			= false;
-		$defaults['signle_meta_hide']     			= false;
+		$defaults['single_meta_hide']     			= false;
 		
 		/*Posts Layout*/
 		$defaults['page_layout']     				= 'content-sidebar';

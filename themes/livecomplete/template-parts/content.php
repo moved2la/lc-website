@@ -17,7 +17,7 @@
     *
     * @hooked live_complete_posts_formats_thumbnail - 10
     */
-    do_action( 'live_complete_posts_blog_media' );
+    // do_action( 'live_complete_posts_blog_media' );
     ?>
     <div class="post">
                
@@ -34,7 +34,7 @@
 		
 		if ( is_singular() && !is_page() ) :
 			
-			if( live_complete_get_option('signle_meta_hide') != true ){
+			if( live_complete_get_option('single_meta_hide') != true ){
 				
 				$meta = array( 'author', 'date', 'category', 'comments' );
 			}
@@ -45,7 +45,7 @@
 				
 				$meta = array( 'author', 'date', 'category', 'comments' );
 			}
-			$meta  	 = apply_filters( 'live_complete_blog_meta', $meta );
+			$meta = apply_filters( 'live_complete_blog_meta', $meta );
 		 endif;
 	
 		

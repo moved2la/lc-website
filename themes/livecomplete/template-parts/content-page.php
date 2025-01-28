@@ -16,7 +16,7 @@
     *
     * @hooked live_complete_posts_formats_thumbnail - 10
     */
-    do_action( 'live_complete_posts_blog_media' );
+    // do_action( 'live_complete_posts_blog_media' );
     ?>
     <div class="post page-content">
                

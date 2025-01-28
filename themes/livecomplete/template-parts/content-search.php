@@ -34,7 +34,7 @@
         
         if ( is_singular() ) :
             
-            if( live_complete_get_option('signle_meta_hide') != true ){
+            if( live_complete_get_option('single_meta_hide') != true ){
                 
                 $meta = array( 'author', 'date', 'category', 'comments' );
             }
