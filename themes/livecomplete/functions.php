@@ -62,6 +62,11 @@ if (class_exists('WooCommerce')) {
  */
 require get_template_directory() . '/inc/widgets.php';
 
+/**
+ * Implement custom admin features
+ */
+require get_template_directory() . '/inc/admin.php';
+
 
 /**
  * Include AJAX handlers
@@ -911,13 +916,3 @@ add_action('wp_body_open', 'add_GTM_script_body');
 /** -------------- Add Google Tag Manager -------------- */
 
 
-
-// Remove Yoast SEO menu for non-admin users
-add_action('admin_menu', 'hide_yoast_for_non_admins', 999);
-
-function hide_yoast_for_non_admins()
-{
-    if (!current_user_can('administrator')) {
-        remove_menu_page('wpseo_workouts');
-    }
-}
