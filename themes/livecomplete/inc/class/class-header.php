@@ -221,9 +221,9 @@ class live_complete_Header_Layout
             $html .= '</a>';
             $html .= '</li>';
             $html .= '<li>';
-            $html .= '<button onclick="window.location.href=\'' . esc_url(home_url('/subscribe-and-save')) . '\'">';
-            $html .= 'Subscribe & Save';
-            $html .= '</button>';
+            $html .= '<a href="' . esc_url(home_url('/subscribe-and-save')) . '">';
+            $html .= '<button>Subscribe & Save</button></a>';
+            $html .= '</a>';
             $html .= '</li>';
             $html .= '</ul>';
 
