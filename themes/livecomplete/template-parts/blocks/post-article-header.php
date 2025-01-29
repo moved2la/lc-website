@@ -116,6 +116,30 @@ if (!defined('ABSPATH')) {
 
     .article-post-header .author {
         display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 14px;
+        line-height: 150%;
+        font-weight: 400;
+        gap: 8px;
+    }
+
+    .article-post-header .author-line {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .article-post-header .authors-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-left: 23px;
+        /* Align with first author's name */
+    }
+
+    .article-post-header .author-name {
+        display: flex;
         align-items: center;
         font-size: 14px;
         line-height: 150%;
@@ -182,16 +206,33 @@ if (!defined('ABSPATH')) {
                 </div>
             </div>
             <div class="content-row">
-                <div class="content-col1" style="gap: 0;">
+                <div class="content-col1" style="gap: 10px;">
                     <div class="publish-date">Published on <?php echo get_the_date('j M Y'); ?></div>
                     <div class="author">
-                        <?php
-                        $avatar = get_avatar(get_the_author_meta('ID'), 24);
-                        if ($avatar && !empty(get_avatar_url(get_the_author_meta('ID')))) {
-                            echo $avatar;
-                        }
-                        ?>
-                        By <?php echo get_the_author_meta('display_name'); ?>
+                        <div class="author-line">
+                            By
+                            <?php
+                            $authors = get_post_authors();
+                            if (!empty($authors)) {
+                                echo '<div class="author-name">';
+                                echo get_avatar($authors[0]->ID, 24);
+                                echo $authors[0]->display_name;
+                                echo '</div>';
+                            }
+                            ?>
+                        </div>
+                        <?php if (count($authors) > 1): ?>
+                            <div class="authors-wrapper">
+                                <?php
+                                for ($i = 1; $i < count($authors); $i++) {
+                                    echo '<div class="author-name">';
+                                    echo get_avatar($authors[$i]->ID, 24);
+                                    echo $authors[$i]->display_name;
+                                    echo '</div>';
+                                }
+                                ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
