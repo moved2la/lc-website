@@ -1674,7 +1674,7 @@ body.error404 #content.site-content {
         margin-bottom: 15px;
     }
     .ss-wrapper {
-        padding-right: 18px !important;
+        /* padding-right: 18px !important; */
     }
 }
 /*------------------------------------
@@ -2331,3 +2331,28 @@ ul.product_list_widget span {
     background: white;
 }
 
+
+
+@media (max-width: 1024px) {
+    .mobile-subscribe-button {
+        padding: 0 15px 15px 15px;
+        text-align: center;
+        margin-top: auto; /* This pushes the button to the bottom */
+    }
+
+    .mobile-subscribe-button button {
+        width: 100%;
+    }
+
+    #navbar {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensures the nav takes full height */
+    }
+}
+
+@media (min-width: 1025px) {
+    .mobile-subscribe-button {
+        display: none; /* Hide on desktop */
+    }
+}

@@ -193,6 +193,11 @@ class live_complete_Header_Layout
             ));
             ?>
 
+            <div class="mobile-subscribe-button">
+                <a href="<?php echo esc_url(home_url('/subscribe-and-save')); ?>">
+                    <button>Subscribe & Save</button>
+                </a>
+            </div>
         </nav>
     <?php
 
@@ -265,22 +270,22 @@ class live_complete_Header_Layout
      */
     public function get_site_search_form()
     {
-        ?>
-            <!-- <div class="fly-search-bar" id="fly-search-bar"> -->
-            <div class="container-wrap">
-                <?php
-                $css =    '';
-                if (class_exists('APSW_Product_Search_Finale_Class') && class_exists('WooCommerce')) {
-                    do_action('apsw_search_bar_preview');
-                    $css = 'active_product_search';
-                } else {
-                    get_search_form();
-                }
-                ?>
-                <a href="javascript:void(0)" class="search-close-trigger <?php echo esc_attr($css); ?>"><i class="icofont-close"></i></a>
-            </div>
-            <!-- </div>		 -->
+    ?>
+        <!-- <div class="fly-search-bar" id="fly-search-bar"> -->
+        <div class="container-wrap">
             <?php
+            $css =    '';
+            if (class_exists('APSW_Product_Search_Finale_Class') && class_exists('WooCommerce')) {
+                do_action('apsw_search_bar_preview');
+                $css = 'active_product_search';
+            } else {
+                get_search_form();
+            }
+            ?>
+            <a href="javascript:void(0)" class="search-close-trigger <?php echo esc_attr($css); ?>"><i class="icofont-close"></i></a>
+        </div>
+        <!-- </div>		 -->
+        <?php
     }
 
     public function get_site_breadcrumb()
@@ -340,9 +345,9 @@ class live_complete_Header_Layout
         ?>
 
             <?php
-                // Get image dimensions
-                $image_data = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-                $aspect_ratio = $image_data ? $image_data[1] . '/' . $image_data[2] : '16/9'; // Default to 16:9 if no image
+            // Get image dimensions
+            $image_data = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+            $aspect_ratio = $image_data ? $image_data[1] . '/' . $image_data[2] : '16/9'; // Default to 16:9 if no image
             ?>
             <div id="static_header_banner" class="header-style-1" style="aspect-ratio: <?php echo esc_attr($aspect_ratio); ?>;">
 
@@ -415,7 +420,7 @@ class live_complete_Header_Layout
 
         echo '</div>';
     }
-        
+
     private function allowed_tags()
     {
 
