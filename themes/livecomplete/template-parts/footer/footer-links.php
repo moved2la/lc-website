@@ -68,15 +68,15 @@ if (!defined('ABSPATH')) {
 
     .footer-wrapper .color-dark {
         flex-shrink: 0;
-        width: 84px;
-        height: 36px;
+        width: 176px;
+        height: 100px;
         position: relative;
         overflow: hidden;
     }
 
     .footer-wrapper .logo-wide-1 {
-        width: 70px;
-        height: 36px;
+        width: 176px;
+        height: 100px;
         position: absolute;
         left: 50%;
         translate: -50% -50%;
@@ -358,7 +358,7 @@ if (!defined('ABSPATH')) {
     <div class="content container">
         <div class="column">
             <div class="color-dark">
-                <img class="logo-wide-1" src="<?php echo get_template_directory_uri() . '/assets/image/logo-white.svg'; ?>" />
+                <img class="logo-wide-1" src="<?php echo get_template_directory_uri() . '/assets/image/logo-light.svg'; ?>" />
             </div>
         </div>
         <div class="links">
