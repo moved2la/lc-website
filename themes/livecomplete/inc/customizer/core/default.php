@@ -38,11 +38,13 @@ if ( ! function_exists( 'live_complete_get_default_theme_options' ) ) :
 		
 		
 		/*Posts Layout*/
-		$defaults['__fb_pro_link']     				= '';
-		$defaults['__tw_pro_link']     				= '';
-		$defaults['__you_pro_link']     		    = '';
-		$defaults['__pr_pro_link']     				= '';
+		$defaults['__fb_link']     				= '';
+		$defaults['__ig_link']     				= '';
+		$defaults['__x_link']     				= '';
+		$defaults['__li_link']     				= '';
+		$defaults['__yt_link']     				= '';
 		
+
 		$defaults['__primary_color']     			= '#6c757d';
 		$defaults['__secondary_color']     			= '#000';
 		

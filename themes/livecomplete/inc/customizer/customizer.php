@@ -20,9 +20,6 @@ load_template( get_template_directory() . '/inc/customizer/core/default.php', tr
  */
 function live_complete_customize_register( $wp_customize ) {
 
-	// Load custom controls.
-
-	load_template( get_template_directory() . '/inc/customizer/core/control.php', true ) ;
 	// Load customize sanitize.
 	load_template( get_template_directory() . '/inc/customizer/core/sanitize.php', true ) ;
 
@@ -32,24 +29,6 @@ function live_complete_customize_register( $wp_customize ) {
 	
 	/*theme option panel details*/
 	load_template( get_template_directory() . '/inc/customizer/theme-option.php', false ) ;
-	
-	// Register custom section types.
-	$wp_customize->register_section_type( 'live_complete_Customize_Section_Upsell' );
-
-	// Register sections.
-	$wp_customize->add_section(
-		new live_complete_Customize_Section_Upsell(
-			$wp_customize,
-			'theme_upsell',
-			array(
-				'title'    => esc_html__( 'Upgrade to live-complete Pro!', 'live-complete' ),
-				'pro_text' => esc_html__( 'Go PRO', 'live-complete' ),
-				'pro_url'  => 'https://www.athemeart.com/downloads/fastest-elementor-woocommerce-theme/',
-				'priority'  => 1,
-			)
-		)
-	);
-	
 	
 }
 add_action( 'customize_register', 'live_complete_customize_register' );

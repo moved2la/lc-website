@@ -113,7 +113,6 @@ $wp_customize->add_control(
     array(
         'label'           => esc_html__('Primary Color Scheme:', 'live-complete'),
         'section'         => 'styling_section_settings',
-        'description'  => esc_html__('The theme comes with unlimited color schemes for your theme\'s styling. upgrade pro for color options & features', 'live-complete'),
         'type'     => 'color',
         'priority' => 120,
     )
@@ -132,7 +131,6 @@ $wp_customize->add_control(
     array(
         'label'           => esc_html__('Secondary Color Scheme:', 'live-complete'),
         'section'         => 'styling_section_settings',
-        'description'  => esc_html__('The theme comes with unlimited color schemes for your theme\'s styling. upgrade pro for color options & features', 'live-complete'),
         'type'     => 'color',
         'priority' => 120,
     )
@@ -153,7 +151,6 @@ $wp_customize->add_control(
     array(
         'label'           => esc_html__('Menu Primary Color Scheme:', 'live-complete'),
         'section'         => 'styling_section_settings',
-        'description'  => esc_html__('The theme comes with unlimited color schemes for your theme\'s styling. upgrade pro for color options & features', 'live-complete'),
         'type'     => 'color',
         'priority' => 120,
     )
@@ -173,7 +170,6 @@ $wp_customize->add_control(
     array(
         'label'           => esc_html__('Menu Secondary Color Scheme:', 'live-complete'),
         'section'         => 'styling_section_settings',
-        'description'  => esc_html__('The theme comes with unlimited color schemes for your theme\'s styling. upgrade pro for color options & features', 'live-complete'),
         'type'     => 'color',
         'priority' => 120,
     )
