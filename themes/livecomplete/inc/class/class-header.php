@@ -29,6 +29,7 @@ class live_complete_Header_Layout
 
         add_action('live_complete_site_header', array($this, 'site_skip_to_content'), 5);
         add_action('live_complete_site_header', array($this, 'site_top_bar'), 10);
+        add_action('wp_footer', array($this, 'add_topbar_close_script'));
         // add_action('live_complete_site_header', array( $this, 'get_site_search_form' ), 20 );
 
         add_action('live_complete_site_header', array($this, 'site_header_layout'), 30);
@@ -65,29 +66,27 @@ class live_complete_Header_Layout
      */
     function site_top_bar()
     {
-        if (empty(live_complete_get_option('__topbar_phone')) && empty(live_complete_get_option('__topbar_address')) && empty(live_complete_get_option('__topbar_email'))) return false;
-        echo '<div id="topbar">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-right">';
+        if (empty(live_complete_get_option('__topbar_message'))) return false;
 ?>
-        <ul class="flat-support">
-            <?php if (!empty(live_complete_get_option('__topbar_address'))): ?>
-                <li><i class="icofont-location-pin"></i> <?php echo esc_html(live_complete_get_option('__topbar_address')); ?> </li>
-            <?php endif; ?>
-            <?php if (!empty(live_complete_get_option('__topbar_email'))): ?>
-                <li><i class="icofont-email"></i> <?php echo esc_html(live_complete_get_option('__topbar_email')); ?> </li>
-            <?php endif; ?>
-            <?php if (!empty(live_complete_get_option('__topbar_phone'))): ?>
-                <li><i class="icofont-ui-cell-phone"></i> <?php echo esc_html(live_complete_get_option('__topbar_phone')); ?> </li>
-            <?php endif; ?>
-        </ul>
-
+        <script>
+            if (!sessionStorage.getItem('topbarClosed')) {
+                document.write(`
+                    <div id="topbar">
+                        <div class="row">
+                            <div class="topbar-content">
+                                <?php if (!empty(live_complete_get_option('__topbar_message'))): ?>
+                                    <?php echo esc_html(live_complete_get_option('__topbar_message')); ?>
+                                <?php endif; ?>
+                            </div>
+                            <button class="topbar-close">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/image/topbar-close.svg" alt="Close">
+                            </button>
+                        </div>
+                    </div>
+                `);
+            }
+        </script>
     <?php
-        echo '</div>
-				</div>
-			</div>
-		</div>';
     }
     /**
      * Container before
@@ -472,6 +471,30 @@ class live_complete_Header_Layout
                             if (fragments) {
                                 $('.cart-icon .quantity').text(fragments['.cart-icon .quantity'].replace(/<\/?span[^>]*>/g, ''));
                             }
+                        });
+                    });
+                </script>
+            <?php
+            }
+
+            /**
+             * Add JavaScript for topbar close functionality
+             */
+            public function add_topbar_close_script()
+            {
+            ?>
+                <script>
+                    jQuery(document).ready(function($) {
+                        // Check if topbar was previously closed in this session
+                        if (sessionStorage.getItem('topbarClosed')) {
+                            $('#topbar').hide();
+                        }
+
+                        // Handle topbar close button click
+                        $('.topbar-close').on('click', function() {
+                            $('#topbar').slideUp();
+                            $('.header-table .table-cell.last-item').css('margin-top', '0');
+                            sessionStorage.setItem('topbarClosed', 'true');
                         });
                     });
                 </script>

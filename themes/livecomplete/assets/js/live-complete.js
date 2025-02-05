@@ -76,6 +76,11 @@
 	
 	$(function() {
 		
+        // Offset mobile header icon and navbar toggle to account for topbar height
+		if ($('#topbar').length) {
+            $('.header-table .table-cell.last-item').css('margin-top', '48px');
+		}
+		
 		back_to_top_scroll();
 		
 		
@@ -282,4 +287,6 @@
             });
         }
     });
+
+    
 })(jQuery);

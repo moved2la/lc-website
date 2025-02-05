@@ -196,49 +196,37 @@ textarea {
 >>> Body
 ----------------------------------------------------------------*/
 #topbar {
-    background: #f3f3f3;
+    background: #000;
+    color: #fff;
     position: relative;
-    padding: 8px 0px;
+    padding: 0;
+    height: 48px;
     border-bottom: 1px solid #e5e5e5;
 }
-ul.flat-support li {
-    display: inline-block;
-    margin-right: 25px;
-    position: relative;
-    padding-top: 7px;
-    color: #919191;
-    font-size: 14px;
-    padding-top: 0px;
+#topbar .row {
+  height: inherit;
 }
-
-ul.flat-support li i {
-    margin-right: 5px;
-    margin-left: 3px;
-    font-size: 16px;
+#topbar .topbar-content {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  height: inherit;
+  line-height: 150%;
+  text-align: center;
+  flex: 1;
 }
-ul.flat-support li::after {
-    content: "/";
-    position: absolute;
-    right: -15px;
-    top: 0px;
-    font-size: 20px;
+#topbar .topbar-close {
+  background: #000;
+  margin-right: 16px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 16px;
 }
-ul.flat-support li:first-child:after {
-    content: "";
-}
-#topbar ul {
-    display: block;
-    padding: 0px;
-    margin-bottom: 0px;
-}
-#topbar ul li {
-    list-style: none;
-    float: right;
-}
-#topbar ul li a {
-    padding: 5px;
-    font-size: 20px;
-    margin: 0px 3px;
+#topbar .topbar-close img {
+  width: 14px;
+  height: 14px;
+  display: block;
+  margin: auto;
 }
 #masthead.site-header {
     /*position:absolute;
@@ -303,6 +291,7 @@ ul.flat-support li:first-child:after {
     width: 100%;
     background-color: #282e34;
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
     text-align: center;
     background: #000;
@@ -860,9 +849,6 @@ ul.flat-support li:first-child:after {
 .live-complete-blogwrap .content-wrap a.theme-btn {
     text-decoration: none;
 }
-.live-complete-blogwrap .post a:hover,
-.live-complete-blogwrap .post a:focus {
-}
 .live-complete-blogwrap .post-meta-wrap {
     position: absolute;
     top: -27px;
@@ -1047,7 +1033,6 @@ ul.comments-list .comment-reply-link {
     font-family: "IcoFont";
     font-weight: normal;
     content: "\f00e";
-    speak: none;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     opacity: 1;
@@ -1124,7 +1109,6 @@ ul.popular_category_list li,
 #secondary .widget li:before,
 #colophon.site-footer li:before {
     font-family: "IcoFont" !important;
-    speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -1135,6 +1119,7 @@ ul.popular_category_list li,
     line-height: 1;
     /* Better Font Rendering =========== */
     -webkit-font-feature-settings: "liga";
+    font-feature-settings: "liga";
     -webkit-font-smoothing: antialiased;
     position: absolute;
     left: 3px;

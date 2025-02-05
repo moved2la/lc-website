@@ -52,9 +52,7 @@ if ( ! function_exists( 'live_complete_get_default_theme_options' ) ) :
 		$defaults['__menu_primary_color']     		= '#000';
 		
 		/*layout*/
-		$defaults['__topbar_phone']					= '';
-		$defaults['__topbar_email']					= '';
-		$defaults['__topbar_address']     			= '';
+        $defaults['__topbar_message']				= '';
 	
 
 		// Pass through filter.

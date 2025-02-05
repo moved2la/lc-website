@@ -32,61 +32,28 @@ $wp_customize->add_section(
     )
 );
 
-/*Social Profile*/
+// Top Bar Message
 $wp_customize->add_setting(
-    '__topbar_phone',
+    '__topbar_message',
     array(
-        'default'           => $default['__topbar_phone'],
+        'default'           => $default['__topbar_message'],
         'capability'        => 'edit_theme_options',
         'sanitize_callback' => 'sanitize_text_field',
     )
 );
+
 $wp_customize->add_control(
-    '__topbar_phone',
+    '__topbar_message',
     array(
-        'label'    => esc_html__('Phone:', 'live-complete'),
+        'label'    => esc_html__('Message:', 'live-complete'),
         'section'  => 'topbar_section_settings',
         'type'     => 'text',
 
-    )
-);
-
-$wp_customize->add_setting(
-    '__topbar_email',
-    array(
-        'default'           => $default['__topbar_email'],
-        'capability'        => 'edit_theme_options',
-        'sanitize_callback' => 'sanitize_text_field',
-    )
-);
-$wp_customize->add_control(
-    '__topbar_email',
-    array(
-        'label'    => esc_html__('Email:', 'live-complete'),
-        'section'  => 'topbar_section_settings',
-        'type'     => 'text',
 
     )
 );
 
-$wp_customize->add_setting(
-    '__topbar_address',
-    array(
-        'default'           => $default['__topbar_address'],
-        'capability'        => 'edit_theme_options',
-        'sanitize_callback' => 'sanitize_text_field',
-    )
-);
-$wp_customize->add_control(
-    '__topbar_address',
-    array(
-        'label'    => esc_html__('Address:', 'live-complete'),
-        'section'  => 'topbar_section_settings',
-        'type'     => 'text',
-
-    )
-);
-// Styling Options.*/
+// Styling Options
 
 $wp_customize->add_section(
     'styling_section_settings',
