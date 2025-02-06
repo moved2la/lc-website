@@ -37,13 +37,14 @@ if ( ! function_exists( 'live_complete_get_default_theme_options' ) ) :
 		$defaults['index_hide_thumb']     			= false;
 		
 		
-		/*Posts Layout*/
+		/*Footer Social Icons*/
 		$defaults['__fb_link']     				= '';
 		$defaults['__ig_link']     				= '';
 		$defaults['__x_link']     				= '';
 		$defaults['__li_link']     				= '';
 		$defaults['__yt_link']     				= '';
 		
+
 
 		$defaults['__primary_color']     			= '#6c757d';
 		$defaults['__secondary_color']     			= '#000';

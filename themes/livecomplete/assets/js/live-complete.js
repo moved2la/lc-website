@@ -77,8 +77,17 @@
 	$(function() {
 		
         // Offset mobile header icon and navbar toggle to account for topbar height
-		if ($('#topbar').length) {
-            $('.header-table .table-cell.last-item').css('margin-top', '48px');
+        if ($('#topbar').length) {
+            function updateHeaderMargin() {
+                if (window.innerWidth < 1025) {
+                    $('.header-table .table-cell.last-item').css('margin-top', '48px');
+                } else {
+                    $('.header-table .table-cell.last-item').css('margin-top', '0');
+                }
+            }
+            
+            updateHeaderMargin(); // Initial check
+            $(window).on('resize', updateHeaderMargin); // Update on resize
 		}
 		
 		back_to_top_scroll();
