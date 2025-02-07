@@ -915,4 +915,81 @@ add_action('wp_body_open', 'add_GTM_script_body');
 
 /** -------------- Add Google Tag Manager -------------- */
 
+/* -------------- Custom User Profile Image -------------- */
 
+// Add custom user meta for profile image
+function add_user_profile_image_field($user) {
+    $profile_image = get_user_meta($user->ID, 'custom_profile_image', true);
+    ?>
+    <h3><?php _e('Custom Profile Image', 'live-complete'); ?></h3>
+    <table class="form-table">
+        <tr>
+            <th>
+                <label for="custom_profile_image"><?php _e('Upload Profile Image', 'live-complete'); ?></label>
+            </th>
+            <td>
+                <div class="profile-image-container">
+                    <?php if ($profile_image) : ?>
+                        <img src="<?php echo esc_url($profile_image); ?>" style="max-width: 150px; height: auto; margin-bottom: 10px;">
+                    <?php endif; ?>
+                    <input type="hidden" name="custom_profile_image" id="custom_profile_image" value="<?php echo esc_attr($profile_image); ?>">
+                    <input type="button" class="button" id="upload_profile_image_button" value="<?php _e('Upload Image', 'live-complete'); ?>">
+                    <?php if ($profile_image) : ?>
+                        <input type="button" class="button" id="remove_profile_image_button" value="<?php _e('Remove Image', 'live-complete'); ?>">
+                    <?php endif; ?>
+                    <p class="description"><?php _e('Upload a profile image or avatar. Recommended size: 150x150 pixels.', 'live-complete'); ?></p>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+add_action('show_user_profile', 'add_user_profile_image_field');
+add_action('edit_user_profile', 'add_user_profile_image_field');
+
+// Save the custom profile image
+function save_user_profile_image($user_id) {
+    if (current_user_can('edit_user', $user_id)) {
+        update_user_meta($user_id, 'custom_profile_image', sanitize_text_field($_POST['custom_profile_image']));
+    }
+}
+add_action('personal_options_update', 'save_user_profile_image');
+add_action('edit_user_profile_update', 'save_user_profile_image');
+
+// Replace Gravatar with custom profile image
+function custom_get_avatar($avatar, $id_or_email, $size, $default, $alt) {
+    $user = false;
+
+    if (is_numeric($id_or_email)) {
+        $user_id = (int) $id_or_email;
+        $user = get_user_by('id', $user_id);
+    } elseif (is_object($id_or_email)) {
+        if (!empty($id_or_email->user_id)) {
+            $user = get_user_by('id', $id_or_email->user_id);
+        }
+    } else {
+        $user = get_user_by('email', $id_or_email);
+    }
+
+    if ($user && is_object($user)) {
+        $custom_profile_image = get_user_meta($user->ID, 'custom_profile_image', true);
+        if ($custom_profile_image) {
+            $avatar = "<img alt='{$alt}' src='{$custom_profile_image}' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
+        }
+    }
+
+    return $avatar;
+}
+add_filter('get_avatar', 'custom_get_avatar', 10, 5);
+
+// Enqueue WordPress media scripts for profile image upload
+function enqueue_media_uploader($hook) {
+    if ('profile.php' === $hook || 'user-edit.php' === $hook) {
+        wp_enqueue_media();
+        wp_enqueue_script('custom-profile-image', get_template_directory_uri() . '/assets/js/profile-image.js', array('jquery'), null, true);
+    }
+}
+add_action('admin_enqueue_scripts', 'enqueue_media_uploader');
+
+
+/* -------------- Custom User Profile Image -------------- */
