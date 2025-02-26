@@ -172,10 +172,22 @@ if (!defined('ABSPATH')) {
                                                 }
 
                                                 if ($is_blog) {
-                                                    // Show first tag in title case or default to "Blog"
-                                                    $post_tags = get_the_tags();
-                                                    if ($post_tags) {
-                                                        echo esc_html(ucwords(strtolower($post_tags[0]->name)));
+                                                    
+                                                    $sub_category = null;
+                                                    
+                                                    // Look for a subcategory of Blog
+                                                    foreach ($categories as $category) {
+                                                        if ($category->parent != 0) {
+                                                            $parent_cat = get_category($category->parent);
+                                                            if (strtolower($parent_cat->name) === 'blog') {
+                                                                $sub_category = $category;
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                    
+                                                    if ($sub_category) {
+                                                        echo esc_html(ucwords(strtolower($sub_category->name)));
                                                     } else {
                                                         echo 'Blog';
                                                     }

@@ -317,7 +317,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
 
 <div class="section-title">
     <div class="content">
-        <div class="heading">News</div>
+        <div class="heading">Articles</div>
         <div class="sub-heading">
             Explore the world of plant-based innovations and trends.
         </div>
@@ -325,43 +325,31 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
 </div>
 
 <div class="categories">
-    <button class="button" data-category="all">
+    <button class="button active" data-category="all">
         <div class="view-all">View all</div>
     </button>
     <?php
-    // Get posts from 'receipies' category first
-    $receipies_posts = get_posts(array(
-        'category_name' => 'blog',
-        'numberposts' => -1,
-        'post_status' => 'publish'
-    ));
+    // Get all child categories of 'blog'
+    $blog_cat = get_category_by_slug('blog');
+    if ($blog_cat) {
+        $subcategories = get_categories(array(
+            'child_of' => $blog_cat->term_id,
+            'hide_empty' => true,
+        ));
 
-    // Collect all tags used in these posts
-    $tag_ids = array();
-    foreach ($receipies_posts as $post) {
-        $post_tags = wp_get_post_tags($post->ID);
-        if ($post_tags) {
-            foreach ($post_tags as $tag) {
-                $tag_ids[$tag->term_id] = $tag;
-            }
-        }
-    }
-
-    wp_reset_postdata();
-
-    // Sort tags by name
-    if (!empty($tag_ids)) {
-        usort($tag_ids, function ($a, $b) {
+        // Sort subcategories by name
+        usort($subcategories, function ($a, $b) {
             return strcasecmp($a->name, $b->name);
         });
-    }
 
-    // Display sorted tags
-    foreach ($tag_ids as $tag) : ?>
-        <button data-category="<?php echo esc_attr($tag->slug); ?>">
-            <div class="category-item"><?php echo esc_html(ucwords($tag->name)); ?></div>
-        </button>
-    <?php endforeach; ?>
+        // Display sorted subcategories
+        foreach ($subcategories as $subcategory) : ?>
+            <button data-category="<?php echo esc_attr($subcategory->slug); ?>">
+                <div class="category-item"><?php echo esc_html(ucwords($subcategory->name)); ?></div>
+            </button>
+        <?php endforeach;
+    }
+    ?>
 </div>
 
 
@@ -379,21 +367,28 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
 
     if ($blog_posts->have_posts()) :
         while ($blog_posts->have_posts()) : $blog_posts->the_post();
-            $tag_slugs = array();
-            $display_tag = 'Blog'; // Default fallback text
+            $category_slugs = array();
+            $display_category = 'Blog'; // Default fallback text
 
-            $tags = get_the_tags();
-            if ($tags) {
-                foreach ($tags as $tag) {
-                    $tag_slugs[] = $tag->slug;
+            // Get post categories
+            $categories = get_the_category();
+            if ($categories) {
+                foreach ($categories as $category) {
+                    // Only include subcategories of 'blog'
+                    if ($blog_cat && cat_is_ancestor_of($blog_cat->term_id, $category->term_id)) {
+                        $category_slugs[] = $category->slug;
+                        // Use the first subcategory as display category
+                        if ($display_category === 'Blog') {
+                            $display_category = ucwords($category->name);
+                        }
+                    }
                 }
-                $display_tag = ucwords($tags[0]->name);
             }
 
-            // Add 'card' class and all tag slugs as classes
+            // Add 'card' class and all category slugs as classes
             $card_classes = array('card');
-            if (!empty($tag_slugs)) {
-                $card_classes = array_merge($card_classes, $tag_slugs);
+            if (!empty($category_slugs)) {
+                $card_classes = array_merge($card_classes, $category_slugs);
             }
             $class_string = esc_attr(implode(' ', $card_classes));
 
@@ -421,7 +416,7 @@ do_action('live_complete_container_wrap_start', esc_attr($layout));
                     <div class="content2">
                         <div class="info">
                             <div class="article-category">
-                                <div class="text"><?php echo esc_html(ucwords($display_tag)); ?></div>
+                                <div class="text"><?php echo esc_html($display_category); ?></div>
                             </div>
                             <div class="text2"><?php echo esc_html($reading_time_text); ?></div>
                         </div>

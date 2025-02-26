@@ -159,14 +159,24 @@ class Featured_Blog_Post_Widget extends WP_Widget
                 echo $args['before_widget'];
         ?>
                 <div class="blog-item">
-                    <img
-                        class="article-image"
-                        src="<?php echo get_the_post_thumbnail_url($post_id, 'medium'); ?>" />
-                    <div class="content">
 
-                        <div class="article-title"><?php echo get_the_title($post); ?></div>
+                    <div class="content">
+                        <img
+                            class="article-image"
+                            src="<?php echo get_the_post_thumbnail_url($post_id, 'medium'); ?>" />
+                        <div class="article-title"><?php 
+                            $title = get_the_title($post);
+                            $words = explode(' ', $title);
+                            echo esc_html(implode(' ', array_slice($words, 0, 3)));
+                            if (count($words) > 3) echo '...';
+                        ?></div>
                         <div class="article-description">
-                            <?php echo get_the_excerpt($post); ?>
+                            <?php 
+                                $excerpt = get_the_excerpt($post);
+                                $words = explode(' ', $excerpt);
+                                echo esc_html(implode(' ', array_slice($words, 0, 5)));
+                                if (count($words) > 5) echo '...';
+                            ?>
                         </div>
 
                         <a href="<?php echo get_permalink($post); ?>" class="read-more">Read more</a>
@@ -209,7 +219,7 @@ class Featured_Blog_Post_Widget extends WP_Widget
                         font-size: 16px;
                         line-height: 150%;
                         font-weight: 600;
-                        margin-bottom: 10px;
+                        /* margin-bottom: 10px; */
                     }
 
                     .blog-item .article-description {

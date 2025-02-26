@@ -389,9 +389,9 @@ textarea {
 }
 
 /* Fix: match bg color of widget Explore megamenu */
-#mega-menu-wrap-menu-1 #mega-menu-menu-1 #mega-menu-item-259.mega-menu-item-has-children > a.mega-menu-link > span.mega-indicator {
+/* #mega-menu-wrap-menu-1 #mega-menu-menu-1 #mega-menu-item-259.mega-menu-item-has-children > a.mega-menu-link > span.mega-indicator {
     background-image: url("assets/image/menu-caret-gray.svg") !important;
-}
+} */
 
 #mega-menu-menu-1 > li > a > .mega-indicator:after {
     content: "" !important;
@@ -2019,7 +2019,7 @@ ul.product_list_widget span {
 }
 .explore-megamenu-title {
   background-color: #fff !important;
-  /* min-height: 320px !important; */
+  min-height: 250px !important;
 }
 @media only screen and (max-width: 1024px) {
   .explore-megamenu-title {
