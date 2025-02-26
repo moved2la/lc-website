@@ -158,21 +158,30 @@ class Featured_Blog_Post_Widget extends WP_Widget
             $post = get_post($post_id);
 
             if ($post) {
+                // Get the actual excerpt if it exists, otherwise leave blank
+                $excerpt = '';
+                if (!empty($custom_excerpt)) {
+                    $excerpt = $custom_excerpt;
+                } elseif (!empty($post->post_excerpt)) {
+                    $excerpt = $post->post_excerpt;
+                }
+                
                 echo $args['before_widget'];
         ?>
                 <div class="blog-item">
 
                     <div class="content">
-                        <img
-                            class="article-image"
-                            src="<?php echo get_the_post_thumbnail_url($post_id, 'medium'); ?>" />
+                        <?php if (has_post_thumbnail($post_id)) : ?>
+                            <img
+                                class="article-image"
+                                src="<?php echo get_the_post_thumbnail_url($post_id, 'medium'); ?>" 
+                                alt="<?php echo esc_attr($custom_title ?: get_the_title($post)); ?>" />
+                        <?php endif; ?>
                         <div class="article-title"><?php 
                             echo esc_html($custom_title ?: get_the_title($post));
                         ?></div>
                         <div class="article-description">
-                            <?php 
-                                echo esc_html($custom_excerpt ?: get_the_excerpt($post));
-                            ?>
+                            <?php echo esc_html($excerpt); ?>
                         </div>
 
                         <a href="<?php echo get_permalink($post); ?>" class="read-more">Read more</a>
