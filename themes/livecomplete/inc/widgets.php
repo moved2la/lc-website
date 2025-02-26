@@ -151,6 +151,8 @@ class Featured_Blog_Post_Widget extends WP_Widget
     public function widget($args, $instance)
     {
         $post_id = !empty($instance['post_id']) ? $instance['post_id'] : '';
+        $custom_title = !empty($instance['custom_title']) ? $instance['custom_title'] : '';
+        $custom_excerpt = !empty($instance['custom_excerpt']) ? $instance['custom_excerpt'] : '';
 
         if ($post_id) {
             $post = get_post($post_id);
@@ -165,17 +167,11 @@ class Featured_Blog_Post_Widget extends WP_Widget
                             class="article-image"
                             src="<?php echo get_the_post_thumbnail_url($post_id, 'medium'); ?>" />
                         <div class="article-title"><?php 
-                            $title = get_the_title($post);
-                            $words = explode(' ', $title);
-                            echo esc_html(implode(' ', array_slice($words, 0, 3)));
-                            if (count($words) > 3) echo '...';
+                            echo esc_html($custom_title ?: get_the_title($post));
                         ?></div>
                         <div class="article-description">
                             <?php 
-                                $excerpt = get_the_excerpt($post);
-                                $words = explode(' ', $excerpt);
-                                echo esc_html(implode(' ', array_slice($words, 0, 5)));
-                                if (count($words) > 5) echo '...';
+                                echo esc_html($custom_excerpt ?: get_the_excerpt($post));
                             ?>
                         </div>
 
@@ -247,21 +243,46 @@ class Featured_Blog_Post_Widget extends WP_Widget
     public function form($instance)
     {
         $post_id = !empty($instance['post_id']) ? $instance['post_id'] : '';
-        ?>
+        $custom_title = !empty($instance['custom_title']) ? $instance['custom_title'] : '';
+        $custom_excerpt = !empty($instance['custom_excerpt']) ? $instance['custom_excerpt'] : '';
+        
+        // Get all posts
+        $posts = get_posts(array(
+            'post_type' => 'post',
+            'posts_per_page' => -1,
+            'orderby' => 'title',
+            'order' => 'ASC',
+        ));
+?>
         <p>
-            <label for="<?php echo $this->get_field_id('post_id'); ?>">Post ID:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('post_id'); ?>"
-                name="<?php echo $this->get_field_name('post_id'); ?>"
-                type="number"
-                value="<?php echo esc_attr($post_id); ?>">
+            <label for="<?php echo $this->get_field_id('post_id'); ?>">Select Post:</label>
+            <select class="widefat" id="<?php echo $this->get_field_id('post_id'); ?>" name="<?php echo $this->get_field_name('post_id'); ?>">
+                <option value="">Select a post</option>
+                <?php foreach ($posts as $post) : ?>
+                    <option value="<?php echo $post->ID; ?>" <?php selected($post_id, $post->ID); ?>><?php echo $post->post_title; ?></option>
+                <?php endforeach; ?>
+            </select>
         </p>
-        <?php
+        <p>
+            <label for="<?php echo $this->get_field_id('custom_title'); ?>">Custom Title (max 3 words):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('custom_title'); ?>" name="<?php echo $this->get_field_name('custom_title'); ?>" type="text" value="<?php echo esc_attr($custom_title); ?>" />
+            <small>Leave empty to use post title</small>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('custom_excerpt'); ?>">Custom Excerpt (max 5 words):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('custom_excerpt'); ?>" name="<?php echo $this->get_field_name('custom_excerpt'); ?>" type="text" value="<?php echo esc_attr($custom_excerpt); ?>" />
+            <small>Leave empty to use post excerpt</small>
+        </p>
+<?php
     }
 
     public function update($new_instance, $old_instance)
     {
         $instance = array();
         $instance['post_id'] = (!empty($new_instance['post_id'])) ? strip_tags($new_instance['post_id']) : '';
+        $instance['custom_title'] = (!empty($new_instance['custom_title'])) ? strip_tags($new_instance['custom_title']) : '';
+        $instance['custom_excerpt'] = (!empty($new_instance['custom_excerpt'])) ? strip_tags($new_instance['custom_excerpt']) : '';
+        
         return $instance;
     }
 }
